@@ -12,7 +12,6 @@ import javafx.geometry.VPos;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -20,7 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import codenames.codename2;
+import codenames.CodenameGame;
 
 /**
  * 
@@ -86,8 +85,8 @@ public class CodenameGUI extends Application {
 				System.out.println("Pressed");
 				for (int i = 0; i < NUM_CARDS; i++) {
 					for (int j = 0; j < NUM_CARDS; j++) {
-						//text = new Text(codename2.cards[i][j].getWord().toString());
-						switch(codename2.cards[i][j].getColor()) {
+						//text = new Text(CodenameGame.cards[i][j].getWord().toString());
+						switch(CodenameGame.cards[i][j].getColor()) {
 							case("Red"): text[i][j].setFill(Color.RED); break;
 							case("Blue"): text[i][j].setFill(Color.BLUE); break;
 							case("Black"): text[i][j].setFill(Color.YELLOW); break;
@@ -103,7 +102,7 @@ public class CodenameGUI extends Application {
 			Keycard.setOnMouseReleased(e -> {
 				for (int i = 0; i < NUM_CARDS; i++) {
 					for (int j = 0; j < NUM_CARDS; j++) {
-						//text = new Text(codename2.cards[i][j].getWord().toString());
+						//text = new Text(CodenameGame.cards[i][j].getWord().toString());
 						text[i][j].setFill(Color.BLACK); 				
 					}
 				}
@@ -130,7 +129,7 @@ public class CodenameGUI extends Application {
 				for (int j = 0; j < NUM_CARDS; j++) {
 					
 					//text sample
-					text[i][j] = new Text(codename2.cards[i][j].getWord().toString());
+					text[i][j] = new Text(CodenameGame.cards[i][j].getWord().toString());
 					
 					//set alignment of text
 					GridPane.setHalignment(text[i][j], HPos.CENTER);
@@ -152,16 +151,16 @@ public class CodenameGUI extends Application {
 			        		if(red != 9) {
 			        			
 			        			if (turn == true) {
-			        				if((codename2.cards[k][l].getColor().equals("Black"))) {
+			        				if((CodenameGame.cards[k][l].getColor().equals("Black"))) {
 			        					r.setFill(Color.YELLOW);
 			        					System.out.println("GameOver");
 			        					head.setText("GameOver");
 			        				}
-			        				else if ((codename2.cards[k][l].getColor().equals("Wild"))) {
+			        				else if ((CodenameGame.cards[k][l].getColor().equals("Wild"))) {
 			        					r.setFill(Color.GRAY);
 			        					head.setText("You hit a bystander");
 		        					}
-			        				else if((codename2.cards[k][l].getColor().equals("Blue"))) {
+			        				else if((CodenameGame.cards[k][l].getColor().equals("Blue"))) {
 			        					r.setFill(Color.BLUE);
 			        					color("Blue");
 			        					changeturn();
@@ -172,18 +171,18 @@ public class CodenameGUI extends Application {
 			        					color("Red");
 			        				}
 		        				} else
-		        					if((codename2.cards[k][l].getColor().equals("Black"))) {
+		        					if((CodenameGame.cards[k][l].getColor().equals("Black"))) {
 		        						r.setFill(Color.YELLOW);
 		        						System.out.println("GameOver");			              			
 		        						head.setText("GameOver");
 	        						}
-		        					else if((codename2.cards[k][l].getColor().equals("Red"))) {
+		        					else if((CodenameGame.cards[k][l].getColor().equals("Red"))) {
 		        						r.setFill(Color.RED);
 		        						color("Red");
 		        						changeturn();
 				              			head.setText("You hit your rival's agent");
 			              			}
-		        					else if((codename2.cards[k][l].getColor().equals("Wild"))) {
+		        					else if((CodenameGame.cards[k][l].getColor().equals("Wild"))) {
 		        						r.setFill(Color.GRAY);
 		        						head.setText("You hit a bystander");
 		              				}
@@ -253,7 +252,7 @@ public class CodenameGUI extends Application {
 	 */
 	public static void main(String[] args) {
 		
-		codename2.main(args);
+		CodenameGame.main(args);
 		launch(args);
 		
 		System.out.println(red+" "+blue);;
