@@ -26,6 +26,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import business.*;
 
 
 public class CodenameGUI extends Application {
@@ -34,6 +35,9 @@ public class CodenameGUI extends Application {
 	final int PADDING = 20;
 	final int NUM_CARDS = 5;	
 	boolean turn = true;
+	
+	Operative op;
+	Spymaster sm;
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -66,7 +70,8 @@ public class CodenameGUI extends Application {
 			turn_button.setOnAction(e -> {
 				//Changes turn (Red or Blue)
 				System.out.println("Button event...");
-				changeTurn();
+				//changeTurn();
+				
 			});
 			
 			//Set the position of the elements within the BorderPane

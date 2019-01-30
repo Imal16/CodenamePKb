@@ -1,4 +1,4 @@
-package Codegame;
+package business;
 
 public class Keycard extends Board {
 	public Keycard(int width, int height) {

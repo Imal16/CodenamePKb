@@ -1,4 +1,4 @@
-package Codegame;
+package business;
 
 public class Card {
 	private int type;//0 for Assassin, 1 for Bystander, 2 for red Spy and 3 for blue Spy.
