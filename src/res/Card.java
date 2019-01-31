@@ -1,4 +1,4 @@
-package application;
+package res;
 
 import javafx.geometry.HPos; 
 import javafx.geometry.VPos;
