@@ -8,9 +8,8 @@
 
 	<center>
 	
-		<GridPane>
-			
-			
+		<GridPane alignment="CENTER" xmlns:fx="http://javafx.com/fxml" fx:controller="ControllerEx">
+		
 			
 			
 		</GridPane>
