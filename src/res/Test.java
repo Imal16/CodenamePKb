@@ -6,16 +6,21 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * Main class that launched the application. It uses FXML Loader, which initializes the Controller.
+ * @author Rosy
+ *
+ */
 public class Test extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
 		Parent root = FXMLLoader.load(getClass().getResource("board.fxml"));
-	    //String css = this.getClass().getResource("RaceGame.css").toExternalForm();
+	    String css = this.getClass().getResource("style.css").toExternalForm();
 		
-		
-		
+
 		Scene scene = new Scene(root,1000,800);
 		primaryStage.setTitle("Test FXML");
 		primaryStage.setScene(scene); //stage contains a scene

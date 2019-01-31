@@ -1,58 +1,96 @@
 package res;
 
-import javafx.geometry.HPos; 
-import javafx.geometry.VPos;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
-public class Card extends Rectangle {
+/**
+ * This class defines a Card. The Card has a word and a type. 
+ * @author Rosy
+ *
+ */
+public class Card extends StackPane {
+
+	/*
+	 * Word: word the card has
+	 * Type: Bystander=0, Assassin=1, Red=2, Blue=3
+	 */
+	private String word;
+	private int type;
+	private Rectangle rec;
+	private Text text;
 	
-	private Text word;
-	private Rectangle card;
-	private Color color;
-	private int SIZE_CARDS = 100;
+	private static final int CARD_SIZE = 100;
+	private static final Color RED_COLOR = Color.RED;
+	private static final Color BLUE_COLOR = Color.BLUE;
+	private static final Color ASSASSIN_COLOR = Color.YELLOW;
+	private static final Color BYSTANDER_COLOR = Color.LIGHTGREY;
 	
-	/**
-	 * Default
+	/*
+	 * Default constructor
+	 * A Card with a default word with default type (BYSTANDER)
 	 */
 	public Card() {
-		this.card = new Rectangle(SIZE_CARDS, SIZE_CARDS, Color.LIGHTGRAY);
-		this.word = new Text("Word");
-		GridPane.setHalignment(this.card, HPos.CENTER);
-		GridPane.setValignment(this.card, VPos.CENTER);
+		System.out.println("Card()");
+		this.rec = new Rectangle(CARD_SIZE, CARD_SIZE,BYSTANDER_COLOR);
+		this.text = new Text("ABC");
+		getChildren().addAll(rec,text);
 	}
 	
-	public Card(Text word, Color color) {
-		this.card = new Rectangle(SIZE_CARDS, SIZE_CARDS, color);
+	/*
+	 * Parameter constructor
+	 * A Card with a type and a word
+	 */
+	public Card(String word, int type) {
+		System.out.println("Card(word,type)");
+		setWord(word);
+		setType(type);
+
+		Text text = new Text(word);
+	}
+	
+	public Card(Card card) {
+		System.out.println("Card(card)");
+		setWord(card.getWord());
+		setType(card.getType());
+		
+		Text text = new Text(word);
+	}
+	
+	/*
+	 * Setters and getters
+	 */
+	public void setType(int type) {
+		this.type = type;
+	}
+	
+	public int getType() {
+		return this.type;
+	}
+	
+	public void setWord(String word) {
 		this.word = word;
-		GridPane.setHalignment(this.card, HPos.CENTER);
-		GridPane.setValignment(this.card, VPos.CENTER);
 	}
 	
-	public void setColor(Color color) {
-		this.card.setFill(color);
-	}
-	
-	public Color getColor() {
-		return this.color;
-	}
-	
-	public void setWord(Text word) {
-		this.word = word;
-	}
-	
-	public Text getWord() {
+	public String getWord() {
 		return this.word;
 	}
 	
-	public void setCard(Rectangle card) {
-		this.card = card;
-	}
+//	public void setCard(StackPane card) {
+//		this.card = card;
+//	}
+//	
+//	public StackPane getCard() {
+//		return this.getCard();
+//	}
 	
-	public Rectangle getCard() {
-		return this.card;
+	/*
+	 * String method
+	 */
+	@Override
+	public String toString() {
+		return "Card created. Word: " + getWord() + "Type: " + getType();
 	}
 
 }

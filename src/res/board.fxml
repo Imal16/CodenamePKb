@@ -1,19 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.GridPane?>
+<!-- 
+AUTHOR: Rosy
+
+FXML file contains the pure UI. It connects the controllers to the UI.
+
+NOTES: Cannot have anything (not even spaces) before this line: <?xml version="1.0" encoding="UTF-8"?>
+
+SOURCES: 
+https://confluence.atlassian.com/jirakb/xml-restore-fails-with-message-the-processing-instruction-target-matching-xx-mm-ll-is-not-allowed-417367650.html 
+http://tutorials.jenkov.com/javafx/fxml.html
+
+<Card GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+-->
+
+
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
 
-<BorderPane>
 
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="res.BoardController" stylesheets="res/style.css">
+
+	<!-- TOP -->
+	<top>
+		<HBox alignment="CENTER">
+			<Text id="title" text="CODENAMES"/>
+		</HBox>
+	</top>
+	
+	<!-- CENTER -->
 	<center>
-	
-		<GridPane alignment="CENTER" xmlns:fx="http://javafx.com/fxml" fx:controller="ControllerEx">
-		
-			
-			
-		</GridPane>
-	
+		<GridPane fx:id="board" alignment="center" hgap="10" vgap="10"> <!-- ENTER CARDS HERE --> </GridPane>
 	</center>
 	
+	<!-- LEFT -->
+	<left>	
+		<VBox alignment="TOP_RIGHT">
+		<padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
+			<Button text="Reset"/>
+		</VBox>
+	</left>	
+	
+	<!-- RIGHT -->
+	<right>	
+		<VBox alignment="TOP_LEFT">
+		<padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
+			<Button fx:id="changeTurn" text="Change Turn"/>
+		</VBox>
+	</right>	
+
 </BorderPane>
+
