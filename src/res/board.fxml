@@ -41,19 +41,11 @@ http://tutorials.jenkov.com/javafx/fxml.html
 		<GridPane fx:id="board" alignment="center" hgap="10" vgap="10"> <!-- ENTER CARDS HERE --> </GridPane>
 	</center>
 	
-	<!-- LEFT -->
-	<left>	
-		<VBox alignment="TOP_RIGHT">
-		<padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
-			<Button text="Reset"/>
-		</VBox>
-	</left>	
-	
 	<!-- RIGHT -->
 	<right>	
 		<VBox alignment="TOP_LEFT">
 		<padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
-			<Button fx:id="changeTurn" text="Change Turn"/>
+			<Button fx:id="enterBtn" text="Enter" onAction="#handleEnterButtonAction"/>
 		</VBox>
 	</right>	
 

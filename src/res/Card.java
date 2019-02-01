@@ -32,7 +32,7 @@ public class Card extends StackPane {
 	 * A Card with a default word with default type (BYSTANDER)
 	 */
 	public Card() {
-		System.out.println("Card()");
+		//System.out.println("Card()");
 		this.rec = new Rectangle(CARD_SIZE, CARD_SIZE,BYSTANDER_COLOR);
 		this.text = new Text("ABC");
 		getChildren().addAll(rec,text);
@@ -43,19 +43,26 @@ public class Card extends StackPane {
 	 * A Card with a type and a word
 	 */
 	public Card(String word, int type) {
-		System.out.println("Card(word,type)");
+		//System.out.println("Card(word,type)");
 		setWord(word);
 		setType(type);
 
+		switch(type) {
+			case 0: this.rec = new Rectangle(CARD_SIZE, CARD_SIZE,BYSTANDER_COLOR); break;
+			case 1: this.rec = new Rectangle(CARD_SIZE, CARD_SIZE,ASSASSIN_COLOR); break;
+			case 2: this.rec = new Rectangle(CARD_SIZE, CARD_SIZE,RED_COLOR); break;
+			case 3: this.rec = new Rectangle(CARD_SIZE, CARD_SIZE,BLUE_COLOR); break;
+			default: System.out.println("Error setting the type of the Card.");
+		}
+
 		Text text = new Text(word);
+		getChildren().addAll(rec,text);
 	}
 	
 	public Card(Card card) {
 		System.out.println("Card(card)");
 		setWord(card.getWord());
 		setType(card.getType());
-		
-		Text text = new Text(word);
 	}
 	
 	/*

@@ -19,8 +19,7 @@ public class Test extends Application {
 		
 		Parent root = FXMLLoader.load(getClass().getResource("board.fxml"));
 	    String css = this.getClass().getResource("style.css").toExternalForm();
-		
-
+	    
 		Scene scene = new Scene(root,1000,800);
 		primaryStage.setTitle("Test FXML");
 		primaryStage.setScene(scene); //stage contains a scene
