@@ -1,4 +1,4 @@
-package res;
+package view;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -8,7 +8,7 @@ import javafx.scene.text.Text;
 /**
  * This class defines a Card. The Card has a word and a type. 
  * @author Rosy
- *
+ * Last update: 1 Feb 2019
  */
 public class Card extends StackPane {
 

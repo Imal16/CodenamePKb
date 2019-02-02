@@ -1,8 +1,7 @@
-package res;
+package view;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -14,7 +13,7 @@ import javafx.scene.layout.GridPane;
 /**
  * This is the Controller for generating the board cards.
  * @author ROSY
- *
+ * Last update: 1 Feb 2019
  */
 public class BoardController implements Initializable {
 	
@@ -22,6 +21,7 @@ public class BoardController implements Initializable {
 	@FXML private Button enterBtn;
 	
 	private int[] keycardTypes;
+	private String[] keycardWords;
 	
 	public BoardController() {
 		System.out.println("BoardController()");
@@ -32,9 +32,12 @@ public class BoardController implements Initializable {
 
 	    try {
 	    	
-	    KeyCardReader reader = new KeyCardReader("keycards/keycard4.txt",""); //Create a Keycard reader with the keycard text file.
+	    KeyCardReader reader = new KeyCardReader("keycards/keycard4.txt","keycards/words.txt"); //Create a Keycard reader with the Keycard text file
 	    
 	    keycardTypes = reader.readKeycardTypes();
+	    
+	    keycardWords = reader.readKeycardWords();
+	    
 	    
 	    } catch (IOException e) {
 	    	System.err.println("Cannot read file.");
@@ -45,7 +48,8 @@ public class BoardController implements Initializable {
     	for (int i=0;i<5;i++) {
     		for (int j=0;j<5;j++) {
     			//System.out.println("Add card");
-    			board.add(new Card("Word", keycardTypes[arrayCounter++]), i, j); //Create a card with a word and a type.
+    			board.add(new Card(keycardWords[arrayCounter], keycardTypes[arrayCounter]), i, j); //Create a card with a word and a type.
+    			arrayCounter++;
     		}
     	}
     	arrayCounter = 0; //reset counter

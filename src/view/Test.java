@@ -1,4 +1,4 @@
-package res;
+package view;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,10 +7,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * 
  * Main class that launched the application. It uses FXML Loader, which initializes the Controller.
  * @author Rosy
- *
+ * Last update: 1 Feb 2019
  */
 public class Test extends Application {
 

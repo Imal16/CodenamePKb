@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!-- 
+
 AUTHOR: Rosy
+Last update: 1 Feb 2019
 
-FXML file contains the pure UI. It connects the controllers to the UI.
+This FXML file contains the pure UI for the board. It connects the controllers to the UI.
 
-NOTES: Cannot have anything (not even spaces) before this line: <?xml version="1.0" encoding="UTF-8"?>
+*NOTE: Cannot have anything (not even spaces) before this line: <?xml version="1.0" encoding="UTF-8"?>
 
-SOURCES: 
+**SOURCES: 
 https://confluence.atlassian.com/jirakb/xml-restore-fails-with-message-the-processing-instruction-target-matching-xx-mm-ll-is-not-allowed-417367650.html 
 http://tutorials.jenkov.com/javafx/fxml.html
 
-<Card GridPane.rowIndex="0" GridPane.columnIndex="0"/>
 -->
-
 
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.shape.Rectangle?>
@@ -27,7 +27,7 @@ http://tutorials.jenkov.com/javafx/fxml.html
 <?import javafx.geometry.Insets?>
 
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="res.BoardController" stylesheets="res/style.css">
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="view.BoardController" stylesheets="view/style.css">
 
 	<!-- TOP -->
 	<top>
