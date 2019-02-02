@@ -27,7 +27,7 @@ http://tutorials.jenkov.com/javafx/fxml.html
 <?import javafx.geometry.Insets?>
 
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="view.BoardController" stylesheets="view/style.css">
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="main.controllers.BoardController" stylesheets="main/view/style.css">
 
 	<!-- TOP -->
 	<top>

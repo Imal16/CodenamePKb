@@ -1,4 +1,4 @@
-package view;
+package main.controllers;
 
 import java.io.IOException;
 import java.net.URL;
@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import main.models.business.Card;
 
 /**
  * This is the Controller for generating the board cards.
@@ -32,7 +33,7 @@ public class BoardController implements Initializable {
 
 	    try {
 	    	
-	    KeyCardReader reader = new KeyCardReader("keycards/keycard4.txt","keycards/words.txt"); //Create a Keycard reader with the Keycard text file
+	    KeyCardReader reader = new KeyCardReader("resources/keycards/keycard4.txt","resources/keycards/words.txt"); //Create a Keycard reader with the Keycard text file
 	    
 	    keycardTypes = reader.readKeycardTypes();
 	    

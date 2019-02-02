@@ -1,4 +1,4 @@
-package business;
+package main.models.business;
 
 public class Keycard extends Board {
 	public Keycard(int width, int height) {

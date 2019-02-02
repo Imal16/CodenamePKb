@@ -1,4 +1,4 @@
-package interfaces;
+package main.models.interfaces;
 
 public class PlayTurnCommand {
 

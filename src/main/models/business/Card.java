@@ -1,4 +1,4 @@
-package view;
+package main.models.business;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -20,6 +20,7 @@ public class Card extends StackPane {
 	private int type;
 	private Rectangle rec;
 	private Text text;
+	private boolean isFlipped; //isFlipped state used in later iteration
 	
 	private static final int CARD_SIZE = 100;
 	private static final Color RED_COLOR = Color.RED;
@@ -33,6 +34,7 @@ public class Card extends StackPane {
 	 */
 	public Card() {
 		//System.out.println("Card()");
+		this.isFlipped = false;
 		this.rec = new Rectangle(CARD_SIZE, CARD_SIZE,BYSTANDER_COLOR);
 		this.text = new Text("ABC");
 		getChildren().addAll(rec,text);
@@ -63,6 +65,10 @@ public class Card extends StackPane {
 		System.out.println("Card(card)");
 		setWord(card.getWord());
 		setType(card.getType());
+	}
+	
+	public void flip() {
+		isFlipped = !isFlipped;
 	}
 	
 	/*

@@ -1,5 +1,5 @@
-package interfaces;
-import business.*;
+package main.models.interfaces;
+import main.models.business.Spymaster;
 
 /**
  * Command class that implements command interface

@@ -1,8 +1,8 @@
-package interfaces;
-import java.util.Random;
-import business.Card;
+package main.models.interfaces;
+import java.util.Random;	
+import main.models.business.*;
 
-public class PickRandom implements PickCard{
+public class PickRandom implements PickCardStrategy{
 	private int colRow=5;
 	private int max=25;
 	private Card[][] cards;

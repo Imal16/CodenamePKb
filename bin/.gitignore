@@ -1,8 +1,6 @@
-/application/
-/Codegame/
 /business/
 /interfaces/
 /mytest/
-/codenames/
-/res/
 /view/
+/main/
+/test/

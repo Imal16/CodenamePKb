@@ -1,5 +1,5 @@
-package interfaces;
-import business.*;
+package main.models.interfaces;
+import main.models.business.*;
 
 /**
  * Command class that implements the command interface.

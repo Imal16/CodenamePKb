@@ -1,10 +1,10 @@
-package interfaces;
+package main.models.interfaces;
 
 /**
  * Strategy interface
  * @author Zijian
  *
  */
-public interface PickCard {
+public interface PickCardStrategy {
 		void pick();
 }

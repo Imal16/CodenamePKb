@@ -1,6 +1,6 @@
-package interfaces;
-import business.Card;
-public class PickNext implements PickCard{
+package main.models.interfaces;
+import main.models.business.Card;
+public class PickNext implements PickCardStrategy{
 	private int i=0;
 	private int j=0;
 	private int colRow=5;

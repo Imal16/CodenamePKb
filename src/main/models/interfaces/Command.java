@@ -1,4 +1,4 @@
-package interfaces;
+package main.models.interfaces;
 
 /**
  * Command interface

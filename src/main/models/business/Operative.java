@@ -1,4 +1,4 @@
-package business;
+package main.models.business;
 
 public class Operative extends Player{
 	private int team;// 1 for red, 0 for blue.
