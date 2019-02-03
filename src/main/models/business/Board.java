@@ -1,23 +1,31 @@
 package main.models.business;
 
 public class Board {
-	private int width;//idk how the board are going to apply with UI, so i just left this like what domain model says
-	private int height;
-	public Board(int width,int height) {
-		this.width=width;
-		this.height=height;
-	}
-	public int getWidth() {
-		return width;
-	}
-	public int getHeight() {
-		return height;
-	}
-	public void setWidth(int width) {
-		this.width=width;
-	}
-	public void setHeight(int height) {
-		this.height=height;
+	
+	Card[][] board;
+	
+	public Board() {
+		board = new Card[5][5];
 	}
 	
+	public void setUpCardAt(Card card, int row, int col) {
+		this.board[row][col] = card;
+	}
+	
+	/**
+	 * This method will flip a card at the specified row and col.
+	 * For iteration 1, computer will simply pick a card at random/or next
+	 * and there is no comparing of the colors or the word relation.
+	 * 
+	 * @param row
+	 * @param col
+	 */
+	public void pickCardAt(int row, int col) {
+		board[row][col].flip();
+		System.out.println("Card at " + row + " row and " + col + " col");
+	}
+	
+	public boolean isCardFlippedAt(int row, int col) {
+		return board[row][col].isFlipped;
+	}
 }

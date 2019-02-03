@@ -6,5 +6,5 @@ package main.models.interfaces;
  *
  */
 public interface PickCardStrategy {
-		void pick();
+		void execute();
 }
