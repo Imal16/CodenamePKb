@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import main.application.GameManager;
 import main.models.business.*;
 import main.models.interfaces.*;
@@ -25,6 +26,8 @@ public class BoardController implements Initializable {
 	private GridPane board_view; // use fx:id
 	@FXML
 	private Button enterBtn;
+	@FXML
+	private Text playerTurn;
 
 	private int[] keycardTypes; // Array that holds information about the location of the types of card
 								// (bystander, assassin, ops)
@@ -52,6 +55,9 @@ public class BoardController implements Initializable {
 	 */
 	private void setupBoard() {
 		// Reading keycard text file
+		
+		playerTurn.setText("abc");
+		
 		try {
 			// Create a Keycard reader with the Keycard text file
 			KeyCardReader reader = new KeyCardReader("resources/keycards/keycard6.txt", "resources/keycards/words.txt");
