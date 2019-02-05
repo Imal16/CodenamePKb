@@ -3,6 +3,13 @@ package main.models.interfaces;
 import java.util.Random;
 import main.models.business.*;
 
+/**
+ * Strategy for picking a random card on the board
+ * 
+ * @author William, Zijian
+ * @version 02/05/2019
+ *
+ */
 public class PickRandomCardStrategy implements PickCardStrategy {
 	public Board board;
 	
@@ -12,6 +19,9 @@ public class PickRandomCardStrategy implements PickCardStrategy {
 		this.board = board;
 	}
 	
+	/**
+	 * This method flips a random card on the board.
+	 */
 	@Override
 	public void execute() {
 		int row = r.nextInt(5);

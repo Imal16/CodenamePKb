@@ -14,9 +14,9 @@ public class Spymaster extends Player {
 	}
 	
 	public void GiveHint() {
-		//should give hint
-		//Testing now will print
-		System.out.println("Spymaster give hint!");
+		
+		String side = (team == 1) ? "red" : "blue";
+		System.out.println(side + " spymaster give hint!");
 	}
 
 	public String getClueWord() {

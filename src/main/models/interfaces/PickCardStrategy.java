@@ -2,7 +2,7 @@ package main.models.interfaces;
 
 /**
  * Strategy interface
- * @author Zijian
+ * @author Zijian Wang
  *
  */
 public interface PickCardStrategy {

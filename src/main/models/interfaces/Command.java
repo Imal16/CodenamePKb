@@ -2,7 +2,7 @@ package main.models.interfaces;
 
 /**
  * Command interface
- * @author Willy
+ * @author William
  *
  */
 public interface Command {

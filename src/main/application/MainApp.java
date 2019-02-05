@@ -6,8 +6,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * The main application that launches the game.
+ * 
+ * @author William Ngo, Rosy Teasdale
+ *
+ */
 public class MainApp extends Application{
 
+	static GameManager game;
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
@@ -17,8 +25,7 @@ public class MainApp extends Application{
 		Scene scene = new Scene(root,1000,800);
 		primaryStage.setTitle("Test FXML");
 		primaryStage.setScene(scene); //stage contains a scene
-		primaryStage.show(); //display		
-		
+		primaryStage.show(); //display
 	}
 	
 	public static void main(String[] args) {

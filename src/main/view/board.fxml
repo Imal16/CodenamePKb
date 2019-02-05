@@ -38,7 +38,7 @@ http://tutorials.jenkov.com/javafx/fxml.html
 	
 	<!-- CENTER -->
 	<center>
-		<GridPane fx:id="board" alignment="center" hgap="10" vgap="10"> <!-- ENTER CARDS HERE --> </GridPane>
+		<GridPane fx:id="board_view" alignment="center" hgap="10" vgap="10"> <!-- ENTER CARDS HERE --> </GridPane>
 	</center>
 	
 	<!-- RIGHT -->

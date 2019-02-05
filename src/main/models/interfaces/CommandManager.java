@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * Invoker class that takes command obj and executes it
- * @author Willy
+ * @author William
  *
  */
 public class CommandManager {
@@ -29,6 +29,10 @@ public class CommandManager {
 	
 	public void executeStrategy() {
 		strategy.execute();
+	}
+	
+	public void executeStrategy(PickCardStrategy strat) {
+		strat.execute();
 	}
 	
 	public void executeCommand() {
