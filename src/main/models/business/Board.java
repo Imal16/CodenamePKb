@@ -1,13 +1,16 @@
 package main.models.business;
 
 /**
+ * Board is represented by a 2 Dimensional Card array.
+ * It is able to populate itself with card objects and is able to
+ * pick a card at a given coordinate.
  * 
  * @author William Ngo, Zijian Wang
  * @version 02/05/2019
  */
 public class Board {
 	
-	Card[][] board;
+	public Card[][] board;
 	
 	public Board() {
 		board = new Card[5][5];

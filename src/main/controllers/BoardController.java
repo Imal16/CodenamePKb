@@ -66,13 +66,14 @@ public class BoardController implements Initializable {
 
 		int keyCardArrayCounter = 0;
 
+		//Populate board with infos from keycard arrays
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
 				// System.out.println("Add card");
 
 				// Create a card with a word and a type
 				Card cardToAdd = new Card(keycardWords[keyCardArrayCounter], keycardTypes[keyCardArrayCounter]);
-
+				//game.redCardsLeft++;
 				board_view.add(cardToAdd, i, j); // add card on the view
 				board_model.setUpCardAt(cardToAdd, i, j); // add card in the board class
 
