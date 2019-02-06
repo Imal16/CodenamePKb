@@ -18,8 +18,6 @@ public class KeyCardReader {
 	private String typesFileName; //types files
 	private String wordsFileName; //words files
 	
-	private int redCards=0;
-	private int blueCards=0;
 	
 	private int[] cardTypes = new int[25]; //25 cards
 	private String[] cardWords = new String[25]; //25 cards
@@ -52,24 +50,11 @@ public class KeyCardReader {
 		int i;
 		while ((i=typeReader.read()) != -1) {	
 			cardTypes[count++] = Character.getNumericValue((char)i);
-			if(i==2) {
-				redCards++;
-			}
-			if(i==3) {
-				blueCards++;
-			}
 		}
 		
 		typeReader.close();
 		
 		return cardTypes;
-	}
-	//return cards number
-	public int getRedCardNum() {
-		return redCards;
-	}
-	public int getBlueCardNum() {
-		return blueCards;
 	}
 	
 	/*

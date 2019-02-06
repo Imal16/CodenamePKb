@@ -1,5 +1,12 @@
 package main.models.business;
-
+/**
+ * A spymaster gives a hint for operative to guess the code word
+ * 
+ * 
+ * @author William, Zijian
+ * @version 02/06/2019
+ *
+ */
 public class Spymaster extends Player {
 	private int team;// 1 for red, 0 for blue.
 	private String clueWord;
@@ -8,6 +15,8 @@ public class Spymaster extends Player {
 	public Spymaster(int team) {
 		this.team = team;
 	}
+
+
 
 	public int getTeam() {
 		return team;

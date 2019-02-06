@@ -34,6 +34,7 @@ http://tutorials.jenkov.com/javafx/fxml.html
 		<HBox alignment="CENTER">
 			<Text id="title" text="CODENAMES"/>
 		</HBox>
+
 	</top>
 	
 	<!-- CENTER -->

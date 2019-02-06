@@ -7,19 +7,19 @@ import main.models.interfaces.*;
  * a hint given by their spymaster.
  * 
  * @author William, Zijian
- * @version 02/05/2019
+ * @version 02/06/2019
  *
  */
 public class Operative extends Player{
 	private int team;// 1 for red, 0 for blue.
 	private int tries;
 	
-	public PickCardStrategy strategy;
-	
 	public Operative(int team, int tries) {
 		this.team = team;
 		this.tries = tries;
 	}
+	
+	public PickCardStrategy strategy;
 	
 	/**
 	 * 

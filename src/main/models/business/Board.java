@@ -8,7 +8,9 @@ package main.models.business;
 public class Board {
 	
 	Card[][] board;
-	
+	private int typeFliped;
+	private int redCardsNum;
+	private int blueCardsNum;
 	public Board() {
 		board = new Card[5][5];
 	}
@@ -35,7 +37,20 @@ public class Board {
 	 */
 	public void pickCardAt(int row, int col) {
 		board[row][col].flip();
+		if(board[row][col].getType()==2) {
+			typeFliped=2;
+		}else if(board[row][col].getType()==3) {
+			typeFliped=3;
+		} else if(board[row][col].getType()==0) {
+			typeFliped=0;
+		} else if(board[row][col].getType()==1) {
+			typeFliped=1;
+		}
 		System.out.println("Card at " + row + " row and " + col + " col");
+	}
+	//getter
+	public int getTypeFliped() {
+		return this.typeFliped;
 	}
 	
 	/**
@@ -47,5 +62,21 @@ public class Board {
 	 */
 	public boolean isCardFlippedAt(int row, int col) {
 		return board[row][col].isFlipped;
+	}
+	//getters & setters
+	public int getBlueCardsNum() {
+		return blueCardsNum;
+	}
+
+	public void setBlueCardsNum(int blueCardsnum) {
+		this.blueCardsNum = blueCardsnum;
+	}
+
+	public int getRedCardsNum() {
+		return redCardsNum;
+	}
+
+	public void setRedCardsNum(int redCardsNum) {
+		this.redCardsNum = redCardsNum;
 	}
 }

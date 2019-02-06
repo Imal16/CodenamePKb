@@ -16,8 +16,8 @@ import main.models.interfaces.*;
 /**
  * This is the Controller for generating the board cards.
  * 
- * @author Rosy Teasdale, William Ngo
- * @version 02/05/2019
+ * @author Rosy Teasdale, William Ngo, Zijian Wang
+ * @version 02/06/2019
  */
 public class BoardController implements Initializable {
 
@@ -29,7 +29,10 @@ public class BoardController implements Initializable {
 	private int[] keycardTypes; // Array that holds information about the location of the types of card
 								// (bystander, assassin, ops)
 	private String[] keycardWords; // array that holds information about the location of the words on the board
-
+	
+	private int red=0;
+	private int blue=0;
+	
 	private Board board_model;
 	private GameManager game;
 
@@ -43,6 +46,8 @@ public class BoardController implements Initializable {
 		board_model = new Board();
 		setupBoard();
 		game = new GameManager(board_model);
+		game.setBC(blue);
+		game.setRC(red);
 	}
 
 	/**
@@ -59,6 +64,7 @@ public class BoardController implements Initializable {
 			// keycardTypes array will be populated with information from text file.
 			keycardTypes = reader.readKeycardTypes();
 			keycardWords = reader.readKeycardWords();
+			
 
 		} catch (IOException e) {
 			System.err.println("Cannot read file.");
@@ -75,7 +81,11 @@ public class BoardController implements Initializable {
 
 				board_view.add(cardToAdd, i, j); // add card on the view
 				board_model.setUpCardAt(cardToAdd, i, j); // add card in the board class
-
+				if(cardToAdd.getType()==2) {
+					red++;
+				}else if(cardToAdd.getType()==3) {
+					blue++;
+				}
 				keyCardArrayCounter++;
 			}
 		}
@@ -84,7 +94,14 @@ public class BoardController implements Initializable {
 	}
 
 	@FXML
-	protected void handleEnterButtonAction(ActionEvent event) {		
+	protected void handleEnterButtonAction(ActionEvent event) {	
+		if(!game.isEnd()) {
 		game.playTurn();
+		}
+		else{
+			String side = (game.isRedWinner()) ? "red" : "blue";
+			System.out.println("\nEnd of the game, "+side+" team won!");
+		}
+		
 	}
 }
