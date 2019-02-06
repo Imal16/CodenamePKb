@@ -47,7 +47,7 @@ public class BoardController implements Initializable {
 		setupBoard();
 		game = new GameManager(board_model);
 		game.setBC(blue);
-		game.setRC(red);
+		game.setRC(red);//passing number of cards to gameManager
 	}
 
 	/**
@@ -86,6 +86,8 @@ public class BoardController implements Initializable {
 				}else if(cardToAdd.getType()==3) {
 					blue++;
 				}
+				//using the card.getType, and local int red and blue 
+				//we record the number of each team's cards.
 				keyCardArrayCounter++;
 			}
 		}
@@ -95,10 +97,13 @@ public class BoardController implements Initializable {
 
 	@FXML
 	protected void handleEnterButtonAction(ActionEvent event) {	
+		//check if the game ends
+		//if so we are not going to play turn since the program could crash if it overfloats
 		if(!game.isEnd()) {
 		game.playTurn();
 		}
 		else{
+			//so not doing play turn but print a string on button
 			String side = (game.isRedWinner()) ? "red" : "blue";
 			System.out.println("\nEnd of the game, "+side+" team won!");
 		}

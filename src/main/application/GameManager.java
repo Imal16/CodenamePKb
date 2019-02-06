@@ -80,6 +80,7 @@ public class GameManager {
 			} else if(board.getTypeFliped()==1) {
 				//assassin
 				isGameOver=true;
+				redWinner=false;
 			}
 			
 		}
@@ -95,23 +96,24 @@ public class GameManager {
 			} else if(board.getTypeFliped()==1) {
 				//assassin
 				isGameOver=true;
-				if(redTurn) {
-					redWinner=false;
-				}else {
-					redWinner=true;
-				}
+				redWinner=true;				
 			}
 		}
 		
 		
 		/**
+		 * Above here, when either of the op choose a card,we will check what did him/her pick
+		 * then we decrease the number of cards of this type. If it was byStander do nothing
+		 * if it was assassin, game ends and we get a winner here
 		 * 
-		 * checkNumberOfCardsLeft() below to check if the game ends and who's winner
-		 * 	in playTurn() before , the function now will check if the game ends
+		 * 
+		 * CheckNumberOfCardsLeft() below to check if the game ends and who's winner.
+		 * 	In boardController.handleEnterButtonAction before playTurn(), 
+		 *  the function now will check if the game ends
+		 *  
+		 *  note from zijian
 		 */
 
-		
-		
 		//Check how many cards left for each team and make a game over by disabling enter button
 		checkNumberOfCardsLeft();
 		if(!isGameOver) {			

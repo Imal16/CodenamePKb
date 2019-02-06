@@ -8,7 +8,7 @@ package main.models.business;
 public class Board {
 	
 	Card[][] board;
-	private int typeFliped;
+	private int typeFliped;// to passing the card type value to GameManager
 	private int redCardsNum;
 	private int blueCardsNum;
 	public Board() {
@@ -45,7 +45,7 @@ public class Board {
 			typeFliped=0;
 		} else if(board[row][col].getType()==1) {
 			typeFliped=1;
-		}
+		}//checking the type, ready to pass to gameManager
 		System.out.println("Card at " + row + " row and " + col + " col");
 	}
 	//getter
