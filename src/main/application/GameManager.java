@@ -30,7 +30,7 @@ public class GameManager {
 	boolean redWinner;
 	boolean isGameOver = false;
 
-	private int redCardsLeft; // Forgot the actual number
+	private int redCardsLeft;
 	private int blueCardsLeft;
 
 	public GameManager(Board board) {
@@ -66,7 +66,9 @@ public class GameManager {
 	 * includes a spymaster giving a hint and the operative choosing a card.
 	 */
 	public void playTurn() {
-
+		
+		//Determine which team goes first based on the number of cards
+		//for each team that is predetermined in the keycard
 		if (isStarting) {
 			if (redCardsLeft > blueCardsLeft) {
 				redTurn = true;
@@ -110,14 +112,6 @@ public class GameManager {
 			}
 		}
 
-		// Check how many cards left for each team and make a gameover by disabling
-		// enter button
-		checkNumberOfCardsLeft();
-
-		// It's now the other team's turn
-		redTurn = !redTurn;
-
-		System.out.println("********************END OF TURN!\n");
 
 		/**
 		 * Above here, when either of the op choose a card,we will check what did
