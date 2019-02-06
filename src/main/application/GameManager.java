@@ -104,7 +104,11 @@ public class GameManager {
 		}
 		
 		
-			
+		/**
+		 * 
+		 * checkNumberOfCardsLeft() below to check if the game ends and who's winner
+		 * 	in playTurn() before , the function now will check if the game ends
+		 */
 
 		
 		
@@ -119,7 +123,7 @@ public class GameManager {
 			 }
 			System.out.println("End of the game, "+side+" team won!");
 		}
-		//It's now the other team's turn
+		//It's now the other team's turn 
 		redTurn = !redTurn;
 		
 	}
