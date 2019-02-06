@@ -22,9 +22,14 @@ public class PickNextCardStrategy implements PickCardStrategy{
 		this.col = 0; 
 	}
 	
+	/**
+	 * This implementation simply picks the first card on the board that is located
+	 * at [0][0] and any future execution will pick the next card that follows the current card.
+	 * If the next card has already been flipped (by the other team) then it will skip it and
+	 * flip the next one that follows.
+	 */
 	@Override
 	public void execute(){
-		
 		//Normally, check the next card, but if you're on the last col, don't
 		if(row != 4) row++;
 		
