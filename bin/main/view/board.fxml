@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+
+AUTHOR: Rosy
+Last update: 1 Feb 2019
+
+This FXML file contains the pure UI for the board. It connects the controllers to the UI.
+
+*NOTE: Cannot have anything (not even spaces) before this line: <?xml version="1.0" encoding="UTF-8"?>
+
+**SOURCES: 
+https://confluence.atlassian.com/jirakb/xml-restore-fails-with-message-the-processing-instruction-target-matching-xx-mm-ll-is-not-allowed-417367650.html 
+http://tutorials.jenkov.com/javafx/fxml.html
+
+-->
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="main.controllers.BoardController" stylesheets="main/view/style.css">
+
+	<!-- TOP -->
+	<top>
+		<HBox alignment="CENTER">
+			<Text id="title" text="CODENAMES"/>
+		</HBox>
+
+	</top>
+	
+	<!-- CENTER -->
+	<center>
+		<GridPane fx:id="board_view" alignment="center" hgap="10" vgap="10"> <!-- ENTER CARDS HERE --> </GridPane>
+	</center>
+	
+	<!-- RIGHT -->
+	<right>	
+		<VBox alignment="TOP_LEFT">
+		<padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
+			<Button fx:id="enterBtn" text="Enter" onAction="#handleEnterButtonAction"/>
+		</VBox>
+	</right>	
+	
+	<!-- BOTTOM -->
+	<bottom>
+		<HBox alignment="TOP_CENTER">
+			<Text id="playerTurn" fx:id="playerTurn" text=""/>
+		</HBox>
+	</bottom>
+
+</BorderPane>
+
