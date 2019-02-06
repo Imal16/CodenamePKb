@@ -21,10 +21,11 @@ public class GameManager {
 	CommandManager cmd;
 
 	boolean redTurn; // current turn for teams. true = red's, false = blue's
+	boolean redWinner;
 	boolean isGameOver = false;
 	
-	int redCardsLeft = 9; //Forgot the actual number
-	int blueCardsLeft = 8;
+	private int redCardsLeft; //Forgot the actual number
+	private int blueCardsLeft;
 	
 	public GameManager(Board board) {
 		this.redOperative = new Operative(1, 1);
@@ -74,8 +75,44 @@ public class GameManager {
 
 		System.out.println("********************END OF TURN!\n");
 	}
-	
+	//setters
+	public void setRCLeft(int num) {
+		this.redCardsLeft=num;
+	}
+	public void setBLeft(int num) {
+		this.blueCardsLeft=num;
+	}
+	//adder
+	public void addRCLeft() {
+		this.redCardsLeft++;
+	}
+	public void addBCLeft() {
+		this.blueCardsLeft++;
+	}
+	//Minus
+	public void minusRCLeft() {
+		this.redCardsLeft--;
+	}
+	public void minusBCLeft() {
+		this.blueCardsLeft--;
+	}
+	//check if game end
 	private void checkNumberOfCardsLeft() {
-		//TODO
+		if(redCardsLeft==0) {
+			isGameOver=true;
+			redWinner=true;
+		}
+		if(blueCardsLeft==0) {
+			isGameOver=true;
+			redWinner=false;
+		}
+		if(redCardsLeft==0) {
+			isGameOver=true;
+			if(redTurn) {
+				redWinner=false;
+			}else {
+				redWinner=true;
+			}
+		}
 	}
 }
