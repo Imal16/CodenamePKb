@@ -46,7 +46,7 @@ class TestBoard {
 		
 		Card retrievedCard = testBoard.board[0][0];
 		
-		assertEquals(cardToBeSet, retrievedCard);
+		assertEquals(cardToBeSet, retrievedCard);		
 	}
 	
 	@Test

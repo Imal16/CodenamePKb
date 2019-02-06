@@ -16,7 +16,7 @@ import main.models.interfaces.*;
  */
 public class GameManager {
 	Operative redOperative;
-	Operative blueOperative;
+	private Operative blueOperative;
 	Spymaster redSpymaster;
 	Spymaster blueSpymaster;
 
@@ -35,7 +35,7 @@ public class GameManager {
 
 	public GameManager(Board board) {
 		this.redOperative = new Operative(1, 1);
-		this.blueOperative = new Operative(0, 1);
+		this.setBlueOperative(new Operative(0, 1));
 		this.redSpymaster = new Spymaster(1);
 		this.blueSpymaster = new Spymaster(0);
 
@@ -47,7 +47,7 @@ public class GameManager {
 
 		// Setting strategies for operatives.
 		setOperativeStrategy(redOperative, new PickRandomCardStrategy(board));
-		setOperativeStrategy(blueOperative, new PickRandomCardStrategy(board));
+		setOperativeStrategy(getBlueOperative(), new PickRandomCardStrategy(board));
 
 	}
 
@@ -57,7 +57,7 @@ public class GameManager {
 	 * @param op
 	 * @param strat
 	 */
-	private void setOperativeStrategy(Operative op, PickCardStrategy strat) {
+	public void setOperativeStrategy(Operative op, PickCardStrategy strat) {
 		op.setStrategy(strat);
 	}
 
@@ -70,7 +70,7 @@ public class GameManager {
 		//Determine which team goes first based on the number of cards
 		//for each team that is predetermined in the keycard
 		if (isStarting) {
-			if (redCardsLeft > blueCardsLeft) {
+			if (redCardsLeft >= blueCardsLeft) {
 				redTurn = true;
 			} else {
 				redTurn = false;
@@ -98,7 +98,7 @@ public class GameManager {
 
 		} else {
 			blueSpymaster.GiveHint();
-			blueOperative.pickCard();
+			getBlueOperative().pickCard();
 			if (board.getTypeFliped() == 2) {
 				redCardsLeft--;
 			} else if (board.getTypeFliped() == 3) {
@@ -107,7 +107,7 @@ public class GameManager {
 				// byStander
 			} else if (board.getTypeFliped() == 1) {
 				// assassin
-				isGameOver = true;
+				isGameOver = true;	
 				redWinner = true;
 			}
 		}
@@ -144,21 +144,32 @@ public class GameManager {
 	}
 
 	// setters
-	public void setRC(int num) {
+	public void setAmountOfRedCards(int num) {
 		this.redCardsLeft = num;
 	}
 
-	public void setBC(int num) {
+	public void setAmountOfBlueCards(int num) {
 		this.blueCardsLeft = num;
 	}
 
+
+	public void setBlueOperative(Operative blueOperative) {
+		this.blueOperative = blueOperative;
+	}
 	// getter
+	public Operative getBlueOperative() {
+		return blueOperative;
+	}
 	public boolean isEnd() {
 		return isGameOver;
 	}
 
 	public boolean isRedWinner() {
 		return redWinner;
+	}
+	
+	public Operative getRedOperative() {
+		return this.redOperative;
 	}
 
 	/**
@@ -209,4 +220,6 @@ public class GameManager {
 			redWinner = false;
 		}
 	}
+
+	
 }

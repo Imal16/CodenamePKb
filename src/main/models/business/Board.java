@@ -12,8 +12,7 @@ public class Board {
 	public Card[][] board;
 
 	private int typeFliped;// to passing the card type value to GameManager
-	private int redCardsNum;
-	private int blueCardsNum;
+
 
 	public Board() {
 		board = new Card[5][5];
@@ -57,6 +56,9 @@ public class Board {
 	public int getTypeFliped() {
 		return this.typeFliped;
 	}
+	public void setTypeFliped(int type0123) {
+		this.typeFliped=type0123;
+	}
 
 	/**
 	 * This method will return a boolean indicating whether or not the card at the
@@ -71,19 +73,5 @@ public class Board {
 	}
 
 	// getters & setters
-	public int getBlueCardsNum() {
-		return blueCardsNum;
-	}
 
-	public void setBlueCardsNum(int blueCardsnum) {
-		this.blueCardsNum = blueCardsnum;
-	}
-
-	public int getRedCardsNum() {
-		return redCardsNum;
-	}
-
-	public void setRedCardsNum(int redCardsNum) {
-		this.redCardsNum = redCardsNum;
-	}
 }

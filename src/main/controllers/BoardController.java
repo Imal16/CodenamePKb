@@ -32,15 +32,15 @@ public class BoardController implements Initializable {
 	private int[] keycardTypes; // Array that holds information about the location of the types of card
 								// (bystander, assassin, ops)
 	private String[] keycardWords; // array that holds information about the location of the words on the board
-	
-	private int red=0;
-	private int blue=0;
-	
+
+	private int numOfRedCards = 0;
+	private int numOfBlueCards = 0;
+
 	private Board board_model;
 	private GameManager game;
 
 	public BoardController() {
-		//System.out.println("BoardController()");
+		// System.out.println("BoardController()");
 	}
 
 	@Override
@@ -49,20 +49,20 @@ public class BoardController implements Initializable {
 		board_model = new Board();
 		setupBoard();
 		game = new GameManager(board_model);
-		game.setBC(blue);
-		game.setRC(red);//passing number of cards to gameManager
+		game.setAmountOfBlueCards(numOfBlueCards);
+		game.setAmountOfRedCards(numOfRedCards);// passing number of cards to gameManager
 	}
 
 	/**
-	 * This method reads key card text file and populates board view with
-	 * cards that contains a word and a color.
+	 * This method reads key card text file and populates board view with cards that
+	 * contains a word and a color.
 	 *
 	 */
 	private void setupBoard() {
 		// Reading keycard text file
-		
+
 		playerTurn.setText("");
-		
+
 		try {
 			// Create a Keycard reader with the Keycard text file
 			KeyCardReader reader = new KeyCardReader("resources/keycards/keycard6.txt", "resources/keycards/words.txt");
@@ -70,7 +70,6 @@ public class BoardController implements Initializable {
 			// keycardTypes array will be populated with information from text file.
 			keycardTypes = reader.readKeycardTypes();
 			keycardWords = reader.readKeycardWords();
-			
 
 		} catch (IOException e) {
 			System.err.println("Cannot read file.");
@@ -78,42 +77,42 @@ public class BoardController implements Initializable {
 
 		int keyCardArrayCounter = 0;
 
-		//Populate board with infos from keycard arrays
+		// Populate board with infos from keycard arrays
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
 				// System.out.println("Add card");
 
 				// Create a card with a word and a type
 				Card cardToAdd = new Card(keycardWords[keyCardArrayCounter], keycardTypes[keyCardArrayCounter]);
-				//game.redCardsLeft++;
+				// game.redCardsLeft++;
 				board_view.add(cardToAdd, i, j); // add card on the view
 				board_model.setUpCardAt(cardToAdd, i, j); // add card in the board class
-				if(cardToAdd.getType()==2) {
-					red++;
-				}else if(cardToAdd.getType()==3) {
-					blue++;
+				if (cardToAdd.getType() == 2) {
+					numOfRedCards++;
+				} else if (cardToAdd.getType() == 3) {
+					numOfBlueCards++;
 				}
-				//using the card.getType, and local int red and blue 
-				//we record the number of each team's cards.
+				// using the card.getType, and local int red and blue
+				// we record the number of each team's cards.
 				keyCardArrayCounter++;
 			}
 		}
-		
+
 		keyCardArrayCounter = 0;
 	}
 
 	@FXML
-	protected void handleEnterButtonAction(ActionEvent event) {	
-		//check if the game ends
-		//if so we are not going to play turn since the program could crash if it overfloats
-		if(!game.isEnd()) {
-		game.playTurn();
-		}
-		else{
-			//so not doing play turn but print a string on button
+	protected void handleEnterButtonAction(ActionEvent event) {
+		// check if the game ends
+		// if so we are not going to play turn since the program could crash if it
+		// overfloats
+		if (!game.isEnd()) {
+			game.playTurn();
+		} else {
+			// so not doing play turn but print a string on button
 			String side = (game.isRedWinner()) ? "Red" : "Blue";
-			System.out.println("\nEnd of the game, "+side+" team won!");
+			System.out.println("\nEnd of the game, " + side + " team won!");
 		}
-		
+
 	}
 }
