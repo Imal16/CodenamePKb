@@ -110,14 +110,6 @@ public class GameManager {
 			}
 		}
 
-		// Check how many cards left for each team and make a gameover by disabling
-		// enter button
-		checkNumberOfCardsLeft();
-
-		// It's now the other team's turn
-		redTurn = !redTurn;
-
-		System.out.println("********************END OF TURN!\n");
 
 		/**
 		 * Above here, when either of the op choose a card,we will check what did
