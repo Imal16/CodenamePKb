@@ -40,7 +40,7 @@ public class BoardController implements Initializable {
 	private GameManager game;
 
 	public BoardController() {
-		System.out.println("BoardController()");
+		//System.out.println("BoardController()");
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class BoardController implements Initializable {
 	private void setupBoard() {
 		// Reading keycard text file
 		
-		playerTurn.setText("abc");
+		playerTurn.setText("");
 		
 		try {
 			// Create a Keycard reader with the Keycard text file
@@ -111,7 +111,7 @@ public class BoardController implements Initializable {
 		}
 		else{
 			//so not doing play turn but print a string on button
-			String side = (game.isRedWinner()) ? "red" : "blue";
+			String side = (game.isRedWinner()) ? "Red" : "Blue";
 			System.out.println("\nEnd of the game, "+side+" team won!");
 		}
 		

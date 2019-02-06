@@ -50,7 +50,7 @@ public class Board {
 		} else if (board[row][col].getType() == 1) {
 			typeFliped = 1;
 		} // checking the type, ready to pass to gameManager
-		System.out.println("Card at " + row + " row and " + col + " col");
+		System.out.println("Card at row " + row + " and column " + col + ".");
 	}
 
 	// getter

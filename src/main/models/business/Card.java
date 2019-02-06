@@ -60,7 +60,7 @@ public class Card extends StackPane {
 	public void flip() {
 		isFlipped = !isFlipped;
 		revealCardColor();
-		System.out.println("Card flipped! Word: " + word + " COLOR: " + type);
+		System.out.println("Card flipped! Word: \"" + word + "\", COLOR number: " + type);
 	}
 
 	private void revealCardColor() {

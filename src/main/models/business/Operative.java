@@ -31,8 +31,8 @@ public class Operative extends Player{
 	 */
 	public void pickCard() {
 		//Testing log
-		String side = (team == 1) ? "red" : "blue";
-		System.out.println(side + " op picks a card!");
+		String side = (team == 1) ? "Red" : "Blue";
+		System.out.println(side + " operative picks a card!");
 		
 		strategy.execute();
 	}

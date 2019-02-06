@@ -32,8 +32,8 @@ public class Spymaster extends Player {
 	public void GiveHint() {
 		int hintNo = rand.nextInt(10);
 		int clueNumber = 1 + rand.nextInt(3); // clue number between 1 and 3
-		String side = (team == 1) ? "red" : "blue";
-		System.out.println(side + " spymaster's hint is : " + hints[hintNo] + ", " + clueNumber);
+		String side = (team == 1) ? "Red" : "Blue";
+		System.out.println(side + " spymaster's hint is: " + hints[hintNo] + ", clue number " + clueNumber + ".");
 	}
 	
 

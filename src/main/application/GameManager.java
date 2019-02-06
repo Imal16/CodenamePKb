@@ -138,9 +138,9 @@ public class GameManager {
 		if (!isGameOver) {
 			System.out.println("********************END OF TURN!\n");
 		} else {
-			String side = (!redTurn) ? "red" : "blue";
+			String side = (!redTurn) ? "Red" : "Blue";
 			if (board.getTypeFliped() == 1) {
-				side = "the assassin was picked, " + side;
+				side = "The assassin was picked, " + side;
 			}
 			System.out.println("End of the game, " + side + " team won!");
 		}
