@@ -6,7 +6,7 @@ import java.util.Random;
  * a Spymaster's task is to give clues to operatives in order to help
  * them pick one or many cards.
  * 
- * @author William Ngo
+ * @author William Ngo, Zijian Wang
  * @version 02/06/2019
  *
  */
@@ -47,6 +47,8 @@ public class Spymaster extends Player {
 	}
 
 	/******* Getters and setters ************/
+
+
 
 
 	public int getTeam() {

@@ -10,7 +10,7 @@ import main.models.interfaces.*;
  * The gameManager holds information about a game session such as whose turn is
  * it, the score for each team and when should a game finish.
  * 
- * @author William
+ * @author William, Zijian
  * @version 02/05/2019
  *
  */
@@ -21,15 +21,17 @@ public class GameManager {
 	Spymaster blueSpymaster;
 
 	Board board;
-	
+
 	private int[] keycardTypes; // Array that holds information about the location of the types of card
 	private String[] keycardWords; // array that holds information about the location of the words on the board
 
-	boolean redTurn; //Which team's current turn. true = red's, false = blue's
+	boolean isStarting = true;
+	boolean redTurn; // current turn for teams. true = red's, false = blue's
+	boolean redWinner;
 	boolean isGameOver = false;
 
-	public int redCardsLeft = 9; // Forgot the actual number
-	int blueCardsLeft = 8;
+	private int redCardsLeft; // Forgot the actual number
+	private int blueCardsLeft;
 
 	public GameManager(Board board) {
 		this.redOperative = new Operative(1, 1);
@@ -40,8 +42,13 @@ public class GameManager {
 		this.board = board;
 
 		// Setting strategies for operatives.
-		setOperativeStrategy(redOperative, new PickNextCardStrategy(board));
-		setOperativeStrategy(blueOperative, new PickNextCardStrategy(board));
+		// setOperativeStrategy(redOperative, new PickNextCardStrategy(board));
+		// setOperativeStrategy(blueOperative, new PickNextCardStrategy(board));
+
+		// Setting strategies for operatives.
+		setOperativeStrategy(redOperative, new PickRandomCardStrategy(board));
+		setOperativeStrategy(blueOperative, new PickRandomCardStrategy(board));
+
 	}
 
 	/**
@@ -59,14 +66,48 @@ public class GameManager {
 	 * includes a spymaster giving a hint and the operative choosing a card.
 	 */
 	public void playTurn() {
+
+		if (isStarting) {
+			if (redCardsLeft > blueCardsLeft) {
+				redTurn = true;
+			} else {
+				redTurn = false;
+			}
+			isStarting = false;
+		}
+
 		// For iteration 1, there is minimal logic behind
 		// AI's decision to pick cards.
+
 		if (redTurn) {
 			redSpymaster.GiveHint();
-			redOperative.pickCard();// add function of checking card color
+			redOperative.pickCard();
+			if (board.getTypeFliped() == 2) {
+				redCardsLeft--;
+			} else if (board.getTypeFliped() == 3) {
+				blueCardsLeft--;
+			} else if (board.getTypeFliped() == 0) {
+				// byStander
+			} else if (board.getTypeFliped() == 1) {
+				// assassin
+				isGameOver = true;
+				redWinner = false;
+			}
+
 		} else {
 			blueSpymaster.GiveHint();
 			blueOperative.pickCard();
+			if (board.getTypeFliped() == 2) {
+				redCardsLeft--;
+			} else if (board.getTypeFliped() == 3) {
+				blueCardsLeft--;
+			} else if (board.getTypeFliped() == 0) {
+				// byStander
+			} else if (board.getTypeFliped() == 1) {
+				// assassin
+				isGameOver = true;
+				redWinner = true;
+			}
 		}
 
 		// Check how many cards left for each team and make a gameover by disabling
@@ -77,6 +118,53 @@ public class GameManager {
 		redTurn = !redTurn;
 
 		System.out.println("********************END OF TURN!\n");
+
+		/**
+		 * Above here, when either of the op choose a card,we will check what did
+		 * him/her pick then we decrease the number of cards of this type. If it was
+		 * byStander do nothing if it was assassin, game ends and we get a winner here
+		 * 
+		 * 
+		 * CheckNumberOfCardsLeft() below to check if the game ends and who's winner. In
+		 * boardController.handleEnterButtonAction before playTurn(), the function now
+		 * will check if the game ends
+		 * 
+		 * note from zijian
+		 */
+
+		// Check how many cards left for each team and make a game over by disabling
+		// enter button
+		checkNumberOfCardsLeft();
+		if (!isGameOver) {
+			System.out.println("********************END OF TURN!\n");
+		} else {
+			String side = (!redTurn) ? "red" : "blue";
+			if (board.getTypeFliped() == 1) {
+				side = "the assassin was picked, " + side;
+			}
+			System.out.println("End of the game, " + side + " team won!");
+		}
+		// It's now the other team's turn
+		redTurn = !redTurn;
+
+	}
+
+	// setters
+	public void setRC(int num) {
+		this.redCardsLeft = num;
+	}
+
+	public void setBC(int num) {
+		this.blueCardsLeft = num;
+	}
+
+	// getter
+	public boolean isEnd() {
+		return isGameOver;
+	}
+
+	public boolean isRedWinner() {
+		return redWinner;
 	}
 
 	/**
@@ -106,7 +194,7 @@ public class GameManager {
 				// Create a card with a word and a type
 				Card cardToAdd = new Card(keycardWords[keyCardArrayCounter], keycardTypes[keyCardArrayCounter]);
 				// game.redCardsLeft++;
-				//board_view.add(cardToAdd, i, j); // add card on the view
+				// board_view.add(cardToAdd, i, j); // add card on the view
 				board.setUpCardAt(cardToAdd, i, j); // add card in the board class
 
 				keyCardArrayCounter++;
@@ -115,9 +203,16 @@ public class GameManager {
 
 		keyCardArrayCounter = 0;
 	}
-	
-	
+
+	// check if game end
 	private void checkNumberOfCardsLeft() {
-		// TODO
+		if (redCardsLeft == 0) {
+			isGameOver = true;
+			redWinner = true;
+		}
+		if (blueCardsLeft == 0) {
+			isGameOver = true;
+			redWinner = false;
+		}
 	}
 }
