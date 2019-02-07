@@ -1,5 +1,9 @@
 package main.models.business;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import main.application.GameManager;
 import main.models.interfaces.*;
 
 /**
@@ -15,6 +19,7 @@ import main.models.interfaces.*;
 public class Operative extends Player{
 	private int team; // 1 for red, 0 for blue.
 	private int tries; //Number of times an operative may choose a card
+	
 	
 	public Operative(int team, int tries) {
 		this.team = team;
@@ -32,7 +37,9 @@ public class Operative extends Player{
 	public void pickCard() {
 		//Testing log
 		String side = (team == 1) ? "Red" : "Blue";
-		System.out.println(side + " operative picks a card!");
+		//System.out.println(side + " operative picks a card!");
+		Logger.getLogger("LOGGER").setLevel(Level.INFO);
+		Logger.getLogger("LOGGER").info(side + " operative picks a card!");
 		
 		strategy.execute();
 	}

@@ -1,5 +1,8 @@
 package main.models.business;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Board is represented by a 2 Dimensional Card array. It is able to populate
  * itself with card objects and is able to pick a card at a given coordinate.
@@ -12,8 +15,7 @@ public class Board {
 	public Card[][] board;
 
 	private int typeFliped;// to passing the card type value to GameManager
-
-
+	
 	public Board() {
 		board = new Card[5][5];
 	}
@@ -49,7 +51,9 @@ public class Board {
 		} else if (board[row][col].getType() == 1) {
 			typeFliped = 1;
 		} // checking the type, ready to pass to gameManager
-		System.out.println("Card at row " + row + " and column " + col + ".");
+		//System.out.println("Card at row " + row + " and column " + col + ".");
+		Logger.getLogger("LOGGER").setLevel(Level.INFO);
+		Logger.getLogger("LOGGER").info("Card at row " + row + " and column " + col + ".");
 	}
 
 	// getter

@@ -1,6 +1,8 @@
 package main.application;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import main.controllers.KeyCardReader;
 import main.models.business.*;
@@ -130,13 +132,17 @@ public class GameManager {
 		// enter button
 		checkNumberOfCardsLeft();
 		if (!isGameOver) {
-			System.out.println("********************END OF TURN!\n");
+			//System.out.println("********************END OF TURN!\n");
+			Logger.getLogger("LOGGER").setLevel(Level.INFO);
+			Logger.getLogger("LOGGER").info("END OF TURN!\n");
 		} else {
 			String side = (!redTurn) ? "Red" : "Blue";
 			if (board.getTypeFliped() == 1) {
 				side = "The assassin was picked, " + side;
 			}
-			System.out.println("End of the game, " + side + " team won!");
+			//System.out.println("End of the game, " + side + " team won!");
+			Logger.getLogger("LOGGER").setLevel(Level.INFO);
+			Logger.getLogger("LOGGER").info("End of the game. " + side + " team won!");
 		}
 		// It's now the other team's turn
 		redTurn = !redTurn;
