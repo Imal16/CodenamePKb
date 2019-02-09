@@ -1,4 +1,12 @@
-# CodenamePKb
+# CodenamesPKb
 COMP354 - Intro to Software Engineering - Term Project Team PK-b
 
-Do we need a name list here for coders and something else?//Zijian
+Team members: 
+Daniel Vellucci
+John Paulo Valerio
+Ihsaan Malek
+Chavind	Mungun
+William	Ngo
+Olivier	Racette
+Rosy Teasdale
+Zijian Wang
