@@ -15,6 +15,13 @@ import main.models.business.Operative;
 import main.models.business.Spymaster;
 import main.models.interfaces.PickNextCardStrategy;
 
+/**
+ *Unit testing for picking next card strategy
+ *
+ * @author William Ngo
+ * @version 02/10/2019
+ *
+ */
 class TestPickNextCardStrategy {
 
 	Board testBoard;
