@@ -15,6 +15,13 @@ import main.models.business.Operative;
 import main.models.business.Spymaster;
 import main.models.interfaces.PickRandomCardStrategy;
 
+/**
+ *Unit testing for picking random card strategy
+ *
+ * @author William Ngo
+ * @version 02/10/2019
+ *
+ */
 class TestPickRandomCardStrategy {
 
 	Board testBoard;

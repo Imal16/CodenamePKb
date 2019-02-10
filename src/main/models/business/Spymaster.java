@@ -4,7 +4,6 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import main.application.GameManager;
 
 /**
  * a Spymaster's task is to give clues to operatives in order to help

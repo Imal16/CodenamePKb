@@ -2,8 +2,6 @@ package main.models.business;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import main.application.GameManager;
 import main.models.interfaces.*;
 
 /**

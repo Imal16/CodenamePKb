@@ -12,13 +12,21 @@ import javafx.embed.swing.JFXPanel;
 import main.models.business.Board;
 import main.models.business.Card;
 
+/**
+ * Unit testing for board
+ * @author William Ngo
+ * @version 10/02/2019
+ *
+ */
 class TestBoard {
 	
 	Board testBoard;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		JFXPanel jp = new JFXPanel(); //Set up internal graphic for jfx testing
+		//This sets up internal graphic for jfx testing
+		//If this line is not here, unit testing doesn't work
+		JFXPanel jp = new JFXPanel(); 
 	}
 
 	@AfterAll
@@ -48,12 +56,7 @@ class TestBoard {
 		
 		assertEquals(cardToBeSet, retrievedCard);		
 	}
-	
-	@Test
-	void setupBoardTest() {
 		
-	}
-	
 	@Test
 	void isCardFlippedAtTest() {
 		testBoard.board[0][3].isFlipped = true;

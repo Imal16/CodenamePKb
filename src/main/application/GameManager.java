@@ -1,10 +1,7 @@
 package main.application;
 
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import main.controllers.KeyCardReader;
 import main.models.business.*;
 import main.models.interfaces.*;
 
@@ -18,14 +15,14 @@ import main.models.interfaces.*;
  */
 public class GameManager {
 	Operative redOperative;
-	private Operative blueOperative;
+	Operative blueOperative;
 	Spymaster redSpymaster;
 	Spymaster blueSpymaster;
 
 	Board board;
 
-	private int[] keycardTypes; // Array that holds information about the location of the types of card
-	private String[] keycardWords; // array that holds information about the location of the words on the board
+	//private int[] keycardTypes; // Array that holds information about the location of the types of card
+	//private String[] keycardWords; // array that holds information about the location of the words on the board
 
 	boolean isStarting = true;
 	boolean redTurn; // current turn for teams. true = red's, false = blue's
@@ -37,19 +34,19 @@ public class GameManager {
 
 	public GameManager(Board board) {
 		this.redOperative = new Operative(1, 1);
-		this.setBlueOperative(new Operative(0, 1));
+		this.blueOperative = new Operative(0, 1);
 		this.redSpymaster = new Spymaster(1);
 		this.blueSpymaster = new Spymaster(0);
 
 		this.board = board;
 
 		// Setting strategies for operatives.
-		// setOperativeStrategy(redOperative, new PickNextCardStrategy(board));
+		setOperativeStrategy(redOperative, new PickNextCardStrategy(board));
 		// setOperativeStrategy(blueOperative, new PickNextCardStrategy(board));
 
 		// Setting strategies for operatives.
-		setOperativeStrategy(redOperative, new PickRandomCardStrategy(board));
-		setOperativeStrategy(getBlueOperative(), new PickRandomCardStrategy(board));
+		//setOperativeStrategy(redOperative, new PickRandomCardStrategy(board));
+		setOperativeStrategy(blueOperative, new PickRandomCardStrategy(board));
 
 	}
 
@@ -91,9 +88,9 @@ public class GameManager {
 			} else if (board.getTypeFliped() == 3) {
 				blueCardsLeft--;
 			} else if (board.getTypeFliped() == 0) {
-				// byStander
+				// byStander, do nothing
 			} else if (board.getTypeFliped() == 1) {
-				// assassin
+				// assassin, ends game
 				isGameOver = true;
 				redWinner = false;
 			}
@@ -178,9 +175,21 @@ public class GameManager {
 		return this.redOperative;
 	}
 
+	// check if game end
+	private void checkNumberOfCardsLeft() {
+		if (redCardsLeft == 0) {
+			isGameOver = true;
+			redWinner = true;
+		}
+		if (blueCardsLeft == 0) {
+			isGameOver = true;
+			redWinner = false;
+		}
+	}
+	
 	/**
 	 * Method to be used later, sets up the cards in the board class
-	 */
+	 
 	private void setupBoard() {
 		// Reading keycard text file
 		try {
@@ -214,18 +223,6 @@ public class GameManager {
 
 		keyCardArrayCounter = 0;
 	}
-
-	// check if game end
-	private void checkNumberOfCardsLeft() {
-		if (redCardsLeft == 0) {
-			isGameOver = true;
-			redWinner = true;
-		}
-		if (blueCardsLeft == 0) {
-			isGameOver = true;
-			redWinner = false;
-		}
-	}
-
 	
+	*/
 }

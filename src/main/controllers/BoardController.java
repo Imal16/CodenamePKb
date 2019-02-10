@@ -14,7 +14,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import main.application.GameManager;
 import main.models.business.*;
-import main.models.interfaces.*;
 
 /**
  * This is the Controller for generating the board cards.

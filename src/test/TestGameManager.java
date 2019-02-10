@@ -17,6 +17,12 @@ import main.models.business.Spymaster;
 import main.models.interfaces.PickNextCardStrategy;
 import main.models.interfaces.PickRandomCardStrategy;
 
+/**
+ * Unit testing for Game Manager
+ * @author Zijian Wang
+ * @version 02/06/2019
+ *
+ */
 class TestGameManager {
 
 	Board testBoard;
@@ -143,6 +149,12 @@ class TestGameManager {
 			}
 		}
 	}
+	
+	/**
+	 * Method to populate the board so that the first and only 
+	 * red card will be at [0][0] so that the red operative 
+	 * can easily pick it to show that it wins the game
+	 */
 	private void populateRedBoard() {
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
@@ -158,6 +170,12 @@ class TestGameManager {
 			}
 		}
 	}
+	
+	/**
+	 * Method to populate the board so that the first and only 
+	 * blue card will be at [0][0] so that the blue operative 
+	 * can easily pick it to show that it wins the game
+	 */
 	private void populateBlueBoard() {
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
@@ -173,6 +191,9 @@ class TestGameManager {
 		}
 	}
 	
+	/**
+	 * Populates board with random cards
+	 */
 	private void populateBoard() {
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
