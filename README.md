@@ -8,7 +8,7 @@ Zijian Wang - 40011864
 Ihsann Malek - 40024975
 John Paulo Valerio - 40031628
 Olivier Racette - 40017231
-Daniel Vellucci - 
+Daniel Vellucci - 27416288
 Chavind Mungun - 40062544
 
 Information about the demo:
