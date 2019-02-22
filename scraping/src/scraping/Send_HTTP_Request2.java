@@ -24,7 +24,7 @@ public static void call_me() throws Exception {
      con.setRequestProperty("User-Agent", "Mozilla/5.0");
      int responseCode = con.getResponseCode();
      System.out.println("\nSending 'GET' request to URL : " + url);
-     System.out.println("Response Code : " + responseCode);
+    
      BufferedReader in = new BufferedReader(
              new InputStreamReader(con.getInputStream()));
      String inputLine;
@@ -42,17 +42,10 @@ public static void call_me() throws Exception {
      System.out.println("result after Reading JSON Response");
    //  System.out.println("text- "+myResponse.getString("text"));
      System.out.println("2"+ myResponse.toString());
-     System.out.println("limit- "+(myResponse.names()));
+     System.out.println(" "+(myResponse.names()));
      System.out.println(myResponse.getJSONObject("request"));
      JSONObject myResponse2 = new JSONObject(myResponse.toString());
-    System.out.println("countryCode- "+myResponse2.toString());
-   /*   System.out.println("countryName- "+myResponse.getString("countryName"));
-     System.out.println("regionName- "+myResponse.getString("regionName"));
-     System.out.println("cityName- "+myResponse.getString("cityName"));
-     System.out.println("zipCode- "+myResponse.getString("zipCode"));
-     System.out.println("latitude- "+myResponse.getString("latitude"));
-     System.out.println("longitude- "+myResponse.getString("longitude"));
-     System.out.println("timeZone- "+myResponse.getString("timeZone"));  
-   */
+    System.out.println(" "+myResponse2.toString());
+ 
      }
 }
