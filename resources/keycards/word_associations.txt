@@ -1,0 +1,393 @@
+conscious - Ness 98, Self 76, Environmentally 76, Freud 70, Instinctive 68
+pest - Insecticide 100, Mite 80, Arthropod 80, Insect 76, Citrus 70, Crop 68
+pinch - Forefinger 100, Nipple 85, Thumb 83, Nose 73, Nostril 72, Hitter 64
+skip - Curling 100, Rink 84, Bail 62, Rope 57, Beat 57, Jump 51, Bounce 51
+knock - Unconscious 100, Senseless 81, Door 80, Down 78, Down 70, Accidentally 68
+punish - Offender 100, Punitive 92, Severely 92, Disobedience 92, Wickedness 83, Perpetrator 83
+complex - Ligand 100, Subunit 93, Anion 81, Mitochondrial 78, Polymerase 77, Protein 74, Rna 74
+pickle - Cucumber 100, Vinegar 94, Onion 80, Meat 54, Hartley 39, Mustard 34, Relish 32
+tiny - Speck 100, Droplet 73, Firefly 62, Flicker 61, Spark 60, Miniature 59, Scurry 59
+unbiased - Variance 100, Biased 98, Impartial 90, Median 78, Estimation 77, Mutually 70, Deviation 70
+chase - Pur 100, Pursuer 65, Privateer 60, Chasing 59, Hound 52, Steeple 50, Frigate 49
+pointless - Osman 100, Topology 96, Stupid 96, Meaningless 90, Chatter 85, Seemingly 80, Celebrity 79
+tiresome - Monotonous 100, Tedious 96, Repetition 76, Disagreeable 68, Uniformity 64, Dull 61, Odious 61
+peaceful - Warlike 100, Demonstrator 100, Protester 96, Reunification 89, Prosperous 88, Tranquil 88, Serene 86
+curl - Lip 100, Hair 99, Blond 99, Forehead 91, Moustache 89, Lip 85, Nimitz 85
+acoustic - Electric 100, Mandolin 96, Banjo 84, Guitar 82, Harmonica 81, Electric 76, Electro 74
+stuff - Pocket 100, Bag 92, Pouch 88, Scoop 84, Greasy 84, Handkerchief 84, Sack 83
+true - Valour 100, False 88, Believer 83, Faithful 66, Is 63, Predicate 63, Hearted 60
+wise - Prudent 100, Worldly 90, Witty 88, Virtuous 87, Foolish 85, Knowing 80, Valiant 79
+scarf - Yellow 100, Knotted 72, Shawl 69, Silken 69, Silk 67, Turban 66, Blouse 66
+matter - Anymore 100, Irrelevant 93, Ponder 65, Condensed 64, Ignorant 63, Complicate 63, Hardly 57
+feigned - Indifference 100, Insanity 95, Reluctance 91, Astonishment 90, Indignation 89, Ignorance 86, Madness 84
+slave - Abolitionist 99, Free 94, Plantation 94, Bondage 93, Galley 89
+greedy - Randomized 100, Algorithm 78, Adaptive 74, Coloring 72, Selfish 71, Cruel 69, Greed 65
+suspend - Indefinitely 100, Disbelief 73, Pend 71, Writ 66, Corpus 60, Temporarily 59, Enrichment 54
+walk - Briskly 100, Gait 96, Batter 93, Barefoot 91, Crutch 88, Leisurely 87, Aisle 83
+petite - Une 100, Mort 86, Petit 80, Maison 79, Grande 76, Blonde 76, Elle 72
+scorch - Flame 100, Fiery 100, Burn 82, Heat 81, Sun 79, Burning 77, Fire 73
+hungry - Thirsty 100, Tired 55, Fee 55, Feed 54, Starving 53, Devour 51, Eat 48
+flame - Kindle 100, Calgary 100, Flicker 98, Torch 96, Flare 95, Ember 89, Glow 87
+clever - Witty 100, Ruse 86, Wonderfully 77, Shrewd 68, Amusing 63, Ingenious 60, Awfully 59
+shame - Humiliation 100, Guilt 88, Humiliate 87, Blush 86, Disgrace 84, Cowardice 81, Disgrace 80
+repeat - Mantra 100, Feat 99, Repetition 86, Feat 78, Phrase 76, Indefinitely 72
+war - Napoleonic 100, Wage 92, Crimean 82, Neutrality 73, Civil 72, Armistice 67, Ceasefire 66
+naughty - Marietta 100, Mischievous 70, Nice 60, Sexy 50, Wicked 48, Punish 46
+tremendous - Upheaval 100, Precipice 93, Uproar 91, Roar 90, Explosion 81, Heave 77, Exert 76
+stereotyped - Repetitive 100, Stereotype 89, Negatively 75, Autism 75, Pervasive 72, Dsm 66, Impairment 65
+wrestle - Wrestling 100, Tag 91, Heavyweight 88, Flair 82, Team 79, Jarrett 76
+ruin - Extravagance 100, Disgrace 91, Reputation 78, Tradesman 69, Destroyed 57, Folly 56
+offer - Baccalaureate 100, Undergraduate 81, Postgraduate 80, Diploma 75, Discount 74, Panoramic 74, Extracurricular 73
+creature - Mythical 100, Humanoid 95, Sentient 91, Undead 90, Mythological 74, Monstrous 71, Demonic 71
+spectacular - Firework 100, Sensational 73, Volley 69, Snowy 66, Macy 63, Countdown 62, Waterfall 62
+nation - Industrialize 100, Cree 84, Cherokee 84, Navajo 81, Gymnast 73, Barbarous 68, Civilized 67
+opposite - Sex 100, Equal 77, Polar 76, Clockwise 75, Direction 70, Extreme 68, Polarize 65
+label - Fluorescent 100, Fda 91, Packaging 83, Fluorescence 76, Vertex 68, Package 67, Bottle 66
+dangerous - Potentially 100, Driving 86, Precedent 68, Unpredictable 68, Inherently 66, Shoal 63, Notoriously 60
+handy - Dandy 100, Manny 62, Beale 42, Blues 40, Para 40, Pistol 38
+material - Raw 100, Dielectric 89, Recycle 87, Archival 85, Porous 81, Radioactive 80, Plastic 78
+optimal - Optimization 100, Duality 96, Stochastic 93, Quadratic 90, Algorithm 77, Maximize 72, Nonlinear 72
+copy - Copied 86, Scribe 83, Manuscript 74, Handwriting 70, Forward 70, Original 68
+saw - Lumber 100, Shotgun 85, Toothed 84, Shotgun 69, Mill 63, Plank 61
+recognise - Bravery 100, Battlefield 86, Subspecies 66, Internationally 65, Kennel 65, Extreme 53, Kosovo 48
+tedious - Consuming 100, Repetitive 87, Boring 80, Monotonous 77, Enumerate 77, Chore 75, Dull 65
+class - Locomotive 100, Corvette 100, Frigate 87, Sloop 80, Noun 78, Enroll 76, Adjective 76
+organic - Pollutant 77, Solvent 76, Volatile 74, Aqueous 71, Solubility 70, Sludge 67
+tip - Catheter 100, Blunt 98, Tentacle 97, Inflorescence 95, Tail 87, Forewing 87, Tuft 85
+milk - Cow 100, Dairy 94, Goat 84, Butter 82, Cheese 82, Calve 76, Cream 70
+disillusioned - Disappointment 100, Bitterness 89, Cold 88, Adultery 83, Spirituality 63, Deception 62, Bitter 59
+desire - Gratify 100, Earnestly 93, Gratification 89, Craving 86, Humbly 78, Lust 72, Continuance 72
+faulty - Reasoning 100, Defective 83, Weld 76, Ignition 75, Heater 73, Conformation 73, Erroneous 72
+disgusting - Filthy 100, Bloody 98, Filth 94, Obscene 89, Vile 76, Immoral 73, Shameful 73
+produce - Newscast 100, Fermentation 98, Torque 96, Toxin 96, Spore 94, Horsepower 91, Ethanol 90
+cactus - Pear 100, Guadalcanal 68, Scrub 67, Hedgehog 67, Arid 58, Juniper 58, Spine 57
+run - Aground 100, Reelection 69, Concurrently 58, Touchdown 56, Syndication 54, Gauntlet 52, Furlong 52
+lock - Door 90, Slam 86, Drawer 84, Cupboard 82
+hang - Gallows 100, Peg 91, Rafter 86, Upside 80, Tapestry 79, Drapery 78, Bough 73
+caring - Hospice 100, Caregiver 96, Sick 83, Orphaned 83, Foster 81, Orphan 77
+toes - Tip 100, Heel 91, Boots 85, Finger 78, Toe 74, Hind 67, Tic 64
+prepare - Meal 100, Olympiad 81, Apprenticeship 74, Contingency 73, Upcoming 71, Adequately 69, Beforehand 67
+force - Retreat 100, Counterattack 99, Surrender 97, Besiege 95, Evacuation 92, Regroup 87, Rebel 84
+stupendous - Precipice 100, Magnificence 88, Grandeur 83, Colossal 83, Vast 80, Crag 80, Edifice 75
+travel - Overland 100, Extensively 83, Passport 82, Stagecoach 81, Abroad 80, Interstellar 77
+sisters - Younger 100, Sibling 97, Twin 96, Widowed 93, Abbess 88, Niece 86, Brother 84
+tranquil - Serene 100, Calm 92, Repose 85, Placid 75, Soothing 71, Slumber 69
+snatch - Jerk 100, Weightlifting 87, Clean 85, Away 76, Hasty 76, Mouthful 76, Grasp 74
+preserve - Posterity 100, Integrity 91, Fossil 90, Pickle 84, Preservation 83, Heritage 79, Intact 77
+peace - Nobel 100, Disarmament 97, Tranquillity 87, Treaty 86, Westphalia 82, Prosperity 80, Quiet 77
+talk - Nonsense 100, Nonsense 67, Overhear 66, Awhile 65, Listen 65, Gossip 64
+hypnotic - Insomnia 100, Amnesia 89, Susceptibility 79, Regression 74, Opioid 71, Overdose 65, Medication 62
+abaft - Mast 100, Forward 63, Funnel 52, Starboard 49, Superstructure 45, Aft 40, Beam 39
+thought - Console 100, Suicidal 91, Comforting 77, Hegel 76, Thinker 70, Confucian 70, Shudder 64
+rude - Awakening 100, Awakening 87, Mechanical 69, Ska 67, Naughty 55, Barbarian 53, Savage 43
+aftermath - Katrina 100, Tsunami 75, Immediate 73, Hurricane 59, Earthquake 50, Disaster 47, Terrorist 45
+descriptive - Normative 100, Explanatory 84, Metadata 73, Predictive 71, Linguistic 69, Catalogue 68, Adjective 64
+answer - Question 100, Summons 85, Correctly 76, Query 75, Riddle 72, Affirmative 66, Honestly 63
+grain - Cereal 100, Legume 89, Cereal 85, Barley 83, Wheat 78, Pollen 76, Oat 75
+destroy - Detonate 100, Warhead 88, Annihilate 78, Utterly 75, Explosive 72, Enemy 71, Tornado 71
+spare - Beseech 100, Expense 95, Implore 91, Mercy 88, Osman 85, Beg 81, Pity 80
+tour - Headline 100, Warped 96, Extensively 67, Gig 62, Concert 62, Keyboardist 61
+skate - Rink 100, Skating 98, Puck 90, Roller 90, Inline 89, Ice 68
+letters - Alphabet 100, Lettre 92, Correspondence 78, Write 74, Diary 64, Spelling 62, Recommendation 61
+pedal - Bicycle 100, Brake 95, Bike 88, Brake 86, Accelerator 72, Gear 71
+immense - Booty 100, Concourse 94, Expanse 82, Popularity 77, Quantity 74, Gigantic 71, Prodigious 71
+boat - Flotilla 100, Torpedo 89, Submerged 80, Fishing 76, Submarine 74, Submarine 71
+shake - Head 100, Rattle 93, Violently 91, Sadly 77, Vigorously 77, Tremor 75, Fist 73
+weather - Storm 100, Forecast 95, Tack 95, Typhoon 91, Stormy 89, Forecast 88
+jeans - Baptiste 100, Rousseau 52, Fran\u00e7ois 49, Yves 48, Christophe 48, Claude 48, Jacques 46
+sincere - Repentance 100, Flattery 85, Apology 70, Esteem 69, Piety 67, Truthful 66, Sincerity 65
+paste - Cut 100, Cut 88, Bake 64, Garlic 61, Shrimp 61, Chili 60, Soybean 58
+suck - Nipple 100, Vortex 83, Vacuum 83, Cock 82, Breath 80, Marrow 78
+embarrass - Humiliate 100, Harass 83, Shameful 71, Confound 62, Marge 58, Greatly 57
+dog - Trot 100, Prairie 100, Cat 95, Breed 86, Heel 84, Bite 81, Kennel 67
+monkey - Spider 100, Toothed 96, Mammal 94, Swamp 82, Lizard 75, Infant 73, Mouse 66
+haircut - Shave 100, Barber 71, Shave 67, Mohawk 64, Sport 62, Crop 54, Dyed 52
+crowd - Throng 100, Spectator 85, Sidewalk 83, Multitude 78, Shouting 78, Gathered 77, Eagerly 72
+dad - Mom 100, Rudd 50, Sitcom 46, Castor 41, Regatta 38, Domination 33, Uv 30
+regular - Polygon 100, Militia 87, Postseason 86, Math 80, Playoff 79, Vertex 76
+ugliest - Big 100, Betty 58, Deformed 48, Hag 41, Stupid 41, Scowl 41, Brute 40
+womanly - Manly 100, Eternal 88, Tenderness 84, Gentleness 80, Gentle 71, Softness 71, Delicacy 69
+finger - Absently 100, Hilt 98, Nervously 96, Idly 95, Delicately 83, Thumb 79, Trigger 73
+abrasive - Grinding 100, Grit 95, Bonded 89, Hardness 89, Emery 83, Coated 83, Silica 83
+solid - Liquid 100, Gaseous 94, Crystalline 89, Liquid 84, Sludge 84, Extraction 81, Adsorption 79
+nebulous - Nebula 100, Milky 97, Haze 81, Comet 80, Condensation 80, Luminous 77, Vague 76
+tenuous - Wisp 100, Atmosphere 87, Grip 84, Connection 79, Fragile 78, Gaseous 77, Ionize 76
+brake - Abs 100, Steering 99, Pedal 98, Traction 97, Hydraulic 96, Throttle 95, Skid 92
+white - Racial 100, Sock 98, Black 93, Hispanic 93, Yellowish 88, Throated 88, Bluish 84
+start - Increment 100, Strikeout 90, Shutout 86, Trail 74, Tackle 74, Filly 73, Yelling 70
+pump - Hose 81, Nozzle 81, Diode 80, Compressor 80, Tubing 79, Proton 78
+rural - Romanize 100, Kerman 70, Fars 70, Iran 57, Oblast 48, Locality 48, Kurdistan 47
+pass - Touchdown 100, Peyton 85, Exam 79, Bree 77, Interception 72, Td 72, Intercept 71
+balance - Rudder 100, Budget 98, Harmonious 92, Equilibrium 91, Budget 90, Deficit 90
+encourage - Incentive 100, Discourage 86, Foster 83, Creativity 76, Actively 74, Participation 70, Foster 66
+claim - Waiver 100, Falsely 88, Refute 88, Dispute 85, Infringement 83, Fraudulent 82
+note - Liner 100, Booklet 59, Avg 54, Melodic 45, Riff 43, Handwriting 43, Strikeout 41
+suggestion - Helpful 100, Constructive 94, Rejected 86, Reject 85, Tentative 83, Hint 82, Repudiate 78
+mind - Feeble 100, Asking 99, Sane 98, Never 91, Sancho 89, Quixote 83, Thinking 81
+green - Grass 100, Sustainable 97, Yellow 88, Purple 83, Leafy 82, Bluish 81, Lantern 79
+fact - Ascertained 100, Oblivious 95, Supposition 85, Evidence 85, Corroborate 80, Compounded 80, Inference 76
+ants - Wasp 100, Grasshopper 96, Pea 93, Forage 93, Nest 88, Swarm 87, Caterpillar 87
+lewd - Obscene 100, Immoral 72, Filthy 67, Profane 65, Vulgar 65, Lust 62, Disgusting 59
+mug - Thug 100, Steaming 68, Cider 61, Ale 60, Sip 56, Coffee 53, Sip 51
+boundary - Redistribution 100, Archive 90, Geo 90, Delineate 83, Tectonic 82, Transcend 79, Compute 70
+club - Afl 100, Football 97, Mls 81, Rugby 79, Musket 74, Amateur 73, Athletic 71
+observant - Keenly 100, Jew 91, Torah 86, Franciscan 83, Vow 81, Friar 79, Jews 77
+like - Unix 100, Petal 71, Jelly 70, Beak 70, Appendage 63, Minded 58
+arrest - Warrant 100, Suspect 85, Detention 84, Gestapo 84, Bail 83, Detain 79, Imprison 79
+loose - Rein 100, Bind 91, Mooring 90, Grip 89, Fitting 88, Bridle 85, Girdle 85
+jellyfish - Tentacle 100, Crustacean 99, Jelly 94, Medusa 91, Invertebrate 91, Squid 89, Coral 87
+special - Relativity 100, Envoy 91, Halloween 89, Emmy 85, Miniseries 82, Pbs 81, Fbi 78
+fresh - Tomato 100, Rotten 94, Canned 90, Bake 83, Stale 78, Vegetable 77, Fragrant 77
+inform - Educate 100, Whereabouts 96, Despatch 85, Contact 81, Entertain 81, Telegram 78
+angle - Oblique 100, Buttress 99, Perpendicular 89, Downwards 87, Steeply 86, Euler 82
+steam - Boiler 100, Kettle 93, Engine 89, Turbine 89, Locomotive 83, Powered 82, Locomotive 82
+expect - Unreasonable 100, Reasonably 95, Confidently 95, Disappointed 61, Momentarily 52, Reasonable 52, Sooner 47
+wish - Heartily 100, Sincerely 92, Gratify 87, Earnestly 75, Luck 69, Desire 67
+mend - Stocking 100, Fence 86, Sew 81, Rift 78, Linen 70, Clothes 70, Break 69
+record - Label 100, Shutout 95, Decca 92, Strikeout 92, Demos 84, Motown 83, Demo 82
+shop - Boutique 100, Grocery 100, Supermarket 100, Mall 99, Restaurant 86, Cafe 82
+leg - Hind 100, Torso 92, Dangling 81, Abdomen 76, Thigh 74, Toe 73, Arm 69
+obey - Summons 100, Implicitly 87, Behest 87, Injunction 83, Commandment 77, Blindly 72
+care - Hospice 100, Sick 83, Orphaned 83, Caring 82, Foster 81, Orphan 77
+whispering - Rustling 100, Hushed 81, Ear 72, Murmur 69, Breeze 69, Urgently 67, Huddle 63
+teeny - Tiny 100, Moe 82, Turnip 80, Tiny 79, Sesame 73, Mueller 63, Gnome 62
+grin - Wry 100, Boyish 88, Toothed 87, Wink 81, Sly 79, Mischievous 74, Grimace 73
+snakes - Coiled 100, Tentacle 91, Snapping 79, Undulate 75, Twisting 74, Indigo 74, Coil 73
+roasted - Steak 100, Spit 97, Meat 90, Oven 88, Potato 82, Chicken 81, Boil 80
+locket - Bracelet 100, Nara 100, Amulet 91, Necklace 90, Miniature 86, Bosom 85, Apex 81
+hapless - Wretch 100, Woe 81, Mourn 77, Victim 72, Plight 70, Doom 66, Legislative 65
+name - Antarctic 96, Discoverer 79, Norse 77, Naming 70, Christen 60, Mascot 58
+use - Technique 100, Pesticide 96, Encryption 96, Encrypt 95, Gps 91, Tcp 91, Adapter 90
+smash - Ax 100, Forearm 87, Hammer 86, Ogre 82, Grab 82, Hulk 80, Skull 80
+boast - Prowess 100, Proudly 90, Thriving 82, Justly 80, Proud 78, Amenity 74, Vibrant 70
+warm - Cool 100, Chilly 98, Chilled 96, Weather 94, Stove 93, Cold 90
+barbarous - Civilized 100, Inhuman 91, Cruel 87, Cruelty 81, Savage 81, Ignorant 79, Rude 77
+tight - Hug 100, Clamp 93, Lace 86, Squeeze 84, Grip 80, Trouser 78, Rope 76
+crown - Wreath 100, Coronation 92, Charlemagne 89, Pageant 84, Outgoing 79, Laurel 77
+yielding - Yield 100, Soft 100, Wheat 91, Melting 87, Obedient 86, Shear 77, Capable 68
+great - Britain 100, Yarmouth 98, Grandson 82, Granddaughter 77, Grandfather 74, Grandchild 74, Herod 69
+tense - Verb 100, Relaxed 76, Muscle 71, Relax 69, Inflection 65, Indicative 64, Suffix 61
+cute - Sexy 100, Funny 84, Playful 84, Prose 70, Anime 68, Manga 66, Idol 65
+efficacious - Remedy 100, Placebo 96, Efficacy 91, Sacrament 89, Regimen 86, Treating 80, Mantra 78
+moan - Wail 100, Nipple 99, Sob 97, Feebly 94, Sob 87, Groan 87
+reminiscent - Aroma 100, Riff 94, Vaguely 89, Retro 87, Styling 87, Melodic 86, Way 79
+smiling - Nodding 100, Bowing 81, Waving 77, Sweetly 75, Frowning 69, Faintly 67, Rosy 66
+produce - Newscast 100, Fermentation 98, Torque 96, Toxin 96, Spore 94, Horsepower 91, Ethanol 90
+hilarious - Antic 100, Ign 100, Funny 89, Funny 89, Comedic 86, Satire 84, Enjoyable 84
+reply - Obj 100, Quixote 87, Sancho 76, Senor 71, Shrug 69, Coldly 67, Calmly 65
+delicious - Odour 100, Fragrance 99, Refreshing 95, Perfume 94, Fragrant 94, Taste 92, Recipe 91
+bawdy - Partridge 100, Shakespeare 94, Tale 77, House 49, Obscene 48, Brothel 48, Erotic 44
+strip - Gaza 100, Comic 86, Bark 79, Cartoonist 76, Bandage 72, Peanut 69, Syndicate 66
+left - Increment 100, Align 85, Tko 82, Winger 78, Width 75, Fielder 73, Orientation 68
+coal - Colliery 100, Lehigh 94, Steamship 82, Collier 80, Boiler 78, Miner 78, Barre 77
+receipt - Gross 100, Payment 80, Bill 79, Pay 73, Message 69, Delivery 68, Box 64
+reduce - Drastically 100, Emission 94, Congestion 90, Thereby 85, Greenhouse 82, Likelihood 76, Cholesterol 75
+disapprove - Disapproval 100, Approve 92, Strongly 90, Frown 85, Scowl 80, Vehemently 79, Heartily 70
+calculate - Calculator 100, Integral 94, Normalize 87, Trajectory 86, Equation 86, Calculating 83, Coefficient 83
+chief - Staff 100, Executive 93, Constable 85, Deputy 85, Editor 78, Commander 77, Inspector 76
+scene - Delete 100, Filmed 91, Nativity 87, Behind 80, Film 74, Depicting 70, Burgeon 69
+sprout - Cabbage 100, Turnip 100, Brussels 90, Carrot 90, Beet 88, Pea 81, Bean 80
+spark - Ignite 100, Ignition 96, Plug 96, Flurry 75, Flare 72, Flint 71, Spitting 69
+sheep - Goat 100, Flock 87, Cattle 85, Grazing 82, Wool 81, Herder 78, Fleece 76
+squash - Bug 100, Bugs 85, Beef 68, Pumpkin 59, Cucumber 57, Badminton 55, Maize 53
+nut - Hickory 100, Legume 90, Fruit 69, Vegetable 65, Cheese 62, Berry 59, Bean 55
+pour - Une 100, Torrent 85, Tout 83, Goblet 82, Bake 77, Qu 73, Boiling 72
+ashamed - Heartily 100, Ought 86, Confess 85, Vexed 83, Feel 81, Embarrassed 79, Blush 79
+finicky - Notoriously 100, Precision 100, Docking 95, Ballistic 91, Blur 78, Adjust 72, Tractor 71
+ritzy - Billie 100, Bryan 92, Cinema 77, Jimmy 43, Hotel 37, Vocal 26, Guitar 20
+drum - Cymbal 100, Percussion 100, Snare 87, Riff 78, Synth 77, Bass 74
+hard - Np 100, Swallow 99, Boiled 98, Disk 91, Work 85, Breathing 84, Nose 75
+lying - Antarctica 100, Prostrate 97, Cheating 95, Sofa 94, Pallet 88, Prop 87, Cot 87
+quaint - Picturesque 100, Conceit 91, Fashioned 86, Homely 75, Gable 62, Antique 58, Delightful 57
+territory - Cede 100, Yukon 95, Northwest 87, Palestinian 83, Statehood 82, Annex 81, Overseas 73
+water - Polo 100, Irrigate 99, Irrigation 94, Canteen 90, Cask 88, Trickle 87
+abhorrent - Morally 100, Odious 100, Denounce 77, Cruelty 73, Depiction 69, Offensive 55, Utterly 54
+pencil - Ink 100, Memorandum 85, Eyebrow 84, Comic 84, Marvel 80, Pad 79, Kirby 79
+riddle - Sphinx 100, Bullet 97, Aeronautical 96, Superstition 93, Wisely 84, Proverb 83, Cot 82
+abrupt - Halt 100, Cessation 83, Halt 79, Termination 73, Gradual 66, Onset 65, Transition 59
+salty - Bitter 100, Sour 87, Flavor 85, Taste 82, Taste 80, Flavour 80, Sweet 78
+provide - Insight 100, Functionality 90, Connectivity 88, Incentive 84, Assistance 83, Affordable 83, Consultancy 80
+fixed - Bayonet 100, Broadband 87, Monoplane 87, Movable 85, Strut 85, Adjustable 84, Rotary 78
+sin - Repent 100, Repentance 99, Atonement 96, Forgiveness 94, Penance 88
+smell - Stale 100, Odor 97, Stench 97, Perfume 93, Odour 93, Aroma 92, Scent 92
+various - Omnibus 100, Ailment 84, Stakeholder 80, Denomination 79, Experiment 68, Locale 68, Aspect 67
+chemical - Biological 100, Pharmaceutical 90, Abstract 86, Dow 80, Cas 80, Pesticide 79, Fertilizer 78
+slip - Unnoticed 100, Mooring 89, Pocket 79, Fold 77, Stitch 76, Grasp 75, Coma 73
+alarm - Burglar 100, Apprehension 60, Rouse 56, Startle 53, Sentinel 52, Cry 51
+drab - Olive 100, Olive 100, Camouflage 78, Coloured 75, Trouser 70, Dreary 67, Uniform 66
+tax - Levy 100, Excise 96, Dividend 96, Exempt 90, Irs 87
+hole - Pigeon 100, Par 87, Tee 87, Par 75, Bullet 74, Button 73, Starboard 67
+challenge - Duel 100, Legality 92, Unsuccessfully 82, Incumbent 80, Legitimacy 77, Validity 76, Intercontinental 75
+writing - Creative 100, Sat 82, Math 79, Nonfiction 79, Directing 75, Prose 74, Prose 67
+bump - Lent 100, Bruise 78, Jolt 76, Accidentally 75, Thump 72, Row 70, Uneven 64
+cows - Dairy 100, Deer 59, Calve 50, Calf 48, Dung 47, Milk 45, Cedric 43
+numberless - Vanquished 100, Innumerable 95, Inexplicable 87, Throng 87, Magnolia 86, Statistically 83, Fragrant 82
+flood - Levee 100, Dike 89, Overflow 78, Dam 77, Rainfall 71
+glamorous - Lifestyle 100, Sexy 100, Blonde 95, Exciting 89, Glue 87, Hollywood 81, Dietrich 81
+zippy - Griffith 100, Strip 74, Zip 68, Rainbow 67, Mascot 66, Duane 64, Strip 63
+neat - Clean 100, Orderly 88, Trim 85, Handwriting 76, Pretty 76, Clean 75, Frock 67
+welcome - Warmly 100, Hearty 98, Hospitable 94, Cordial 93, Heartily 85, Greet 84, Hospitality 80
+full - Fledged 100, Blooded 63, Body 53, Length 52, Dyeing 49, Throttle 49, Mill 48
+rule - Unconstitutional 100, Violate 88, Ineligible 87, Mughal 82, Authoritarian 80, Habsburg 76, Dynasty 76
+curve - Curvature 100, Concave 89, Downwards 83, Contour 76, Upward 74, Convex 73, Downward 72
+judge - Panel 100, Harshly 100, Jury 96, Tribunal 87, Impartial 84, Contestant 83
+mature - Sexually 95, Ovary 93, Spore 78, Fertilization 73, Adulthood 71, Fleshy 71
+call - Liar 100, Phone 65, Bugle 61, Telephone 50, Dial 48, Ign 46
+bright - Sunny 100, Shining 99, Shine 99, Sunlight 95, Cheerful 91, Sparkling 91, Shiny 91
+illegal - Immoral 100, Legal 94, Unconstitutional 85, Prostitution 85, Immigration 85, Immigrant 82, Unauthorized 81
+committee - Advisory 100, Judiciary 97, Chair 91, Advisory 89, Names 75, Antarctic 75
+best - Seller 100, Suit 53, Win 51, Won 49, Grammy 48, Finish 46, Cinematography 46
+toy - Stuffed 100, Doll 70, Transformer 64, Figurine 63, Bead 60, Playmate 59
+move - Closer 100, Swiftly 97, Forward 93, Forwards 88, Horizontally 87, Westward 85
+neighborly - Way 100, Watery 86, Jingle 83, Vertex 77, Cyclic 74, Meg 73, Intercourse 72
+belligerent - Neutral 100, Neutrality 92, Neutral 83, Armistice 68, Blockade 67, Combatant 66, Privateer 62
+volcano - Eruption 100, Lava 92, Magma 90, Volcanic 88, Erupt 86, Dormant 78, Cinder 70
+elderly - Dementia 100, Medicare 95, Frail 92, Handicapped 92, Disable 90, Caregiver 88, Aged 86
+grade - Pk 79, Kindergarten 75, Exam 73, Ore 72, Handicap 72, Tonne 64
+first - Baseman 100, Inning 69, Wicket 60, Class 59, Seeded 50, Unbeaten 50, Batsman 48
+materialistic - Materialism 100, Worldview 81, Idealism 73, Outlook 69, Marx 66, Selfish 65, Purely 62
+quixotic - Chivalry 100, Quest 96, Crusade 80, Kiev 78, Gesture 68, Foolish 66, Glenn 64
+manage - Somehow 100, Escape 97, Evade 82, Elude 77, Sneak 75, Centrally 74, Grab 71
+hollow - Cheek 100, Sleepy 97, Log 92, Trunk 87, Nest 81, Tree 77, Gaunt 71
+moon - Buttock 100, Crescent 91, Lunar 76, Saturn 66, Eclipse 64, Around 62, Jupiter 60
+torpid - Liver 100, Lifeless 97, Pellet 95, Rouse 86, Saline 84, Inactive 83, Slack 82
+wire - Barbed 100, Ignition 88, Cable 82, Telephone 80, Electrical 79, Mesh 73, Insulate 72
+magic - Sorcery 100, Witchcraft 100, Alchemy 91, Orlando 91, Divination 88, Occult 88
+squeak - Hinge 100, Latch 73, Rusty 73, Mouse 70, Rat 63, Horrify 58, Shoe 56
+warn - Impending 100, Beware 91, Danger 67, Imminent 67, Beforehand 51, Instinct 51, Careful 48
+mint - Coinage 100, Coin 95, Commemorative 83, Nickel 70, Reverse 64
+school - Elementary 100, Grammar 95, Magnet 86, Boarding 85, Accredited 84
+tray - Steaming 100, Napkin 95, Waiter 93, Goblet 87, Mug 83, Distillation 82, Pastry 77
+skillful - Diplomacy 100, Courageous 99, Manipulation 98, Swordsman 97, Industrious 96, Craftsman 87, Handling 84
+fit - Bene 100, Nicely 84, Neatly 79, Coughing 74, Comfortably 71, Perfectly 68, Socket 67
+hand - Clasp 100, Hilt 87, Rein 86, Fold 84, Folded 77, Mug 77, Pocket 77
+energetic - Active 100, Enthusiastic 96, Industrious 94, Ionize 94, Able 93, Vigorous 91, Playful 90
+charge - Capacitor 100, Indictment 100, Bayonet 95, Fee 91, Indict 90, Felony 88, Prosecutor 80
+deeply - Inhale 100, Rooted 98, Discount 85, Bow 80, Entrenched 78, Delve 74, Breathe 73
+night - Midsummer 100, Watchman 93, Saturday 92, Stormy 87, Vigil 85, Letterman 85, Sleep 84
+big - Ugly 100, Scary 76, Shiny 75, Eared 71, Hairy 70, Daddy 64, Hearted 48
+discussion - Forum 100, Moderate 89, Topic 88, Mailing 84, Moderator 73, Heated 72, Debate 71
+surprise - Exclamation 100, Blink 84, Unprepared 79, Unexpected 77, Shocked 71, Eyebrow 69, Gasp 68
+tap - Forefinger 99, Comm 81, Pane 78, Cask 78, Fingertip 77, Knuckle 77
+hurried - Reactivate 100, Downstairs 100, Whaling 94, Upstairs 81, Stair 79, Corvette 78, Footstep 76
+apathetic - Indifferent 100, Indifference 96, Cynical 91, Dull 82, Demeanor 78, Pornographic 77, Brooding 72
+sugar - Beet 100, Cane 84, Syrup 79, Starch 70, Cinnamon 69, Powdered 67, Loaf 65
+unwieldy - Mobilization 100, Mobilize 92, Bulky 82, Bureaucracy 78, Clumsy 74, Vast 73, Bulk 70
+icy - Pol 100, Chill 62, Chill 56, Shiver 54, Cold 53, Calm 52, Gust 51
+wheel - Cart 100, Barrow 88, Chariot 87, Bicycle 82, Trolley 80, Whirling 77
+evanescent - Waveguide 100, Microscopy 84, Propagate 84, Fluorescence 81, Decay 80, Dielectric 73, Coupling 69
+reason - Sponsorship 100, Undisclosed 75, Justly 73, Logically 73, Selfish 52
+five - Seventy 100, Forty 100, Twenty 100, Thirty 95, Sixty 88, Seventy 86, Ninety 85
+adjustment - Imf 100, Adjustable 75, Structural 72, Dosage 62, Adjust 62, Marital 61, Coping 61
+daffy - Duck 100, Cartoon 87, Pig 76, Bugs 51, Elmer 47, Bunny 47, Speedy 45
+stale - Bread 100, Infinite 68, Custom 66, Odour 45, Smell 44, Odor 40, Smell 38
+sleep - Soundly 100, Peacefully 73, Waking 71, Wake 71, Awake 71, Awakened 67, Slumber 67
+punishment - Corporal 100, Inflict 83, Cruel 82, Inhuman 72, Offender 61, Reward 59, Retribution 58
+rush - Headlong 100, Madly 92, Torrent 81, Touchdown 73, Roar 71, Wildly 69
+turn - Upside 100, Knob 81, Northward 70, Eastward 68, Inward 63, Around 63, Tide 58
+caption - Subtitle 100, Deaf 73, Photograph 67, Cartoon 67, Photo 66, Deaf 65, Impaired 62
+loutish - Clumsy 100, Consent 92, Behaviour 85, Unwilling 81, Awkward 81, Rude 75, Reasonable 58
+noiseless - Tread 100, Glide 100, Pickup 96, Gliding 89, Footstep 77, Typewriter 70, Swift 70
+beam - Transporter 100, Flashlight 100, Ceiling 84, Laser 83, Headlight 75, Scotty 73, Tractor 73
+insect - Crustacean 100, Arthropod 94, Invertebrate 89, Nectar 87, Pest 87, Vertebrate 76
+confess - Frankly 100, Sin 91, Ashamed 88, Forgiveness 88, Repent 86, Guilt 85
+jelly - Jam 100, Juice 92, Cold 51, Peanut 41, Morton 32, Bean 30, Cream 29
+scold - Naughty 100, Squirrel 89, Lena 87, Mamma 87, Angry 75, Severely 72, Aunt 67
+metal - Thrash 100, Alkali 86, Alloy 78, Plastic 77, Corrosion 75, Molten 75, Ceramic 74
+miscreant - Wretch 100, Villain 82, Rascal 50, Vile 46, Scoundrel 46, Vanquished 42, Unidentified 42
+jagged - Shard 100, Pill 89, Jut 88, Peak 70, Chunk 69, Edge 67, Scar 66
+legal - Ethical 100, Jurisprudence 97, Medical 97, Equitable 96, Naacp 93, Framework 93
+utter - Exclamation 100, Stillness 96, Nonsense 94, Word 85, Terror 84, Blackness 82, Groan 79
+bulb - Olfactory 100, Tulip 71, Filament 67, Fluorescent 66, Thermometer 66, Led 64, Edison 52
+magical - Amulet 100, Realism 93, Potion 90, Lyrical 85, Papyrus 84, Talisman 75, Occult 73
+eatable - Bread 100, Fruit 81, Dinner 71, Eat 67, Bearing 64, Meat 62, Food 61
+defective - Familial 100, Mutant 95, Replication 95, Deficient 94, Congenital 91, Mentally 90, Faulty 87
+fowl - Artemis 100, Pheasant 98, Roast 89, Quail 86, Partridge 81, Roasted 74, Poultry 74
+butter - Bake 100, Toast 92, Baking 90, Bread 85, Slice 84, Grate 83, Pudding 81
+worried - Frown 100, Terribly 66, Worry 65, Overly 57, Genuinely 57, Perplexed 52, Sick 52
+different - Radically 100, Markedly 80, Fundamentally 76, Vastly 76, Altogether 59, Specie 58
+kiss - Cheek 100, Passionately 100, Cheek 97, Stooped 93, Tenderly 90, Caress 89, Goodbye 87
+insidious - Onset 100, Wan 71, Dementia 68, Flattery 67, Chameleon 66, Subtle 65, Paranormal 64
+unlock - Locking 92, Drawer 87, Lock 80, Playable 73, Door 73, Key 70
+testy - Sound 100, Sounded 75, Mildly 75, Humour 73, Sounding 72, Donkey 59, Wolfe 58
+step - Forward 100, Veranda 96, Backward 95, Porch 92, Retrace 88, Briskly 85, Aside 84
+property - Confiscate 100, Intellectual 88, Longitude 72, Dielectric 61, Medicinal 59, Tax 57, Restitution 57
+guide - Guiding 100, Scout 87, Catheter 81, Allah 67, Labyrinth 66, Ascent 60
+faithful - Obedient 100, Eucharist 93, Affectionate 93, Communion 89, Sacrament 84, Zealous 83, Liturgy 82
+fine - Probation 100, Imprisonment 96, Sentence 86, Levy 84, Exceeding 73, Punished 72, Restitution 60
+grey - Whitish 100, Brown 100, Brownish 99, Forewing 96, Blackish 94, Suffuse 89, Fuscous 87
+functional - Integral 100, Anatomical 97, Structural 89, Calculus 89, Impairment 84, Tomography 82, Linear 80
+crabby - Appleton 100, Crab 65, Patty 60, Rotten 53, Mama 46, Voiced 45, Tired 29
+whistle - Shrill 100, Purse 91, Whistling 82, Tune 75, Intercom 69, Blackbird 69, Piercing 69
+chivalrous - Chivalry 100, Courteous 87, Generous 84, Brave 82, Adventurous 80, Gallant 80, Gallantry 78
+suppose - Supposing 100, Doubtfully 98, Supposition 92, Possible 77, Unreasonable 72, Reasonable 57, Absurd 55
+dolls - Doll 100, Voodoo 96, Johnny 95, Rag 90, Ashley 78, Toy 74, Toy 74
+makeshift - Clumsy 100, Temporary 80, Wagon 65, Stretcher 57, Barricade 55, Bandage 52, Raft 52
+drawer - Dresser 100, Cupboard 79, Desk 78, Closet 73, Underwear 65, Bedside 61, Unlock 61
+filthy - Rag 100, Disgusting 98, Obscene 89, Filth 85, Dirty 84, Foul 83, Dirt 81
+keen - Sighted 100, Sportsman 98, Edge 94, Shrewd 92, Eyed 91, Penetrating 91, Intellect 87
+plough - Furrow 100, Ox 76, Sow 76, Reap 74, Yoke 72, Sow 71, Sod 60
+hot - Bake 100, Pepper 99, Humid 95, Cold 80, Ac 76, Bubble 74, Oven 69
+bow - Gracefully 100, Quiver 97, Bend 93, Arrow 90, Polite 81, Wow 80
+roomy - Comfortable 100, Spacious 88, Cramped 87, Airy 84, Cockpit 82, Big 82, Comfortably 76
+shirt - Flannel 100, Wearing 65, Paramilitary 64, Wear 62, Wear 54, Boots 52, Uniform 51
+calm - Soothe 100, Soothing 94, Reassuring 82, Tumult 81, Agitation 75, Serene 74, Stillness 74
+straight - Chaser 100, Curve 92, Lace 89, Crooked 88, Narrow 86, Stiff 85, Furlong 84
+start - Increment 100, Strikeout 90, Shutout 86, Trail 74, Tackle 74, Filly 73, Yelling 70
+crazy - Quilt 100, Stupid 76, Eddie 69, Megan 64, Insane 61, Patsy 61, Sane 58
+boorish - Ignorant 100, Insolent 94, Rude 93, Sancho 88, Coarse 77, Vulgar 71, Clumsy 66
+eyes - Watchful 100, Intently 94, Bulge 88, Wary 75, Squarely 74, Suspiciously 73, Slit 70
+youthful - Freshness 100, Vigor 87, Boyish 86, Idealism 82, Vigour 76, Enthusiasm 70, Offender 69
+position - Strategically 100, Midfield 75, Flank 72, Horizontal 70, Rotated 70, Entrenched 68
+elastic - Deformation 100, Scattering 95, Scattering 92, Fibrous 78, Flexible 73, Dough 73, Kinetic 71
+large - Scale 100, Small 65, Sized 64, Carnivorous 61, Populous 60, Body 60, Caliber 56
+airport - Iata 100, Faa 73, Municipal 69, Runway 63, Takeoff 49, Aviation 49, Airline 48
+bolt - Slam 100, Locking 94, Lock 94, Securely 87, Nut 81, Door 81
+guess - Correctly 96, Riddle 74, Shrewd 72, Password 72, Yeah 71, Huh 70
+cough - Hacking 96, Choke 92, Spasm 86, Lung 85, Throat 81, Spit 78
+shade - Tint 100, Fuscous 94, Elm 89, Overhang 88, Tolerant 88, Lamp 87, Pink 87
+hospital - Outpatient 100, Maternity 97, Psychiatric 85, Clinic 75, Pediatric 75, Infirmary 74, Referral 71
+scare - Scary 100, Crap 92, Shit 88, Away 86, Off 77, Hell 71
+bikes - Hike 100, Downhill 89, Cycling 83, Mountain 81, Bicycle 80, Walking 80, Trail 80
+card - Sim 100, Pga 90, Pack 87, Yellow 83, Yarn 83, Referee 79, Wool 74
+staking - Sire 100, Filly 99, Belmont 89, Furlong 82, Thoroughbred 76, Breeder 72, Gambler 69
+puzzled - Cryptic 100, Riddle 86, Perplexed 74, Intrigue 63, Solve 62, Frown 59, Mystery 58
+meeting - Convene 100, Adjourn 99, Quaker 92, Newmarket 73, Chair 72, Quaker 69, Yearly 68
+dramatic - Flair 100, Comedic 94, Monologue 83, Lyric 82, Lyrical 81, Pantomime 73, Epic 71
+friction - Coefficient 100, Welding 98, Brake 86, Viscosity 85, Bearing 82, Inertia 76, Sliding 74
+love - Dearly 100, Madly 71, Passionately 70, Tenderly 60, Loving 58, Cherish 57, Affection 57
+defeated - Soundly 100, Reelection 98, Decisively 97, Rematch 87, Incumbent 83, Narrowly 76, Janata 71
+mighty - Anaheim 100, Arjuna 78, Avenger 71, Prowess 67, Glad 67, Duck 59, Bowman 58
+mark - Anniversary 100, Centenary 90, Twain 88, Anniversary 83, Directorial 78, 100th 77, Milestone 77
+mark - Anniversary 100, Centenary 90, Twain 88, Anniversary 83, Directorial 78, 100th 77, Milestone 77
+next - Decade 100, Kin 99, Adjourn 78, Awake 76, Neighbor 71, Week 68, Neighbour 67
+sink - Torpedo 100, Titanic 100, Freighter 100, Submarine 98, Battleship 97, Ram 96, Iceberg 94
+glossy - Starling 100, Sleek 82, Eared 81, Plumage 75, Smooth 70, Foliage 67, Sheen 66
+roof - Gable 100, Slate 90, Tile 82, Porch 75, Aisle 68, Dwelling 59, Concrete 56
+wholesale - Retail 100, Retail 78, Grocery 77, Manufacturing 72, Sales 62, Sector 60
+worthless - Vagabond 100, Utterly 99, Currency 86, Junk 79, Stupid 77, Trash 77, Anyway 75
+practise - Barrister 100, Austerity 92, Solicitor 85, Penance 84, Witchcraft 69, Ascetic 69
+shoes - Sandal 100, Stocking 100, Sole 95, Barefoot 91, Slipper 91, Hoof 91, Hoove 85
+brawny - Muscular 100, Blacksmith 94, Forearm 91, Hairy 91, Apron 79, Fist 76, Stature 74
+raspy - Breathing 100, Growl 92, Cough 91, Chuckle 83, Voice 83, Hoarse 82, Whisper 71
+mitten - Scarf 100, Knit 100, Sweater 99, Glove 99, Crab 98, Kitten 94, Overcoat 93
+hellish - Fiend 100, Inferno 87, Heavenly 81, Demonic 72, Glare 72, Torment 72, Blasphemy 71
+mellow - Soften 100, Flavor 87, Liam 74, Sweet 64, Rory 61, Wine 52, Galway 50
+terrible - Ordeal 100, Scourge 100, Ivan 100, Calamity 97, Frightful 94, Carnage 84, Fright 82
+chalk - Sidewalk 100, Cue 95, Slate 90, Pavement 89, Cretaceous 88, Lime 80
+hobbies - Gardening 100, Eurasian 97, Collecting 97, Aquarium 85, Pastime 84, Lobby 80, Cooking 80
+low - Fol 100, Conductivity 54, Temperature 50, Voltage 49, Dose 46, Monoplane 45, Molecular 42
+acidic - Alkaline 100, Neutral 70, Hydrolysis 69, Ph 66, Anion 61, Hydroxide 61, Aqueous 59
+party - Socialist 100, Communist 95, Janata 95, Democratic 94, Coalition 88, Parti 83, Opposition 82
+test - Iq 100, Aptitude 92, Standardize 83, Proficiency 80, Hypothesis 80, Validity 79
+improve - Efficiency 100, Sanitation 91, Productivity 91, Vastly 87, Reliability 87, Quality 80, Dramatically 79
+thirsty - Hungry 100, Thirst 73, Drink 71, Drink 67, Refreshing 64, Refresh 55, Draught 54
+bedroom - Bathroom 100, Upstairs 91, Closet 87, Closet 81, Attic 80, Sitting 80, Hallway 77
+wash - Tub 100, Towel 97, Dish 94, Laundry 93, Cleanse 92, Soap 89
+thankful - Deliverance 100, Clarkson 85, Spare 81, Giver 80, Humbly 80, Sincerely 78, Ought 75
+untidy - Littered 100, Heap 99, Twig 82, Tangle 82, Hair 81, Dirty 80, Nest 80
+imagine - Fondly 100, Lennon 99, Imagining 78, Vividly 69, Consternation 56, Can 46, Vainly 46
+miss - Ligament 100, Pageant 98, Narrowly 81, Ole 69, Playoff 54, Sorely 50, Crawley 49
+festive - Peel 100, Occasion 96, Cantata 92, Overture 89, Gathering 84, Procession 82, Celebration 81
+top - Billboard 100, Chart 98, Cupola 96, Peak 96, Cornice 96, Airplay 89, Peaked 83
+lunch - Dine 100, Sandwich 91, Noon 91, Restaurant 85, Afternoon 79, Meal 78, Dinner 76
