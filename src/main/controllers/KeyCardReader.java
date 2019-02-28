@@ -1,5 +1,8 @@
 package main.controllers;
 
+import main.models.business.Word;
+import main.models.business.WordAssociation;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -19,9 +22,11 @@ public class KeyCardReader {
 	
 	
 	private int[] cardTypes = new int[25]; //25 cards
-	private String[] cardWords = new String[25]; //25 cards
-	private String[] allWords = new String[100]; //100 codenames
-	
+//	private String[] cardWords = new String[25]; //25 cards
+//	private String[] allWords = new String[392]; //100 codenames
+	private Word[] allWords = new Word[392];
+	private Word[] cardWords = new Word[25];
+
 	/*
 	 * Empty constructor
 	 */
@@ -58,25 +63,43 @@ public class KeyCardReader {
 	
 	/*
 	 * Read the Keycard words.
+	 * @returns array of words
 	 */
-	public String[] readKeycardWords() throws IOException {
+	public Word[] readKeycardWords() throws IOException {
 		
 		FileReader wordReader = new FileReader(wordsFileName);
 		BufferedReader bufferedReader = new BufferedReader(wordReader);
-		
+		String[] word_line = new String[allWords.length];
+        WordAssociation[] ass_words = new WordAssociation[5];
 		//Read each line of the textfile
 		String line;
 		int count = 0;
 		while ((line = bufferedReader.readLine()) != null) {
-			allWords[count++] = line;
+			System.out.println(line);
+			word_line[count++] = line;
 		}
 		count = 0;
-		
+        for (String current_line :
+                word_line) {
+            String[] parts = current_line.split("(-|,)");
+//            System.out.println(parts[0]);
+
+            for (int i = 1; i <= 5; i++){
+                String[] associated_word_part = parts[i].split(" ");
+//                System.out.println("\t"+associated_word_part[0]);
+//                System.out.println("\t"+associated_word_part[1]);
+                ass_words[i-1] = new WordAssociation(associated_word_part[0],Integer.parseInt(associated_word_part[1]));
+            }
+
+            allWords[count++] = new Word(parts[0],ass_words);
+        }
+
 		/*
 		 * 25 times, search for a random word in the list from the text file.
 		 */
 		for (int i = 0; i < cardWords.length; i++) {
 			int index = new Random().nextInt(allWords.length-1);
+
 			cardWords[i] = allWords[index];
 		}
 		

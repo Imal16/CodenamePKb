@@ -2,6 +2,7 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import main.models.business.*;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -10,10 +11,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.embed.swing.JFXPanel;
 import main.application.GameManager;
-import main.models.business.Board;
-import main.models.business.Card;
-import main.models.business.Operative;
-import main.models.business.Spymaster;
 import main.models.interfaces.PickNextCardStrategy;
 import main.models.interfaces.PickRandomCardStrategy;
 
@@ -138,10 +135,11 @@ class TestGameManager {
 			for (int j = 0; j < 5; j++) {
 				Card c;
 				if(i==0&j==0) {
-					c = new Card("card_" + i + "_" + j, 1);
+					c = new Card(new Word("card_" + i + "_" + j,new WordAssociation[0]), 1);
 					}
 					else {
-						c = new Card("card_" + i + "_" + j, 0);
+//						c = new Card("card_" + i + "_" + j, 0);
+						c = new Card(new Word("card_" + i + "_" + j,new WordAssociation[0]), 0);
 					}
 					testBoard.setUpCardAt(c, i, j);
 				testBoard.setUpCardAt(c, i, j);
@@ -160,10 +158,12 @@ class TestGameManager {
 			for (int j = 0; j < 5; j++) {
 				Card c;
 				if(i==0&j==0) {
-					c = new Card("card_" + i + "_" + j, 2);
+//					c = new Card("card_" + i + "_" + j, 2);
+					c = new Card(new Word("card_" + i + "_" + j,new WordAssociation[0]), 2);
 					}
 					else {
-						c = new Card("card_" + i + "_" + j, 0);
+//						c = new Card("card_" + i + "_" + j, 0);
+						c = new Card(new Word("card_" + i + "_" + j,new WordAssociation[0]), 0);
 					}
 					testBoard.setUpCardAt(c, i, j);
 				testBoard.setUpCardAt(c, i, j);
@@ -181,10 +181,10 @@ class TestGameManager {
 			for (int j = 0; j < 5; j++) {
 				Card c;
 				if(i==0&j==0) {
-				c = new Card("card_" + i + "_" + j, 3);
+				c = new Card(new Word("card_" + i + "_" + j,new WordAssociation[0]), 3);
 				}
 				else {
-					c = new Card("card_" + i + "_" + j, 0);
+					c = new Card(new Word("card_" + i + "_" + j,new WordAssociation[0]), 0);
 				}
 				testBoard.setUpCardAt(c, i, j);
 			}
@@ -199,10 +199,10 @@ class TestGameManager {
 			for (int j = 0; j < 5; j++) {
 				Card c;
 				if(i%2==0&j%22==0) {
-				c = new Card("card_" + i + "_" + j, 3);
+				c = new Card(new Word("card_" + i + "_" + j,new WordAssociation[0]), 3);
 				}
 				else {
-					c = new Card("card_" + i + "_" + j, 2);
+					c = new Card(new Word("card_" + i + "_" + j,new WordAssociation[0]), 2);
 				}
 				testBoard.setUpCardAt(c, i, j);
 			}

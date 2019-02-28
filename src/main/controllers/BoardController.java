@@ -32,7 +32,8 @@ public class BoardController implements Initializable {
 
 	private int[] keycardTypes; // Array that holds information about the location of the types of card
 								// (bystander, assassin, ops)
-	private String[] keycardWords; // array that holds information about the location of the words on the board
+//	private String[] keycardWords; // array that holds information about the location of the words on the board
+	private Word[] keycardWords; // array that holds information about the location of the words on the board
 
 	private int numOfRedCards = 0;
 	private int numOfBlueCards = 0;
@@ -66,7 +67,8 @@ public class BoardController implements Initializable {
 
 		try {
 			// Create a Keycard reader with the Keycard text file
-			KeyCardReader reader = new KeyCardReader("resources/keycards/keycard6.txt", "resources/keycards/words.txt");
+//			KeyCardReader reader = new KeyCardReader("resources/keycards/keycard6.txt", "resources/keycards/words.txt");
+			KeyCardReader reader = new KeyCardReader("resources/keycards/keycard6.txt", "resources/keycards/word_associations.txt");
 
 			// keycardTypes array will be populated with information from text file.
 			keycardTypes = reader.readKeycardTypes();

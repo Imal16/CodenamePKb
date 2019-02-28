@@ -19,11 +19,13 @@ public class Card extends StackPane {
 	/*
 	 * Word: word the card has Type: Bystander=0, Assassin=1, Red=2, Blue=3
 	 */
-	private String word;
+//	private String word;
 	private int type;
 	private Rectangle rec;
 	private Text text;
 	public boolean isFlipped;
+
+	Word wordObj;
 
 	private static final int CARD_SIZE = 100;
 	private static final Color RED_COLOR = Color.RED;
@@ -40,33 +42,35 @@ public class Card extends StackPane {
 		this.isFlipped = false;// Cards all start in not flipped state
 		this.rec = new Rectangle(CARD_SIZE, CARD_SIZE, BYSTANDER_COLOR);
 		this.text = new Text("ABC");
+		this.wordObj = new Word();
 		getChildren().addAll(rec, text);
 	}
 
 	/*
 	 * Parameter constructor A Card with a type and a word
 	 */
-	public Card(String word, int type) {
+	public Card(Word word, int type) {
 		// System.out.println("Card(word,type)");
-		this.word = word;
+//		this.word = word;
+        this.wordObj = word;
 		this.type = type;
 		this.rec = new Rectangle(CARD_SIZE, CARD_SIZE, UNFLIPPED_COLOR);
-		Text text = new Text(word);
+		Text text = new Text(word.getWord());
 		getChildren().addAll(rec, text);
 	}
 
-	public Card(Card card) {
-		//System.out.println("Card(card)");
-		setWord(card.getWord());
-		setType(card.getType());
-	}
+//	public Card(Card card) {
+//		//System.out.println("Card(card)");
+//		setWord(card.getWord());
+//		setType(card.getType());
+//	}
 
 	public void flip() {
 		isFlipped = !isFlipped;
 		revealCardColor();
 		//System.out.println("Card flipped! Word: \"" + word + "\", COLOR number: " + type);
 		Logger.getLogger("LOGGER").setLevel(Level.INFO);
-		Logger.getLogger("LOGGER").info("Card flipped! Word: \"" + word + "\", COLOR number: " + type);
+		Logger.getLogger("LOGGER").info("Card flipped! Word: \"" + wordObj.getWord() + "\", COLOR number: " + type);
 	}
 
 	private void revealCardColor() {
@@ -97,12 +101,12 @@ public class Card extends StackPane {
 		return this.type;
 	}
 
-	public void setWord(String word) {
-		this.word = word;
-	}
+//	public void setWord(String word) {
+//		this.word = word;
+//	}
 
-	public String getWord() {
-		return this.word;
+	public Word getWord() {
+		return this.wordObj;
 	}
 
 	/*
@@ -110,7 +114,7 @@ public class Card extends StackPane {
 	 */
 	@Override
 	public String toString() {
-		return "Card created. Word: " + getWord() + "Type: " + getType();
+		return "Card created. Word: " + getWord().getWord() + "Type: " + getType();
 	}
 
 }

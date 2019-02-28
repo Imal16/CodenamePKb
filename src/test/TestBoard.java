@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import main.models.business.Word;
+import main.models.business.WordAssociation;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -49,12 +51,12 @@ class TestBoard {
 
 	@Test
 	void setUpCardAtTest() {
-		Card cardToBeSet = new Card("newCard", 1);
+		Card cardToBeSet = new Card(new Word("card",new WordAssociation[0]), 1);
 		testBoard.setUpCardAt(cardToBeSet, 0, 0);
-		
+
 		Card retrievedCard = testBoard.board[0][0];
-		
-		assertEquals(cardToBeSet, retrievedCard);		
+
+		assertEquals(cardToBeSet, retrievedCard);
 	}
 		
 	@Test
@@ -81,7 +83,7 @@ class TestBoard {
 	private void populateBoard() {
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
-				Card c = new Card("card_" + i + "_" + j, 1);
+				Card c = new Card(new Word("card_" + i + "_" + j,new WordAssociation[0]), 1);
 				testBoard.setUpCardAt(c, i, j);
 			}
 		}
