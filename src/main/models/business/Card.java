@@ -23,8 +23,7 @@ public class Card extends StackPane {
 	private Rectangle rec;
 	private Text text;
 	public boolean isFlipped;
-
-	Word wordObj;
+	private Word wordObj;
 
 	private static final int CARD_SIZE = 100;
 	private static final Color RED_COLOR = Color.RED;

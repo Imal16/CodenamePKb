@@ -27,8 +27,8 @@ public class Word {
 
     /**
      * Normal constructor
-     * @param word
-     * @param association
+     * @param word String
+     * @param association HashSet
      */
     public Word(String word, HashSet association) {
         this.word = word;
@@ -53,7 +53,7 @@ public class Word {
 
     /**
      * Intersection of 2 word association set
-     * @param otherWord
+     * @param otherWord Word object to compare with
      * @return intersectSet HashSet<WordAssociation>
      */
     public HashSet<WordAssociation> intersection(Word otherWord){
