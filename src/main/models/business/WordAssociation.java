@@ -6,15 +6,28 @@ public class WordAssociation {
     private String word;
     private int count;
 
+    /**
+     * Normal constructor
+     * @param word
+     * @param count
+     */
     public WordAssociation(String word, int count) {
         this.word = word;
         this.count = count;
     }
 
+    /**
+     * Getter
+     * @return word String
+     */
     public String getWord() {
         return word;
     }
 
+    /**
+     * Getter
+     * @return count int
+     */
     public int getCount() {
         return count;
     }

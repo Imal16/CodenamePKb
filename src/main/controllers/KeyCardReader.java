@@ -23,8 +23,6 @@ public class KeyCardReader {
 	
 	
 	private int[] cardTypes = new int[25]; //25 cards
-//	private String[] cardWords = new String[25]; //25 cards
-//	private String[] allWords = new String[392]; //100 codenames
 	private Word[] allWords = new Word[392];
 	private Word[] cardWords = new Word[25];
 
@@ -61,17 +59,17 @@ public class KeyCardReader {
 		
 		return cardTypes;
 	}
-	
-	/*
-	 * Read the Keycard words.
-	 * @returns array of words
-	 */
+
+    /**
+     * Read the Keycard words.
+     * @return cardWords Array of Word objects
+     * @throws IOException
+     */
 	public Word[] readKeycardWords() throws IOException {
 		
 		FileReader wordReader = new FileReader(wordsFileName);
 		BufferedReader bufferedReader = new BufferedReader(wordReader);
 		String[] word_line = new String[allWords.length];
-//        WordAssociation[] ass_words = new WordAssociation[5];
         HashSet<WordAssociation> ass_words = new HashSet<WordAssociation>();
 
 		//Read each line of the textfile
@@ -82,22 +80,24 @@ public class KeyCardReader {
 			word_line[count++] = line;
 		}
 		count = 0;
+		// parse file line by line
+        // create Word object
         for (String current_line :
                 word_line) {
             String[] parts = current_line.split("(-|,)");
-//            System.out.println(parts[0]);
 
+            // Create word association object
             for (int i = 1; i <= 5; i++){
                 String[] associated_word_part = parts[i].split(" ");
-//                ass_words[i-1] = new WordAssociation(associated_word_part[0],Integer.parseInt(associated_word_part[1]));
                 ass_words.add(new WordAssociation(associated_word_part[0],Integer.parseInt(associated_word_part[1])));
             }
 
+            // Store into master words container
             allWords[count++] = new Word(parts[0],ass_words);
         }
 
 		/*
-		 * 25 times, search for a random word in the list from the text file.
+		 * 25 times, search for a random word in the list from the master words container.
 		 */
 		for (int i = 0; i < cardWords.length; i++) {
 			int index = new Random().nextInt(allWords.length-1);

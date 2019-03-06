@@ -19,7 +19,6 @@ public class Card extends StackPane {
 	/*
 	 * Word: word the card has Type: Bystander=0, Assassin=1, Red=2, Blue=3
 	 */
-//	private String word;
 	private int type;
 	private Rectangle rec;
 	private Text text;
@@ -38,7 +37,6 @@ public class Card extends StackPane {
 	 * Default constructor A Card with a default word with default type (BYSTANDER)
 	 */
 	public Card() {
-		// System.out.println("Card()");
 		this.isFlipped = false;// Cards all start in not flipped state
 		this.rec = new Rectangle(CARD_SIZE, CARD_SIZE, BYSTANDER_COLOR);
 		this.text = new Text("ABC");
