@@ -14,6 +14,8 @@ import main.application.GameManager;
 import main.models.interfaces.PickNextCardStrategy;
 import main.models.interfaces.PickRandomCardStrategy;
 
+import java.util.HashSet;
+
 /**
  * Unit testing for Game Manager
  * @author Zijian Wang
@@ -135,11 +137,11 @@ class TestGameManager {
 			for (int j = 0; j < 5; j++) {
 				Card c;
 				if(i==0&j==0) {
-					c = new Card(new Word("card_" + i + "_" + j,new WordAssociation[0]), 1);
+					c = new Card(new Word("card_" + i + "_" + j,new HashSet()), 1);
 					}
 					else {
 //						c = new Card("card_" + i + "_" + j, 0);
-						c = new Card(new Word("card_" + i + "_" + j,new WordAssociation[0]), 0);
+						c = new Card(new Word("card_" + i + "_" + j,new HashSet()), 0);
 					}
 					testBoard.setUpCardAt(c, i, j);
 				testBoard.setUpCardAt(c, i, j);
@@ -159,11 +161,11 @@ class TestGameManager {
 				Card c;
 				if(i==0&j==0) {
 //					c = new Card("card_" + i + "_" + j, 2);
-					c = new Card(new Word("card_" + i + "_" + j,new WordAssociation[0]), 2);
+					c = new Card(new Word("card_" + i + "_" + j,new HashSet()), 2);
 					}
 					else {
 //						c = new Card("card_" + i + "_" + j, 0);
-						c = new Card(new Word("card_" + i + "_" + j,new WordAssociation[0]), 0);
+						c = new Card(new Word("card_" + i + "_" + j,new HashSet()), 0);
 					}
 					testBoard.setUpCardAt(c, i, j);
 				testBoard.setUpCardAt(c, i, j);
@@ -181,10 +183,10 @@ class TestGameManager {
 			for (int j = 0; j < 5; j++) {
 				Card c;
 				if(i==0&j==0) {
-				c = new Card(new Word("card_" + i + "_" + j,new WordAssociation[0]), 3);
+				c = new Card(new Word("card_" + i + "_" + j,new HashSet()), 3);
 				}
 				else {
-					c = new Card(new Word("card_" + i + "_" + j,new WordAssociation[0]), 0);
+					c = new Card(new Word("card_" + i + "_" + j,new HashSet()), 0);
 				}
 				testBoard.setUpCardAt(c, i, j);
 			}
@@ -199,10 +201,10 @@ class TestGameManager {
 			for (int j = 0; j < 5; j++) {
 				Card c;
 				if(i%2==0&j%22==0) {
-				c = new Card(new Word("card_" + i + "_" + j,new WordAssociation[0]), 3);
+				c = new Card(new Word("card_" + i + "_" + j,new HashSet()), 3);
 				}
 				else {
-					c = new Card(new Word("card_" + i + "_" + j,new WordAssociation[0]), 2);
+					c = new Card(new Word("card_" + i + "_" + j,new HashSet()), 2);
 				}
 				testBoard.setUpCardAt(c, i, j);
 			}

@@ -1,38 +1,26 @@
 package main.models.business;
 
+import java.util.HashSet;
+
 public class Word {
-    String word;
-    WordAssociation[] association;
+    private String word;
+    private HashSet<WordAssociation> association;
 
     public Word() {
         this.word = "ABC";
-        this.association = new WordAssociation[0];
+        this.association = new HashSet<WordAssociation>();
     }
 
-    public Word(String word, WordAssociation[] association) {
+    public Word(String word, HashSet association) {
         this.word = word;
-        this.association = association;
-
-        System.out.println("current: "+ word);
-        for (WordAssociation ass_word :
-                association) {
-            System.out.println("\tASS "+ass_word.getWord());
-            System.out.println("\tCOUNT "+ass_word.getCount());
-        }
+        this.association =  new HashSet<>(association);
     }
 
     public String getWord() {
         return word;
     }
 
-    public WordAssociation[] getAssociation() {
+    public HashSet<WordAssociation> getAssociation() {
         return association;
-    }
-
-    @Override
-    public String toString() {
-        return "Word{" +
-                "word='" + word + '\'' +
-                '}';
     }
 }

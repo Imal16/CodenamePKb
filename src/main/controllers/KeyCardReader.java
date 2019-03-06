@@ -6,6 +6,7 @@ import main.models.business.WordAssociation;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Random;
 
 /**
@@ -70,7 +71,9 @@ public class KeyCardReader {
 		FileReader wordReader = new FileReader(wordsFileName);
 		BufferedReader bufferedReader = new BufferedReader(wordReader);
 		String[] word_line = new String[allWords.length];
-        WordAssociation[] ass_words = new WordAssociation[5];
+//        WordAssociation[] ass_words = new WordAssociation[5];
+        HashSet<WordAssociation> ass_words = new HashSet<WordAssociation>();
+
 		//Read each line of the textfile
 		String line;
 		int count = 0;
@@ -86,9 +89,8 @@ public class KeyCardReader {
 
             for (int i = 1; i <= 5; i++){
                 String[] associated_word_part = parts[i].split(" ");
-//                System.out.println("\t"+associated_word_part[0]);
-//                System.out.println("\t"+associated_word_part[1]);
-                ass_words[i-1] = new WordAssociation(associated_word_part[0],Integer.parseInt(associated_word_part[1]));
+//                ass_words[i-1] = new WordAssociation(associated_word_part[0],Integer.parseInt(associated_word_part[1]));
+                ass_words.add(new WordAssociation(associated_word_part[0],Integer.parseInt(associated_word_part[1])));
             }
 
             allWords[count++] = new Word(parts[0],ass_words);

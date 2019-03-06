@@ -50,8 +50,6 @@ public class Card extends StackPane {
 	 * Parameter constructor A Card with a type and a word
 	 */
 	public Card(Word word, int type) {
-		// System.out.println("Card(word,type)");
-//		this.word = word;
         this.wordObj = word;
 		this.type = type;
 		this.rec = new Rectangle(CARD_SIZE, CARD_SIZE, UNFLIPPED_COLOR);
@@ -59,16 +57,9 @@ public class Card extends StackPane {
 		getChildren().addAll(rec, text);
 	}
 
-//	public Card(Card card) {
-//		//System.out.println("Card(card)");
-//		setWord(card.getWord());
-//		setType(card.getType());
-//	}
-
 	public void flip() {
 		isFlipped = !isFlipped;
 		revealCardColor();
-		//System.out.println("Card flipped! Word: \"" + word + "\", COLOR number: " + type);
 		Logger.getLogger("LOGGER").setLevel(Level.INFO);
 		Logger.getLogger("LOGGER").info("Card flipped! Word: \"" + wordObj.getWord() + "\", COLOR number: " + type);
 	}
@@ -101,9 +92,6 @@ public class Card extends StackPane {
 		return this.type;
 	}
 
-//	public void setWord(String word) {
-//		this.word = word;
-//	}
 
 	public Word getWord() {
 		return this.wordObj;

@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Test;
 import javafx.embed.swing.JFXPanel;
 import main.models.interfaces.PickNextCardStrategy;
 
+import java.util.HashSet;
+
 /**
  *Unit testing for picking next card strategy
  *
@@ -103,7 +105,7 @@ class TestPickNextCardStrategy {
 	private void populateBoard() {
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
-				Card c = new Card(new Word("card_" + i + "_" + j,new WordAssociation[0]), 1);
+				Card c = new Card(new Word("card_" + i + "_" + j,new HashSet()), 1);
 				testBoard.setUpCardAt(c, i, j);
 			}
 		}
