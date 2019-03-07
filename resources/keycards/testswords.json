@@ -1,0 +1,5 @@
+{
+ cat:[feline,pet,carnivore],
+ dog:[pet,carnivore,canine],
+ desk:[table,production,office]
+}
