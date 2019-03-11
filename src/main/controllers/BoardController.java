@@ -28,7 +28,7 @@ public class BoardController implements Initializable {
 	@FXML
 	private Button enterBtn;
 	@FXML
-	private Text playerTurn;
+	private Text spyHint;
 
 	private int[] keycardTypes; // Array that holds information about the location of the types of card
 								// (bystander, assassin, ops)
@@ -62,8 +62,6 @@ public class BoardController implements Initializable {
 	 */
 	private void setupBoard() {
 		// Reading keycard text file
-
-		playerTurn.setText("");
 
 		try {
 			// Create a Keycard reader with the Keycard text file
@@ -109,6 +107,9 @@ public class BoardController implements Initializable {
 		// check if the game ends
 		// if so we are not going to play turn since the program could crash if it
 		// overfloats
+		
+		spyHint.setText("Given Hint:\n" + Spymaster.getClueWord());
+		
 		if (!game.isEnd()) {
 			game.playTurn();
 		} else {

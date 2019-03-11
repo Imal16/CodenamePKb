@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  */
 public class Spymaster extends Player {
 	private int team;// 1 for red, 0 for blue.
-	private String clueWord;
+	private static String clueWord;
 	private int clueNumber;
 	
 	private Random rand = new Random();
@@ -39,6 +39,8 @@ public class Spymaster extends Player {
 		//System.out.println(side + " spymaster's hint is: " + hints[hintNo] + ", clue number " + clueNumber + ".");
 		Logger.getLogger("LOGGER").setLevel(Level.INFO);
 		Logger.getLogger("LOGGER").info(side + " spymaster's hint is: " + hints[hintNo] + ", clue number " + clueNumber + ".");
+		
+		clueWord = hints[hintNo];
 	}
 	
 
@@ -64,7 +66,7 @@ public class Spymaster extends Player {
 		this.team = teamNo;
 	}
 	
-	public String getClueWord() {
+	public static String getClueWord() {
 		return clueWord;
 	}
 
