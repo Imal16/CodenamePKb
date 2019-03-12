@@ -42,12 +42,17 @@ public class GameManager {
 
 		// Setting strategies for operatives.
 		setOperativeStrategy(redOperative, new PickNextCardStrategy(board));
-		// setOperativeStrategy(blueOperative, new PickNextCardStrategy(board));
-
-		// Setting strategies for operatives.
-		//setOperativeStrategy(redOperative, new PickRandomCardStrategy(board));
 		setOperativeStrategy(blueOperative, new PickRandomCardStrategy(board));
 
+		setPlayerStrategy(redSpymaster, new SmartHintStrategy(board, 2));
+		setPlayerStrategy(blueSpymaster, new SmartHintStrategy(board, 3));
+		// Setting strategies for operatives.
+		//setOperativeStrategy(redOperative, new PickRandomCardStrategy(board));
+
+	}
+
+	private void setPlayerStrategy(Spymaster player, SmartHintStrategy strategy) {
+		player.setStrategy(strategy);
 	}
 
 	/**
@@ -59,6 +64,8 @@ public class GameManager {
 	public void setOperativeStrategy(Operative op, PickCardStrategy strat) {
 		op.setStrategy(strat);
 	}
+
+
 
 	/**
 	 * This method simulates a turn in a game session with two AIs. One turn
@@ -81,6 +88,7 @@ public class GameManager {
 		// AI's decision to pick cards.
 
 		if (redTurn) {
+			System.out.println("RED SPY - HINT");
 			redSpymaster.GiveHint();
 			redOperative.pickCard();
 			if (board.getTypeFliped() == 2) {
@@ -96,8 +104,10 @@ public class GameManager {
 			}
 
 		} else {
+			System.out.println("BLUE SPY - HINT");
 			blueSpymaster.GiveHint();
 			getBlueOperative().pickCard();
+			//todo: do while loop, check int code for whats flipped
 			if (board.getTypeFliped() == 2) {
 				redCardsLeft--;
 			} else if (board.getTypeFliped() == 3) {

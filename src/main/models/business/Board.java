@@ -1,5 +1,8 @@
 package main.models.business;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,11 +16,16 @@ import java.util.logging.Logger;
 public class Board {
 
 	public Card[][] board;
-
 	private int typeFliped;// to passing the card type value to GameManager
-	
+	RelationGraph redGraph;
+	RelationGraph blueGraph;
+	List<String> redCards;
+	List<String> blueCards;
+
 	public Board() {
 		board = new Card[5][5];
+		this.redGraph = new RelationGraph();
+		this.blueGraph = new RelationGraph();
 	}
 
 	/**
@@ -77,5 +85,39 @@ public class Board {
 	}
 
 	// getters & setters
+	public Card getCardAt(int row, int col){
+		return board[row][col];
+	}
 
+	public RelationGraph getRedGraph() {
+		return redGraph;
+	}
+
+	public void setRedGraph(List<String> teamcards, HashMap<String, ArrayList<String>> jsonfilestorage) {
+		this.redGraph.generategraph(teamcards, jsonfilestorage);
+	}
+
+	public RelationGraph getBlueGraph() {
+		return blueGraph;
+	}
+
+	public void setBlueGraph(List<String> teamcards, HashMap<String, ArrayList<String>> jsonfilestorage) {
+		this.blueGraph.generategraph(teamcards, jsonfilestorage);
+	}
+
+	public List<String> getRedCards() {
+		return redCards;
+	}
+
+	public void setRedCards(List<String> redCards) {
+		this.redCards = redCards;
+	}
+
+	public List<String> getBlueCards() {
+		return blueCards;
+	}
+
+	public void setBlueCards(List<String> blueCards) {
+		this.blueCards = blueCards;
+	}
 }

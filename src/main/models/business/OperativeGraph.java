@@ -110,7 +110,7 @@ public class OperativeGraph {
 		}
 			
 		}
-		
+		//todo: remove vertex after pick
 		return wordschosen;
 		
 	}
