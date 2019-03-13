@@ -1,20 +1,12 @@
 package main.models.business;
 
+import com.google.gson.*;
+
 import java.io.File;
 import java.io.FileReader;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Properties;
-
-import java.util.Set;
-
-import com.google.gson.*;
 
 /**
  * The parser parses a Json file containing the dictionary of codenames(keys) and its relation(dictionary array)
@@ -38,24 +30,23 @@ public class Jparser {
 	private  List<String> listofkeys;
 	private  List<String> listofkeycards;
 	
-	private  int keycards= 2;
+	private  int keycards= 25;		//Number of words in play
 	
 	public Jparser() {
 		this.jsonfilestorage = new HashMap<String,ArrayList<String>>();
 		this.listofkeys =new ArrayList<String>();
 		this.listofkeycards =new ArrayList<String>();
 	}
-	
+
+	//read file, creates JSON object
 	public JsonObject readfile() {
 		try {
 			JsonParser jsonParser = new JsonParser();
-			File file = new File("\\resources\\keycards\\testswords.json");
+			File file = new File("resources/keycards/testswords.json");
 			
 			Object object =jsonParser.parse(new FileReader(file));
 			
 			this.jsonObject=(JsonObject) object;
-			
-			
 		}
 		
 		catch(Exception e) {
@@ -63,6 +54,8 @@ public class Jparser {
 		}
 		return this.jsonObject;
 	}
+
+	//converts json object into hashmap
 	public HashMap<String,ArrayList<String>> parseJson(JsonObject jsonObject) throws ParseException{
 		Map<String, Object> attributes = new HashMap<String, Object>();
 		Set<Entry<String, JsonElement>> entrySet=jsonObject.entrySet();
@@ -75,7 +68,8 @@ public class Jparser {
 		}
 		return this.jsonfilestorage;
 	}
-	
+
+	//gets 25 random words from the hashmap
 	public List<String> generaterandomkeycards(HashMap<String,ArrayList<String>> jsonfilestorage){
 		this.listofkeys.addAll(jsonfilestorage.keySet());
 		Collections.shuffle(this.listofkeys);

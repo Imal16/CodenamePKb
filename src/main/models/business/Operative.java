@@ -29,8 +29,7 @@ public class Operative extends Player{
 	/**
 	 * This method will execute the strategy that is has been set with
 	 * in order to pick a card.
-	 * 
-	 * @param keyword
+	 *
 	 */
 	public void pickCard() {
 		//Testing log

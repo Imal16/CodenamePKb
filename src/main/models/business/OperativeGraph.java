@@ -26,6 +26,7 @@ import java.util.function.*;
  * @version 03/09/2019
  */
 
+//todo: move card picking implementation to strategy
 public class OperativeGraph {
 
 	//Each Operative will have a Graph as its Data Structure to store words and their relations
@@ -110,7 +111,7 @@ public class OperativeGraph {
 		}
 			
 		}
-		
+		//todo: remove vertex after pick
 		return wordschosen;
 		
 	}

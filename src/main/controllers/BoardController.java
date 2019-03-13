@@ -2,10 +2,15 @@ package main.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.google.gson.JsonObject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -41,6 +46,8 @@ public class BoardController implements Initializable {
 	private Board board_model;
 	private GameManager game;
 
+	static HashMap<String,ArrayList<String>> wordRelation;
+
 	public BoardController() {
 		// System.out.println("BoardController()");
 	}
@@ -50,29 +57,67 @@ public class BoardController implements Initializable {
 
 		board_model = new Board();
 		setupBoard();
+		setupGraph();
+
 		game = new GameManager(board_model);
 		game.setAmountOfBlueCards(numOfBlueCards);
 		game.setAmountOfRedCards(numOfRedCards);// passing number of cards to gameManager
+
 	}
+
+	/**
+	 * Manages the graph implementation
+	 * Graph & cards for both red & blue team
+	 */
+	private void setupGraph() {
+		List<String> redTeamCards = new ArrayList<>();
+		List<String> blueTeamCards =  new ArrayList<>();
+
+		// Set words for respective teams
+		for(int row = 0; row < 5; row++){
+			for (int col = 0; col < 5; col++){
+				Card currentCard = board_model.getCardAt(row, col);
+				if(currentCard.getType() == 2){
+					redTeamCards.add(currentCard.getWord());
+				}
+				else if(currentCard.getType() == 3){
+					blueTeamCards.add(currentCard.getWord());
+				}
+			}
+		}
+
+		// Set graph for respective team
+		board_model.setRedGraph(redTeamCards, wordRelation);
+		board_model.setBlueGraph(blueTeamCards, wordRelation);
+
+		// Set card list for respective team
+		board_model.setRedCards(redTeamCards);
+		board_model.setBlueCards(blueTeamCards);
+	}
+
 
 	/**
 	 * This method reads key card text file and populates board view with cards that
 	 * contains a word and a color.
 	 *
 	 */
-	private void setupBoard() {
+	private void setupBoard(){
 		// Reading keycard text file
+
+		Jparser jparser = new Jparser();
 
 		try {
 			// Create a Keycard reader with the Keycard text file
 //			KeyCardReader reader = new KeyCardReader("resources/keycards/keycard6.txt", "resources/keycards/words.txt");
 			KeyCardReader reader = new KeyCardReader("resources/keycards/keycard6.txt", "resources/keycards/word_associations.txt");
 
+			wordRelation = jparser.parseJson(jparser.readfile());
+
 			// keycardTypes array will be populated with information from text file.
 			keycardTypes = reader.readKeycardTypes();
-			keycardWords = reader.readKeycardWords();
+			keycardWords = jparser.generaterandomkeycards(wordRelation).toArray(new String[0]);
 
-		} catch (IOException e) {
+		} catch (IOException | ParseException e) {
 			System.err.println("Cannot read file.");
 		}
 
@@ -85,6 +130,8 @@ public class BoardController implements Initializable {
 
 				// Create a card with a word and a type
 				Card cardToAdd = new Card(keycardWords[keyCardArrayCounter], keycardTypes[keyCardArrayCounter]);
+
+				//
 				// game.redCardsLeft++;
 				board_view.add(cardToAdd, i, j); // add card on the view
 				board_model.setUpCardAt(cardToAdd, i, j); // add card in the board class

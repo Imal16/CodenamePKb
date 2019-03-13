@@ -1,4 +1,4 @@
-package main.models.business;
+package main.models.interfaces;
 import java.util.Comparator;
 import java.util.List;
 /**
