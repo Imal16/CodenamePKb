@@ -44,13 +44,17 @@ public class GameManager {
 		setOperativeStrategy(redOperative, new PickNextCardStrategy(board));
 		setOperativeStrategy(blueOperative, new PickRandomCardStrategy(board));
 
-		setPlayerStrategy(redSpymaster, new SmartHintStrategy(board, 2));
-		setPlayerStrategy(blueSpymaster, new SmartHintStrategy(board, 3));
-		// Setting strategies for operatives.
-		//setOperativeStrategy(redOperative, new PickRandomCardStrategy(board));
+		// Setting strategies for Spymaster
+		setPlayerStrategy(redSpymaster, new SmartHintStrategy(board, redOperative,2));
+		setPlayerStrategy(blueSpymaster, new SmartHintStrategy(board, blueOperative,3));
 
 	}
 
+	/**
+	 * Set spymaster strategy
+	 * @param player
+	 * @param strategy
+	 */
 	private void setPlayerStrategy(Spymaster player, SmartHintStrategy strategy) {
 		player.setStrategy(strategy);
 	}
@@ -196,6 +200,8 @@ public class GameManager {
 			redWinner = false;
 		}
 	}
+
+	//todo: remove?
 	
 	/**
 	 * Method to be used later, sets up the cards in the board class

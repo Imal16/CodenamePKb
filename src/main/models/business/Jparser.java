@@ -30,7 +30,7 @@ public class Jparser {
 	private  List<String> listofkeys;
 	private  List<String> listofkeycards;
 	
-	private  int keycards= 25;
+	private  int keycards= 25;		//Number of words in play
 	
 	public Jparser() {
 		this.jsonfilestorage = new HashMap<String,ArrayList<String>>();

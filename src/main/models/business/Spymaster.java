@@ -23,7 +23,6 @@ public class Spymaster extends Player {
 	private Random rand = new Random();
 	private String[] hints;
 
-	Board board;
 	HintStrategy strategy;
 
 	public Spymaster(int team) {

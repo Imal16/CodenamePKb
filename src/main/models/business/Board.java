@@ -17,10 +17,12 @@ public class Board {
 
 	public Card[][] board;
 	private int typeFliped;// to passing the card type value to GameManager
-	RelationGraph redGraph;
-	RelationGraph blueGraph;
-	List<String> redCards;
-	List<String> blueCards;
+
+	RelationGraph redGraph;		//Red team's graph
+	RelationGraph blueGraph;	//Blue team's graph
+
+	List<String> redCards;		//Red team's word list
+	List<String> blueCards;		//Blue team's word list
 
 	public Board() {
 		board = new Card[5][5];

@@ -64,12 +64,18 @@ public class BoardController implements Initializable {
 
 	}
 
+	/**
+	 * Manages the graph implementation
+	 * Graph & cards for both red & blue team
+	 */
 	private void setupGraph() {
 		List<String> redTeamCards = new ArrayList<>();
 		List<String> blueTeamCards =  new ArrayList<>();
+
+		// Set words for respective teams
 		for(int row = 0; row < 5; row++){
 			for (int col = 0; col < 5; col++){
-				Card currentCard =board_model.getCardAt(row, col);
+				Card currentCard = board_model.getCardAt(row, col);
 				if(currentCard.getType() == 2){
 					redTeamCards.add(currentCard.getWord());
 				}
@@ -78,9 +84,12 @@ public class BoardController implements Initializable {
 				}
 			}
 		}
+
+		// Set graph for respective team
 		board_model.setRedGraph(redTeamCards, wordRelation);
 		board_model.setBlueGraph(blueTeamCards, wordRelation);
 
+		// Set card list for respective team
 		board_model.setRedCards(redTeamCards);
 		board_model.setBlueCards(blueTeamCards);
 	}

@@ -11,7 +11,6 @@ import java.util.List;
 public class RelationGraph {
     public Graph<String, DefaultWeightedEdge> graph;
 
-
     public RelationGraph() {
         this.graph = new DirectedWeightedMultigraph<String, DefaultWeightedEdge>(DefaultWeightedEdge.class);
     }

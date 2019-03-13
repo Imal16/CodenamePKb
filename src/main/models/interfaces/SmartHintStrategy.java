@@ -1,6 +1,7 @@
 package main.models.interfaces;
 
 import main.models.business.Board;
+import main.models.business.Operative;
 import main.models.business.RelationGraph;
 import org.jgrapht.alg.lca.NaiveLCAFinder;
 import org.jgrapht.graph.DefaultWeightedEdge;
@@ -11,7 +12,10 @@ public class SmartHintStrategy implements HintStrategy{
 
     Board board;
     int teamCode;
+    Operative operative;
 
+    int hintNum;
+    String hintWord;
 
 
     public RelationGraph getGraph() {
@@ -20,12 +24,12 @@ public class SmartHintStrategy implements HintStrategy{
 
     RelationGraph graph;
 
-    public SmartHintStrategy(Board board, int teamCode) {
+    public SmartHintStrategy(Board board, Operative operative,int teamCode) {
         this.board = board;
+        this.operative = operative;
         this.teamCode = teamCode;
         if(this.teamCode == 2){
             this.graph = this.board.getRedGraph();
-            System.out.println("\tRED STRATEGY SET");
         }
         else {
             this.graph = this.board.getBlueGraph();
@@ -34,8 +38,6 @@ public class SmartHintStrategy implements HintStrategy{
 
     @Override
     public void execute() {
-        System.out.println("\tSPY EXECUTE");
-
         HashMap<Integer, String> hint;
         if(this.teamCode == 2){
             hint = checkforhints(this.board.getRedCards());
@@ -45,8 +47,11 @@ public class SmartHintStrategy implements HintStrategy{
         }
         for (Map.Entry<Integer, String> foo :
                 hint.entrySet()) {
-            System.out.println(foo.getKey() + " - " + foo.getValue());
+            this.hintNum = foo.getKey();
+            this.hintWord = foo.getValue();
+//            System.out.println(foo.getKey() + " - " + foo.getValue());
         }
+
     }
 
     public HashMap<Integer, String> checkforhints(List<String> teamcards) {
@@ -79,7 +84,7 @@ public class SmartHintStrategy implements HintStrategy{
                     //System.out.println("Hint provided: "+ hint);
                     return hint;
                 } catch (Exception e) {
-                    System.out.println("No common ancestors");
+//                    System.out.println("No common ancestors");
                 }
             }
             if (set.size() == 1) {                                                                //IF the subset only has 1 word, it cannot have a common Clue/Ancestor with
@@ -116,7 +121,7 @@ public class SmartHintStrategy implements HintStrategy{
 
         List<String> subset = new ArrayList<String>(teamcards);
         String head = subset.get(0);
-        System.out.println(subset);
+//        System.out.println(subset);
 
         List<String> restoflist = new ArrayList<String>(subset.subList(1, subset.size()));
 
@@ -140,14 +145,14 @@ public class SmartHintStrategy implements HintStrategy{
         ArrayList<String> Listofhints = new ArrayList<String>();
         if (teamcards.size() > 0) {
             String first = teamcards.get(0);
-            System.out.println("first vert: " + first);
+//            System.out.println("first vert: " + first);
             ArrayList<String> firstA = getallancestors(first);            //Takes the first element of the list and gets a list of the ancestors of that word/node
-            System.out.println("First list of ancestors: " + firstA);
+//            System.out.println("First list of ancestors: " + firstA);
 
 
             for (int k = 1; k < teamcards.size() && !firstA.isEmpty(); k++) {
                 String currentvert = teamcards.get(k);                                    //Iterates through the rest of the  list of Codenames
-                System.out.println("current vert: " + currentvert);
+//                System.out.println("current vert: " + currentvert);
                 hashlistofhints = lookForCommonAncestors(teamcards, firstA, currentvert);    //And check if there are common ancestors between the Codenames
             }
             if (!firstA.isEmpty()) {                                    //If the list is not empty then common word(s) have been found
@@ -156,8 +161,8 @@ public class SmartHintStrategy implements HintStrategy{
                     if (!Listofhints.isEmpty()) {
                         Collections.shuffle(Listofhints);            //Because a hint can only be one word, generate a random element of the list
                         hint.put(key, Listofhints.get(0));
-                        System.out.println("Hint! :");
-                        System.out.println(hint);
+//                        System.out.println("Hint! :");
+//                        System.out.println(hint);
 
                     }
                 }
@@ -228,12 +233,12 @@ public class SmartHintStrategy implements HintStrategy{
 
             }
             if (commonbetweenall.isEmpty() == true) {                                    //if no commonality if found, no clue word, return a empty list
-                System.out.println("No common set: " + Hintwords);
+//                System.out.println("No common set: " + Hintwords);
 
                 return Hintwords;
             }
         }
-        System.out.println("Found common set: " + Hintwords);
+//        System.out.println("Found common set: " + Hintwords);
 
         return Hintwords;
 
