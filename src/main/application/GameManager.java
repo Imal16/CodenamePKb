@@ -1,5 +1,7 @@
 package main.application;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import main.models.business.*;
@@ -76,7 +78,7 @@ public class GameManager {
 	 * includes a spymaster giving a hint and the operative choosing a card.
 	 */
 	public void playTurn() {
-		
+		HashMap<Integer, String> hint;
 		//Determine which team goes first based on the number of cards
 		//for each team that is predetermined in the keycard
 		if (isStarting) {
@@ -93,40 +95,65 @@ public class GameManager {
 
 		if (redTurn) {
 			System.out.println("RED SPY - HINT");
-			//todo: recv hint
-			redSpymaster.GiveHint();
-
-			//todo: send hint to ops
-			redOperative.pickCard();
-
-			if (board.getTypeFliped() == 2) {
-				redCardsLeft--;
-			} else if (board.getTypeFliped() == 3) {
-				blueCardsLeft--;
-			} else if (board.getTypeFliped() == 0) {
-				// byStander, do nothing
-			} else if (board.getTypeFliped() == 1) {
-				// assassin, ends game
-				isGameOver = true;
-				redWinner = false;
+			hint = redSpymaster.GiveHint();
+			for (Map.Entry<Integer, String> foo :
+					hint.entrySet()) {
+				redOperative.setTries(foo.getKey());
 			}
+			//todo: send hint to ops
+
+			do{
+				System.out.println("\tRED PICK");
+				redOperative.pickCard();
+				if (board.getTypeFliped() == 2) {
+					redCardsLeft--;
+					System.out.println("\tRED GO AGAIN");
+				} else if (board.getTypeFliped() == 3) {
+					System.out.println("\tWRONG TEAM - CHANGE");
+					blueCardsLeft--;
+				} else if (board.getTypeFliped() == 0) {
+					System.out.println("\tBYSTANDER - CHANGE");
+					// byStander, do nothing
+				} else if (board.getTypeFliped() == 1) {
+					// assassin, ends game
+					isGameOver = true;
+					redWinner = false;
+				}
+				redOperative.decTries();
+				if (redOperative.getTries() == 0){
+					System.out.println("\tOUT OF TRIES");
+				}
+			}while (board.getTypeFliped() == 2 && redOperative.getTries() > 0);
 
 		} else {
 			System.out.println("BLUE SPY - HINT");
-			blueSpymaster.GiveHint();
-			getBlueOperative().pickCard();
-			//todo: do while loop, check int code for whats flipped
-			if (board.getTypeFliped() == 2) {
-				redCardsLeft--;
-			} else if (board.getTypeFliped() == 3) {
-				blueCardsLeft--;
-			} else if (board.getTypeFliped() == 0) {
-				// byStander
-			} else if (board.getTypeFliped() == 1) {
-				// assassin
-				isGameOver = true;	
-				redWinner = true;
+			hint = blueSpymaster.GiveHint();
+			for (Map.Entry<Integer, String> foo :
+					hint.entrySet()) {
+				blueOperative.setTries(foo.getKey());
 			}
+			do{
+				System.out.println("\tBLUE PICK");
+				getBlueOperative().pickCard();
+				if (board.getTypeFliped() == 2) {
+					redCardsLeft--;
+					System.out.println("\tWRONG TEAM - change");
+				} else if (board.getTypeFliped() == 3) {
+					blueCardsLeft--;
+					System.out.println("\tBLUE GO AGAIN");
+				} else if (board.getTypeFliped() == 0) {
+					System.out.println("\tBYSTANDER - CHANGE");
+					// byStander
+				} else if (board.getTypeFliped() == 1) {
+					// assassin
+					isGameOver = true;
+					redWinner = true;
+				}
+				blueOperative.decTries();
+				if (blueOperative.getTries() == 0){
+					System.out.println("\tOUT OF TRIES");
+				}
+			}while (board.getTypeFliped() == 3 && blueOperative.getTries() >0);
 		}
 
 

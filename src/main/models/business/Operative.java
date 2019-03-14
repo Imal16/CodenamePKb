@@ -48,6 +48,10 @@ public class Operative extends Player{
 	public void setStrategy(PickCardStrategy strategy) {
 		this.strategy = strategy;
 	}
+
+	public void decTries(){
+		--this.tries;
+	}
 	
 	//Getters and setters
 	public int getTeam() {

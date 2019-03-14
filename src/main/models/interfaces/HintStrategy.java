@@ -1,5 +1,7 @@
 package main.models.interfaces;
 
+import java.util.HashMap;
+
 public interface HintStrategy {
-    void execute();
+    HashMap<Integer, String> execute();
 }

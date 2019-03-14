@@ -159,6 +159,7 @@ public class BoardController implements Initializable {
 
 		if (!game.isEnd()) {
 			game.playTurn();
+			spyHint.setText("Given Hint:\n" + Spymaster.getClueWord());
 		} else {
 			// so not doing play turn but print a string on button
 			String side = (game.isRedWinner()) ? "Red" : "Blue";

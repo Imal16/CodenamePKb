@@ -38,7 +38,7 @@ public class SmartHintStrategy implements HintStrategy{
 
     //todo: void -> hashmap
     @Override
-    public void execute() {
+    public HashMap<Integer, String> execute() {
         HashMap<Integer, String> hint;
         if(this.teamCode == 2){
             hint = checkforhints(this.board.getRedCards());
@@ -53,6 +53,7 @@ public class SmartHintStrategy implements HintStrategy{
             System.out.println(foo.getKey() + " - " + foo.getValue());
         }
 
+        return hint;
     }
 
     //todo: update list (remove last removed word)
