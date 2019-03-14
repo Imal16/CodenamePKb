@@ -2,7 +2,6 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import main.models.business.*;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -10,9 +9,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javafx.embed.swing.JFXPanel;
+import main.models.business.Board;
+import main.models.business.Card;
+import main.models.business.Operative;
+import main.models.business.Spymaster;
 import main.models.interfaces.PickNextCardStrategy;
-
-import java.util.HashSet;
 
 /**
  *Unit testing for picking next card strategy
@@ -20,12 +21,7 @@ import java.util.HashSet;
  * @author William Ngo
  * @version 02/10/2019
  *
- *
- * EDIT: altered Unit testing, integrating new word class functionality
- * @author John Paulo Valerio
- * @version 02/27/2019
  */
-
 class TestPickNextCardStrategy {
 
 	Board testBoard;
@@ -105,7 +101,7 @@ class TestPickNextCardStrategy {
 	private void populateBoard() {
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
-				Card c = new Card(new Word("card_" + i + "_" + j,new HashSet()), 1);
+				Card c = new Card("card_" + i + "_" + j, 1);
 				testBoard.setUpCardAt(c, i, j);
 			}
 		}

@@ -2,7 +2,6 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import main.models.business.*;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -11,10 +10,12 @@ import org.junit.jupiter.api.Test;
 
 import javafx.embed.swing.JFXPanel;
 import main.application.GameManager;
+import main.models.business.Board;
+import main.models.business.Card;
+import main.models.business.Operative;
+import main.models.business.Spymaster;
 import main.models.interfaces.PickNextCardStrategy;
 import main.models.interfaces.PickRandomCardStrategy;
-
-import java.util.HashSet;
 
 /**
  * Unit testing for Game Manager
@@ -30,8 +31,8 @@ class TestGameManager {
 	Spymaster redSpy;
 	Spymaster blueSpy;
 	GameManager game;
-	
-	
+
+
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		JFXPanel jp = new JFXPanel();
@@ -43,14 +44,14 @@ class TestGameManager {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		
+
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		
+
 	}
-	
+
 	public TestGameManager() {
 		testBoard = new Board();
 		redOp = new Operative(1, 1);
@@ -59,7 +60,7 @@ class TestGameManager {
 		blueSpy = new Spymaster(0);
 		game = new GameManager(testBoard);
 	}
-	
+
 	@Test
 	void GameNotOverTest() {
 		populateBoard();
@@ -69,7 +70,7 @@ class TestGameManager {
 		game.playTurn();
 		assertTrue(!game.isEnd());
 	}
-	
+
 	/**
 	 * Blue teams wins when they pick their last blue card.
 	 */
@@ -83,7 +84,7 @@ class TestGameManager {
 		assertTrue(game.isEnd());
 		assertTrue(!game.isRedWinner());
 	}
-	
+
 	/**
 	 * Red teams wins when they pick their last red cards
 	 */
@@ -97,8 +98,8 @@ class TestGameManager {
 		assertTrue(game.isEnd());
 		assertTrue(game.isRedWinner());
 	}
-	
-	
+
+
 	/**
 	 * Red wins when blue team picks assassin
 	 */
@@ -112,7 +113,7 @@ class TestGameManager {
 		assertTrue(game.isEnd());
 		assertTrue(game.isRedWinner());
 	}
-	
+
 	/**
 	 * Blue team wins when red picks assassin
 	 */
@@ -126,9 +127,9 @@ class TestGameManager {
 		assertTrue(game.isEnd());
 		assertTrue(!game.isRedWinner());
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Utility method that populates the board with cards
 	 */
@@ -137,22 +138,21 @@ class TestGameManager {
 			for (int j = 0; j < 5; j++) {
 				Card c;
 				if(i==0&j==0) {
-					c = new Card(new Word("card_" + i + "_" + j,new HashSet()), 1);
-					}
-					else {
-//						c = new Card("card_" + i + "_" + j, 0);
-						c = new Card(new Word("card_" + i + "_" + j,new HashSet()), 0);
-					}
-					testBoard.setUpCardAt(c, i, j);
+					c = new Card("card_" + i + "_" + j, 1);
+				}
+				else {
+					c = new Card("card_" + i + "_" + j, 0);
+				}
+				testBoard.setUpCardAt(c, i, j);
 				testBoard.setUpCardAt(c, i, j);
 				testBoard.setUpCardAt(c, i, j);
 			}
 		}
 	}
-	
+
 	/**
-	 * Method to populate the board so that the first and only 
-	 * red card will be at [0][0] so that the red operative 
+	 * Method to populate the board so that the first and only
+	 * red card will be at [0][0] so that the red operative
 	 * can easily pick it to show that it wins the game
 	 */
 	private void populateRedBoard() {
@@ -160,22 +160,20 @@ class TestGameManager {
 			for (int j = 0; j < 5; j++) {
 				Card c;
 				if(i==0&j==0) {
-//					c = new Card("card_" + i + "_" + j, 2);
-					c = new Card(new Word("card_" + i + "_" + j,new HashSet()), 2);
-					}
-					else {
-//						c = new Card("card_" + i + "_" + j, 0);
-						c = new Card(new Word("card_" + i + "_" + j,new HashSet()), 0);
-					}
-					testBoard.setUpCardAt(c, i, j);
+					c = new Card("card_" + i + "_" + j, 2);
+				}
+				else {
+					c = new Card("card_" + i + "_" + j, 0);
+				}
+				testBoard.setUpCardAt(c, i, j);
 				testBoard.setUpCardAt(c, i, j);
 			}
 		}
 	}
-	
+
 	/**
-	 * Method to populate the board so that the first and only 
-	 * blue card will be at [0][0] so that the blue operative 
+	 * Method to populate the board so that the first and only
+	 * blue card will be at [0][0] so that the blue operative
 	 * can easily pick it to show that it wins the game
 	 */
 	private void populateBlueBoard() {
@@ -183,16 +181,16 @@ class TestGameManager {
 			for (int j = 0; j < 5; j++) {
 				Card c;
 				if(i==0&j==0) {
-				c = new Card(new Word("card_" + i + "_" + j,new HashSet()), 3);
+					c = new Card("card_" + i + "_" + j, 3);
 				}
 				else {
-					c = new Card(new Word("card_" + i + "_" + j,new HashSet()), 0);
+					c = new Card("card_" + i + "_" + j, 0);
 				}
 				testBoard.setUpCardAt(c, i, j);
 			}
 		}
 	}
-	
+
 	/**
 	 * Populates board with random cards
 	 */
@@ -201,10 +199,10 @@ class TestGameManager {
 			for (int j = 0; j < 5; j++) {
 				Card c;
 				if(i%2==0&j%22==0) {
-				c = new Card(new Word("card_" + i + "_" + j,new HashSet()), 3);
+					c = new Card("card_" + i + "_" + j, 3);
 				}
 				else {
-					c = new Card(new Word("card_" + i + "_" + j,new HashSet()), 2);
+					c = new Card("card_" + i + "_" + j, 2);
 				}
 				testBoard.setUpCardAt(c, i, j);
 			}

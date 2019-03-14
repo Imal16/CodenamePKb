@@ -22,7 +22,7 @@ import main.models.business.*;
 
 /**
  * This is the Controller for generating the board cards.
- * 
+ *
  * @author Rosy Teasdale, William Ngo, Zijian Wang
  * @version 02/06/2019
  */
@@ -36,9 +36,8 @@ public class BoardController implements Initializable {
 	private Text spyHint;
 
 	private int[] keycardTypes; // Array that holds information about the location of the types of card
-								// (bystander, assassin, ops)
-//	private String[] keycardWords; // array that holds information about the location of the words on the board
-	private Word[] keycardWords; // array that holds information about the location of the words on the board
+	// (bystander, assassin, ops)
+	private String[] keycardWords; // array that holds information about the location of the words on the board
 
 	private int numOfRedCards = 0;
 	private int numOfBlueCards = 0;
@@ -104,12 +103,12 @@ public class BoardController implements Initializable {
 	private void setupBoard(){
 		// Reading keycard text file
 
+//		playerTurn.setText("");
 		Jparser jparser = new Jparser();
 
 		try {
 			// Create a Keycard reader with the Keycard text file
-//			KeyCardReader reader = new KeyCardReader("resources/keycards/keycard6.txt", "resources/keycards/words.txt");
-			KeyCardReader reader = new KeyCardReader("resources/keycards/keycard6.txt", "resources/keycards/word_associations.txt");
+			KeyCardReader reader = new KeyCardReader("resources/keycards/keycard6.txt", "resources/keycards/words.txt");
 
 			wordRelation = jparser.parseJson(jparser.readfile());
 
@@ -147,6 +146,7 @@ public class BoardController implements Initializable {
 		}
 
 		keyCardArrayCounter = 0;
+
 	}
 
 	@FXML
@@ -154,9 +154,9 @@ public class BoardController implements Initializable {
 		// check if the game ends
 		// if so we are not going to play turn since the program could crash if it
 		// overfloats
-		
+
 		spyHint.setText("Given Hint:\n" + Spymaster.getClueWord());
-		
+
 		if (!game.isEnd()) {
 			game.playTurn();
 		} else {
@@ -165,7 +165,7 @@ public class BoardController implements Initializable {
 			//System.out.println("\nEnd of the game, " + side + " team won!");
 			Logger.getLogger("LOGGER").setLevel(Level.INFO);
 			Logger.getLogger("LOGGER").info("\nEnd of the game, " + side + " team won!");
-			
+
 			enterBtn.setDisable(true);
 		}
 
