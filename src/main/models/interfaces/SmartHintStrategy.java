@@ -36,6 +36,7 @@ public class SmartHintStrategy implements HintStrategy{
         }
     }
 
+    //todo: void -> hashmap
     @Override
     public void execute() {
         HashMap<Integer, String> hint;
@@ -49,11 +50,12 @@ public class SmartHintStrategy implements HintStrategy{
                 hint.entrySet()) {
             this.hintNum = foo.getKey();
             this.hintWord = foo.getValue();
-//            System.out.println(foo.getKey() + " - " + foo.getValue());
+            System.out.println(foo.getKey() + " - " + foo.getValue());
         }
 
     }
 
+    //todo: update list (remove last removed word)
     public HashMap<Integer, String> checkforhints(List<String> teamcards) {
         HashMap<Integer, String> hint = new HashMap<Integer, String>();            //hint consisting of an integer=Number of words available for the specific clue provided
         List<List<String>> PowerSet = new ArrayList<List<String>>();
