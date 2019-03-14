@@ -60,7 +60,8 @@ public class OperativeGraph {
 	public void deletevertex(String wordselected) {
 		this.OperativesGraph.removeVertex(wordselected);
 	}
-	
+	//todo: delete everything above, its replaced by RelationGraph class
+	//todo: new op strat calls this
 	//Function for the Operative to chose the word(s) to select given the hint (format of int(#guesses), string(Clue word))
 	public List<String> OperativeChoices(HashMap<Integer,String> hint){
 		List<String> wordschosen =new ArrayList<String>();
