@@ -1,9 +1,17 @@
 package main.models.business;
+
+import main.models.interfaces.HintStrategy;
+
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 /**
- * A spymaster gives a hint for operative to guess the code word
+ * a Spymaster's task is to give clues to operatives in order to help
+ * them pick one or many cards.
  * 
- * 
- * @author William, Zijian
+ * @author William Ngo, Zijian Wang
  * @version 02/06/2019
  *
  */
@@ -11,10 +19,47 @@ public class Spymaster extends Player {
 	private int team;// 1 for red, 0 for blue.
 	private String clueWord;
 	private int clueNumber;
+	
+	private Random rand = new Random();
+	private String[] hints;
+
+	HintStrategy strategy;
 
 	public Spymaster(int team) {
 		this.team = team;
+		hints = new String[10];
+		giveDefaultHints();
 	}
+	
+	/**
+	 * Spymaster gives a random hint for iteration 1.
+	 * In future iteration, it will have more logic in its decision
+	 * to give a hint such as relating the hint to the words in the board
+	 */
+	public void GiveHint() {
+		int hintNo = rand.nextInt(10);
+		int clueNumber = 1 + rand.nextInt(3); // clue number between 1 and 3
+		String side = (team == 1) ? "Red" : "Blue";
+
+		System.out.println("\t\tGIVE HINT");
+		//System.out.println(side + " spymaster's hint is: " + hints[hintNo] + ", clue number " + clueNumber + ".");
+		Logger.getLogger("LOGGER").setLevel(Level.INFO);
+		Logger.getLogger("LOGGER").info(side + " spymaster's hint is: " + hints[hintNo] + ", clue number " + clueNumber + ".");
+		strategy.execute();
+	}
+	
+
+	/**
+	 * Utility method, populates hint array with default hint
+	 */
+	private void giveDefaultHints() {
+		for(int i = 0; i < 10; i++) {
+			hints[i] = "hint_#" + i;
+		}
+	}
+
+	/******* Getters and setters ************/
+
 
 
 
@@ -22,12 +67,10 @@ public class Spymaster extends Player {
 		return team;
 	}
 	
-	public void GiveHint() {
-		
-		String side = (team == 1) ? "red" : "blue";
-		System.out.println(side + " spymaster give hint!");
+	public void setTeam(int teamNo) {
+		this.team = teamNo;
 	}
-
+	
 	public String getClueWord() {
 		return clueWord;
 	}
@@ -44,4 +87,7 @@ public class Spymaster extends Player {
 		this.clueNumber = clueNumber;
 	}
 
+	public void setStrategy(HintStrategy strategy) {
+		this.strategy = strategy;
+	}
 }

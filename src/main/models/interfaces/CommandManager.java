@@ -3,7 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Invoker class that takes command obj and executes it
+ * Invoker class that takes command obj and executes it.
+ * Not used in current iteration but will be used for future ones.
  * @author William
  *
  */

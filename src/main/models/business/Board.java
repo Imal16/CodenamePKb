@@ -1,20 +1,35 @@
 package main.models.business;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
+ * Board is represented by a 2 Dimensional Card array. It is able to populate
+ * itself with card objects and is able to pick a card at a given coordinate.
  * 
  * @author William Ngo, Zijian Wang
  * @version 02/05/2019
  */
 public class Board {
-	
-	Card[][] board;
+
+	public Card[][] board;
 	private int typeFliped;// to passing the card type value to GameManager
-	private int redCardsNum;
-	private int blueCardsNum;
+
+	RelationGraph redGraph;		//Red team's graph
+	RelationGraph blueGraph;	//Blue team's graph
+
+	List<String> redCards;		//Red team's word list
+	List<String> blueCards;		//Blue team's word list
+
 	public Board() {
 		board = new Card[5][5];
+		this.redGraph = new RelationGraph();
+		this.blueGraph = new RelationGraph();
 	}
-	
+
 	/**
 	 * This method inserts a card object in the board (Card 2D Array) at the
 	 * specified row and column
@@ -26,36 +41,43 @@ public class Board {
 	public void setUpCardAt(Card card, int row, int col) {
 		this.board[row][col] = card;
 	}
-	
+
 	/**
-	 * This method will flip a card at the specified row and col.
-	 * For iteration 1, computer will simply pick a card at random/or next
-	 * and there is no comparing of the colors or the word relation.
+	 * This method will flip a card at the specified row and col. For iteration 1,
+	 * computer will simply pick a card at random/or next and there is no comparing
+	 * of the colors or the word relation.
 	 * 
 	 * @param row
 	 * @param col
 	 */
 	public void pickCardAt(int row, int col) {
 		board[row][col].flip();
-		if(board[row][col].getType()==2) {
-			typeFliped=2;
-		}else if(board[row][col].getType()==3) {
-			typeFliped=3;
-		} else if(board[row][col].getType()==0) {
-			typeFliped=0;
-		} else if(board[row][col].getType()==1) {
-			typeFliped=1;
-		}//checking the type, ready to pass to gameManager
-		System.out.println("Card at " + row + " row and " + col + " col");
+		if (board[row][col].getType() == 2) {
+			typeFliped = 2;
+		} else if (board[row][col].getType() == 3) {
+			typeFliped = 3;
+		} else if (board[row][col].getType() == 0) {
+			typeFliped = 0;
+		} else if (board[row][col].getType() == 1) {
+			typeFliped = 1;
+		} // checking the type, ready to pass to gameManager
+		//System.out.println("Card at row " + row + " and column " + col + ".");
+		Logger.getLogger("LOGGER").setLevel(Level.INFO);
+		Logger.getLogger("LOGGER").info("Card at row " + row + " and column " + col + ".");
 	}
-	//getter
+
+	// getter
 	public int getTypeFliped() {
 		return this.typeFliped;
 	}
-	
+	public void setTypeFliped(int type0123) {
+		this.typeFliped=type0123;
+	}
+
 	/**
-	 * This method will return a boolean indicating whether or not the card at 
-	 * the specified row and col is already flipped.
+	 * This method will return a boolean indicating whether or not the card at the
+	 * specified row and col is already flipped.
+	 * 
 	 * @param row
 	 * @param col
 	 * @return
@@ -63,20 +85,41 @@ public class Board {
 	public boolean isCardFlippedAt(int row, int col) {
 		return board[row][col].isFlipped;
 	}
-	//getters & setters
-	public int getBlueCardsNum() {
-		return blueCardsNum;
+
+	// getters & setters
+	public Card getCardAt(int row, int col){
+		return board[row][col];
 	}
 
-	public void setBlueCardsNum(int blueCardsnum) {
-		this.blueCardsNum = blueCardsnum;
+	public RelationGraph getRedGraph() {
+		return redGraph;
 	}
 
-	public int getRedCardsNum() {
-		return redCardsNum;
+	public void setRedGraph(List<String> teamcards, HashMap<String, ArrayList<String>> jsonfilestorage) {
+		this.redGraph.generategraph(teamcards, jsonfilestorage);
 	}
 
-	public void setRedCardsNum(int redCardsNum) {
-		this.redCardsNum = redCardsNum;
+	public RelationGraph getBlueGraph() {
+		return blueGraph;
+	}
+
+	public void setBlueGraph(List<String> teamcards, HashMap<String, ArrayList<String>> jsonfilestorage) {
+		this.blueGraph.generategraph(teamcards, jsonfilestorage);
+	}
+
+	public List<String> getRedCards() {
+		return redCards;
+	}
+
+	public void setRedCards(List<String> redCards) {
+		this.redCards = redCards;
+	}
+
+	public List<String> getBlueCards() {
+		return blueCards;
+	}
+
+	public void setBlueCards(List<String> blueCards) {
+		this.blueCards = blueCards;
 	}
 }

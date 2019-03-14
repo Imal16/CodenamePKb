@@ -1,5 +1,8 @@
 package main.models.business;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -8,7 +11,8 @@ import javafx.scene.text.Text;
 /**
  * This class defines a Card. The Card has a word and a type.
  * 
- * @author Rosy Last update: 1 Feb 2019
+ * @author Rosy
+ * @version 01/02/2019
  */
 public class Card extends StackPane {
 
@@ -52,7 +56,7 @@ public class Card extends StackPane {
 	}
 
 	public Card(Card card) {
-		System.out.println("Card(card)");
+		//System.out.println("Card(card)");
 		setWord(card.getWord());
 		setType(card.getType());
 	}
@@ -60,7 +64,9 @@ public class Card extends StackPane {
 	public void flip() {
 		isFlipped = !isFlipped;
 		revealCardColor();
-		System.out.println("Card flipped! Word: " + word + " COLOR: " + type);
+		//System.out.println("Card flipped! Word: \"" + word + "\", COLOR number: " + type);
+		Logger.getLogger("LOGGER").setLevel(Level.INFO);
+		Logger.getLogger("LOGGER").info("Card flipped! Word: \"" + word + "\", COLOR number: " + type);
 	}
 
 	private void revealCardColor() {

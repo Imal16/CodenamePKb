@@ -20,7 +20,7 @@ public class PickRandomCardStrategy implements PickCardStrategy {
 	}
 	
 	/**
-	 * This method flips a random card on the board.
+	 * This method picks a random card on the board.
 	 */
 	@Override
 	public void execute() {
@@ -35,6 +35,11 @@ public class PickRandomCardStrategy implements PickCardStrategy {
 		}
 		
 		board.pickCardAt(row, col);
+	}
+
+	@Override
+	public void execute(String word, int num){
+		execute();
 	}
 
 }

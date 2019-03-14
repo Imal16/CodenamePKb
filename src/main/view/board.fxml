@@ -49,6 +49,13 @@ http://tutorials.jenkov.com/javafx/fxml.html
 			<Button fx:id="enterBtn" text="Enter" onAction="#handleEnterButtonAction"/>
 		</VBox>
 	</right>	
+	
+	<!-- BOTTOM -->
+	<bottom>
+		<HBox alignment="TOP_CENTER">
+			<Text id="playerTurn" fx:id="playerTurn" text=""/>
+		</HBox>
+	</bottom>
 
 </BorderPane>
 
