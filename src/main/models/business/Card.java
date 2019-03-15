@@ -19,8 +19,8 @@ public class Card extends StackPane {
 	/*
 	 * Word: word the card has Type: Bystander=0, Assassin=1, Red=2, Blue=3
 	 */
-	private String word;
-	private int type;
+	private String word="aword";
+	private int type=1;
 	private Rectangle rec;
 	private Text text;
 	public boolean isFlipped;

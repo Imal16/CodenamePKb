@@ -31,6 +31,7 @@ public class Operative extends Player{
 	 * in order to pick a card.
 	 *
 	 */
+	
 	public void pickCard() {
 		//Testing log
 		String side = (team == 1) ? "Red" : "Blue";
@@ -39,6 +40,15 @@ public class Operative extends Player{
 		Logger.getLogger("LOGGER").info(side + " operative picks a card!");
 		
 		strategy.execute();
+	}
+	public void pickCard(String word) {
+		//Testing log
+		String side = (team == 1) ? "Red" : "Blue";
+		//System.out.println(side + " operative picks a card!");
+		Logger.getLogger("LOGGER").setLevel(Level.INFO);
+		Logger.getLogger("LOGGER").info(side + " operative picks a card!");
+		
+		strategy.execute(word);
 	}
 	
 	/**

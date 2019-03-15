@@ -43,8 +43,8 @@ public class GameManager {
 		this.board = board;
 
 		// Setting strategies for operatives.
-		setOperativeStrategy(redOperative, new PickNextCardStrategy(board));
-		setOperativeStrategy(blueOperative, new PickRandomCardStrategy(board));
+		setOperativeStrategy(redOperative, new PickSmartStrategy(board,2));
+		setOperativeStrategy(blueOperative, new PickSmartStrategy(board,3));
 
 		// Setting strategies for Spymaster
 		setPlayerStrategy(redSpymaster, new SmartHintStrategy(board, redOperative,2));
@@ -92,19 +92,20 @@ public class GameManager {
 
 		// For iteration 1, there is minimal logic behind
 		// AI's decision to pick cards.
-
+		String word="aword";
 		if (redTurn) {
 			System.out.println("RED SPY - HINT");
 			hint = redSpymaster.GiveHint();
 			for (Map.Entry<Integer, String> foo :
 					hint.entrySet()) {
 				redOperative.setTries(foo.getKey());
+				word=hint.get(foo.getKey());
 			}
 			//todo: send hint to ops
 
 			do{
 				System.out.println("\tRED PICK");
-				redOperative.pickCard();
+				redOperative.pickCard(word);
 				if (board.getTypeFliped() == 2) {
 					redCardsLeft--;
 					System.out.println("\tRED GO AGAIN");
@@ -131,10 +132,11 @@ public class GameManager {
 			for (Map.Entry<Integer, String> foo :
 					hint.entrySet()) {
 				blueOperative.setTries(foo.getKey());
+				word=hint.get(foo.getKey());
 			}
 			do{
 				System.out.println("\tBLUE PICK");
-				getBlueOperative().pickCard();
+				getBlueOperative().pickCard(word);
 				if (board.getTypeFliped() == 2) {
 					redCardsLeft--;
 					System.out.println("\tWRONG TEAM - change");

@@ -57,11 +57,12 @@ public class BoardController implements Initializable {
 		board_model = new Board();
 		setupBoard();
 		setupGraph();
-
+		
 		game = new GameManager(board_model);
 		game.setAmountOfBlueCards(numOfBlueCards);
 		game.setAmountOfRedCards(numOfRedCards);// passing number of cards to gameManager
-
+		
+		
 	}
 
 	/**
@@ -163,7 +164,7 @@ public class BoardController implements Initializable {
 		} else {
 			// so not doing play turn but print a string on button
 			String side = (game.isRedWinner()) ? "Red" : "Blue";
-			//System.out.println("\nEnd of the game, " + side + " team won!");
+			System.out.println("\nEnd of the game, " + side + " team won!");
 			Logger.getLogger("LOGGER").setLevel(Level.INFO);
 			Logger.getLogger("LOGGER").info("\nEnd of the game, " + side + " team won!");
 

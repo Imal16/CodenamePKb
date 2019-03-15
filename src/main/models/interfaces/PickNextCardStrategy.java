@@ -50,7 +50,7 @@ public class PickNextCardStrategy implements PickCardStrategy{
 	}
 
 	@Override
-	public void execute(String word, int num){
+	public void execute(String word){
 		execute();
 	}
 }

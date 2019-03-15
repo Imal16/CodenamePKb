@@ -7,5 +7,5 @@ package main.models.interfaces;
  */
 public interface PickCardStrategy {
 		void execute();
-		void execute(String word, int numClues);
+		void execute(String word);
 }

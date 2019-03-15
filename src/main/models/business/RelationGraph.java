@@ -21,16 +21,16 @@ public class RelationGraph {
         for(String temp : teamcards) {
             if(this.graph.containsVertex(temp) ==false) {
                 this.graph.addVertex(temp);
-            }
+            }//check if the code name is in the graph
 
             ArrayList<String> values =jsonfilestorage.get(temp);
             for(int i=0; i<values.size();i++) {
                 if(this.graph.containsVertex(values.get(i)) ==false) {
                     this.graph.addVertex(values.get(i));
-                }
+                }//check if the clues are in the graph
                 if(this.graph.containsEdge(values.get(i),temp) ==false) {
                     this.graph.addEdge(values.get(i),temp);
-                }
+                }//link clues to codenames
             }
 
         }

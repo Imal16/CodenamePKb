@@ -85,12 +85,77 @@ public class Board {
 	public boolean isCardFlippedAt(int row, int col) {
 		return board[row][col].isFlipped;
 	}
-
+	
+	public boolean isCardFlippedAt(Card aCard) {
+		int row=0;
+		int col=0;
+		for(int i=0;i<5;i++) {
+			for(int j=0;j<5;j++) {
+				if(board[j][i].equals(aCard)) {
+					j=row;
+					i=col;
+					break;
+				}
+			}
+			
+		}
+		return board[row][col].isFlipped;
+	}
+	
 	// getters & setters
 	public Card getCardAt(int row, int col){
 		return board[row][col];
 	}
-
+	public int getCardRow(Card aCard){
+		int row=0;
+		for(int i=0;i<5;i++) {
+			for(int j=0;j<5;j++) {
+				if(board[j][i].getWord().equals(aCard.getWord())) {
+					row=j;
+					return row;
+				}
+			}
+			
+		}
+		return row;
+	}
+	public int getCardCol(Card aCard){
+		int col=0;
+		for(int i=0;i<5;i++) {
+			for(int j=0;j<5;j++) {
+				if(board[j][i].getWord().equals(aCard.getWord())) {
+					col=i;
+					return col;
+				}
+			}
+			
+		}
+		return col;
+	}
+	/**
+	 * This method will loop through the board to see if we can find a card with giving String
+	 * If yes, then return the Card. If no, then return an empty Card
+	 */
+	public Card findCard(String codename) {
+			for(int i=0;i<5;i++) {
+				for(int j=0;j<5;j++) {
+					if(codename==null) {
+						System.out.println("codename 1111111111111111111111111111111111111111111111111111111");
+					}else if(board[j][i].getWord()==null){
+						System.out.println("codename 222222222222222222222222222222222222222222222222222222");
+					}
+					else
+					if(codename.equals(board[j][i].getWord()))
+					{
+						return board[j][i];
+					}//else {
+					//	System.out.print(j+" find card erro "+i);
+					//}
+				}
+			}
+			return new Card();
+		
+	}
 	public RelationGraph getRedGraph() {
 		return redGraph;
 	}
