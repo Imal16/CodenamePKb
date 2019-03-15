@@ -36,7 +36,6 @@ public class SmartHintStrategy implements HintStrategy{
         }
     }
 
-    //todo: void -> hashmap
     @Override
     public HashMap<Integer, String> execute() {
         HashMap<Integer, String> hint;
