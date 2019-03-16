@@ -48,4 +48,9 @@ public class PickNextCardStrategy implements PickCardStrategy{
 		
 		board.pickCardAt(row, col);
 	}
+
+	@Override
+	public void execute(String word, int num){
+		execute();
+	}
 }

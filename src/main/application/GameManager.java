@@ -1,5 +1,7 @@
 package main.application;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import main.models.business.*;
@@ -42,12 +44,21 @@ public class GameManager {
 
 		// Setting strategies for operatives.
 		setOperativeStrategy(redOperative, new PickNextCardStrategy(board));
-		// setOperativeStrategy(blueOperative, new PickNextCardStrategy(board));
-
-		// Setting strategies for operatives.
-		//setOperativeStrategy(redOperative, new PickRandomCardStrategy(board));
 		setOperativeStrategy(blueOperative, new PickRandomCardStrategy(board));
 
+		// Setting strategies for Spymaster
+		setPlayerStrategy(redSpymaster, new SmartHintStrategy(board, redOperative,2));
+		setPlayerStrategy(blueSpymaster, new SmartHintStrategy(board, blueOperative,3));
+
+	}
+
+	/**
+	 * Set spymaster strategy
+	 * @param player
+	 * @param strategy
+	 */
+	private void setPlayerStrategy(Spymaster player, SmartHintStrategy strategy) {
+		player.setStrategy(strategy);
 	}
 
 	/**
@@ -60,12 +71,14 @@ public class GameManager {
 		op.setStrategy(strat);
 	}
 
+
+
 	/**
 	 * This method simulates a turn in a game session with two AIs. One turn
 	 * includes a spymaster giving a hint and the operative choosing a card.
 	 */
 	public void playTurn() {
-		
+		HashMap<Integer, String> hint;
 		//Determine which team goes first based on the number of cards
 		//for each team that is predetermined in the keycard
 		if (isStarting) {
@@ -81,34 +94,66 @@ public class GameManager {
 		// AI's decision to pick cards.
 
 		if (redTurn) {
-			redSpymaster.GiveHint();
-			redOperative.pickCard();
-			if (board.getTypeFliped() == 2) {
-				redCardsLeft--;
-			} else if (board.getTypeFliped() == 3) {
-				blueCardsLeft--;
-			} else if (board.getTypeFliped() == 0) {
-				// byStander, do nothing
-			} else if (board.getTypeFliped() == 1) {
-				// assassin, ends game
-				isGameOver = true;
-				redWinner = false;
+			System.out.println("RED SPY - HINT");
+			hint = redSpymaster.GiveHint();
+			for (Map.Entry<Integer, String> foo :
+					hint.entrySet()) {
+				redOperative.setTries(foo.getKey());
 			}
+			//todo: send hint to ops
+
+			do{
+				System.out.println("\tRED PICK");
+				redOperative.pickCard();
+				if (board.getTypeFliped() == 2) {
+					redCardsLeft--;
+					System.out.println("\tRED GO AGAIN");
+				} else if (board.getTypeFliped() == 3) {
+					System.out.println("\tWRONG TEAM - CHANGE");
+					blueCardsLeft--;
+				} else if (board.getTypeFliped() == 0) {
+					System.out.println("\tBYSTANDER - CHANGE");
+					// byStander, do nothing
+				} else if (board.getTypeFliped() == 1) {
+					// assassin, ends game
+					isGameOver = true;
+					redWinner = false;
+				}
+				redOperative.decTries();
+				if (redOperative.getTries() == 0){
+					System.out.println("\tOUT OF TRIES");
+				}
+			}while (board.getTypeFliped() == 2 && redOperative.getTries() > 0);
 
 		} else {
-			blueSpymaster.GiveHint();
-			getBlueOperative().pickCard();
-			if (board.getTypeFliped() == 2) {
-				redCardsLeft--;
-			} else if (board.getTypeFliped() == 3) {
-				blueCardsLeft--;
-			} else if (board.getTypeFliped() == 0) {
-				// byStander
-			} else if (board.getTypeFliped() == 1) {
-				// assassin
-				isGameOver = true;	
-				redWinner = true;
+			System.out.println("BLUE SPY - HINT");
+			hint = blueSpymaster.GiveHint();
+			for (Map.Entry<Integer, String> foo :
+					hint.entrySet()) {
+				blueOperative.setTries(foo.getKey());
 			}
+			do{
+				System.out.println("\tBLUE PICK");
+				getBlueOperative().pickCard();
+				if (board.getTypeFliped() == 2) {
+					redCardsLeft--;
+					System.out.println("\tWRONG TEAM - change");
+				} else if (board.getTypeFliped() == 3) {
+					blueCardsLeft--;
+					System.out.println("\tBLUE GO AGAIN");
+				} else if (board.getTypeFliped() == 0) {
+					System.out.println("\tBYSTANDER - CHANGE");
+					// byStander
+				} else if (board.getTypeFliped() == 1) {
+					// assassin
+					isGameOver = true;
+					redWinner = true;
+				}
+				blueOperative.decTries();
+				if (blueOperative.getTries() == 0){
+					System.out.println("\tOUT OF TRIES");
+				}
+			}while (board.getTypeFliped() == 3 && blueOperative.getTries() >0);
 		}
 
 
@@ -186,43 +231,4 @@ public class GameManager {
 			redWinner = false;
 		}
 	}
-	
-	/**
-	 * Method to be used later, sets up the cards in the board class
-	 
-	private void setupBoard() {
-		// Reading keycard text file
-		try {
-			// Create a Keycard reader with the Keycard text file
-			KeyCardReader reader = new KeyCardReader("resources/keycards/keycard6.txt", "resources/keycards/words.txt");
-
-			// keycardTypes array will be populated with information from text file.
-			keycardTypes = reader.readKeycardTypes();
-			keycardWords = reader.readKeycardWords();
-
-		} catch (IOException e) {
-			System.err.println("Cannot read file.");
-		}
-
-		int keyCardArrayCounter = 0;
-
-		// Populate board with infos from keycard arrays
-		for (int i = 0; i < 5; i++) {
-			for (int j = 0; j < 5; j++) {
-				// System.out.println("Add card");
-
-				// Create a card with a word and a type
-				Card cardToAdd = new Card(keycardWords[keyCardArrayCounter], keycardTypes[keyCardArrayCounter]);
-				// game.redCardsLeft++;
-				// board_view.add(cardToAdd, i, j); // add card on the view
-				board.setUpCardAt(cardToAdd, i, j); // add card in the board class
-
-				keyCardArrayCounter++;
-			}
-		}
-
-		keyCardArrayCounter = 0;
-	}
-	
-	*/
 }

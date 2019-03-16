@@ -44,18 +44,12 @@ http://tutorials.jenkov.com/javafx/fxml.html
 	
 	<!-- RIGHT -->
 	<right>	
-		<VBox alignment="TOP_LEFT">
+		<VBox alignment="TOP_LEFT" spacing="50">
 		<padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
 			<Button fx:id="enterBtn" text="Enter" onAction="#handleEnterButtonAction"/>
+			<Text id="spyHint" fx:id="spyHint" text="Given Hint:"/>
 		</VBox>
-	</right>	
-	
-	<!-- BOTTOM -->
-	<bottom>
-		<HBox alignment="TOP_CENTER">
-			<Text id="playerTurn" fx:id="playerTurn" text=""/>
-		</HBox>
-	</bottom>
+	</right>
 
 </BorderPane>
 

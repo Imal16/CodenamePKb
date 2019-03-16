@@ -2,7 +2,6 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import main.models.business.*;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -10,9 +9,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javafx.embed.swing.JFXPanel;
+import main.models.business.Board;
+import main.models.business.Card;
+import main.models.business.Operative;
+import main.models.business.Spymaster;
 import main.models.interfaces.PickRandomCardStrategy;
-
-import java.util.HashSet;
 
 /**
  *Unit testing for picking random card strategy
@@ -51,7 +52,7 @@ class TestPickRandomCardStrategy {
 	@AfterEach
 	void tearDown() throws Exception {
 	}
-	
+
 
 	public TestPickRandomCardStrategy() {
 		testBoard = new Board();
@@ -60,13 +61,13 @@ class TestPickRandomCardStrategy {
 		redSpy = new Spymaster(1);
 		blueSpy = new Spymaster(0);
 	}
-	
+
 
 	@Test
 	void pickRandomTest() {
 		redOp.setStrategy(new PickRandomCardStrategy(testBoard));
 		redOp.pickCard();
-		
+
 		//Since a card has been pick at random, we cannot check for a specific card
 		//Instead, we will check all the cards in the board and see if any of them has been picked.
 		boolean cardHasBeenPicked = false;
@@ -77,17 +78,17 @@ class TestPickRandomCardStrategy {
 				}
 			}
 		}
-		
+
 		assertTrue(cardHasBeenPicked);
 	}
-	
+
 	/**
 	 * This test will see that if an operative picks a card at random but the
 	 * card has already been flipped, the operative will
 	 */
 	@Test
 	void pickRandomAlreadyFlippedTest() {
-		
+
 	}
 
 	/**
@@ -96,7 +97,7 @@ class TestPickRandomCardStrategy {
 	private void populateBoard() {
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
-				Card c = new Card(new Word("card_" + i + "_" + j,new HashSet()), 1);
+				Card c = new Card("card_" + i + "_" + j, 1);
 				testBoard.setUpCardAt(c, i, j);
 			}
 		}

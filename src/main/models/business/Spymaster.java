@@ -1,5 +1,10 @@
 package main.models.business;
 
+import it.unimi.dsi.fastutil.Hash;
+import main.models.interfaces.HintStrategy;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,11 +20,13 @@ import java.util.logging.Logger;
  */
 public class Spymaster extends Player {
 	private int team;// 1 for red, 0 for blue.
-	private String clueWord;
+	private static String clueWord;
 	private int clueNumber;
 	
 	private Random rand = new Random();
 	private String[] hints;
+
+	HintStrategy strategy;
 
 	public Spymaster(int team) {
 		this.team = team;
@@ -32,13 +39,29 @@ public class Spymaster extends Player {
 	 * In future iteration, it will have more logic in its decision
 	 * to give a hint such as relating the hint to the words in the board
 	 */
-	public void GiveHint() {
+	public HashMap<Integer, String> GiveHint() {
 		int hintNo = rand.nextInt(10);
 		int clueNumber = 1 + rand.nextInt(3); // clue number between 1 and 3
 		String side = (team == 1) ? "Red" : "Blue";
+
+		System.out.println("\t\tGIVE HINT");
 		//System.out.println(side + " spymaster's hint is: " + hints[hintNo] + ", clue number " + clueNumber + ".");
 		Logger.getLogger("LOGGER").setLevel(Level.INFO);
 		Logger.getLogger("LOGGER").info(side + " spymaster's hint is: " + hints[hintNo] + ", clue number " + clueNumber + ".");
+
+		String word = "";
+		int num = 0;
+		HashMap<Integer, String> hint = strategy.execute();
+		for (Map.Entry<Integer, String> foo :
+				hint.entrySet()) {
+			num = foo.getKey();
+			word = foo.getValue();
+		}
+
+
+		clueWord = word + " " +num;
+
+		return hint;
 	}
 	
 
@@ -64,7 +87,7 @@ public class Spymaster extends Player {
 		this.team = teamNo;
 	}
 	
-	public String getClueWord() {
+	public static String getClueWord() {
 		return clueWord;
 	}
 
@@ -80,4 +103,7 @@ public class Spymaster extends Player {
 		this.clueNumber = clueNumber;
 	}
 
+	public void setStrategy(HintStrategy strategy) {
+		this.strategy = strategy;
+	}
 }
