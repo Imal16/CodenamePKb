@@ -15,6 +15,8 @@ import main.models.business.Operative;
 import main.models.business.Spymaster;
 import main.models.interfaces.PickRandomCardStrategy;
 
+import java.util.HashMap;
+
 /**
  *Unit testing for picking random card strategy
  *
@@ -66,7 +68,9 @@ class TestPickRandomCardStrategy {
 	@Test
 	void pickRandomTest() {
 		redOp.setStrategy(new PickRandomCardStrategy(testBoard));
-		redOp.pickCard();
+        HashMap<Integer, String> testHint = new HashMap<>();
+        testHint.put(0,"A");
+		redOp.pickCard(testHint);
 
 		//Since a card has been pick at random, we cannot check for a specific card
 		//Instead, we will check all the cards in the board and see if any of them has been picked.

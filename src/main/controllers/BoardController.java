@@ -45,7 +45,7 @@ public class BoardController implements Initializable {
 	private Board board_model;
 	private GameManager game;
 
-	static HashMap<String,ArrayList<String>> wordRelation;
+	static HashMap<String,ArrayList<String>> wordRelation;      //json contents
 
 	public BoardController() {
 		// System.out.println("BoardController()");
@@ -84,10 +84,9 @@ public class BoardController implements Initializable {
 				}
 			}
 		}
-
 		// Set graph for respective team
-		board_model.setRedGraph(redTeamCards, wordRelation);
-		board_model.setBlueGraph(blueTeamCards, wordRelation);
+        board_model.setRedGraph(redTeamCards, wordRelation);
+        board_model.setBlueGraph(blueTeamCards, wordRelation);
 
 		// Set card list for respective team
 		board_model.setRedCards(redTeamCards);
@@ -103,7 +102,6 @@ public class BoardController implements Initializable {
 	private void setupBoard(){
 		// Reading keycard text file
 
-//		playerTurn.setText("");
 		Jparser jparser = new Jparser();
 
 		try {
@@ -125,7 +123,6 @@ public class BoardController implements Initializable {
 		// Populate board with infos from keycard arrays
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
-				// System.out.println("Add card");
 
 				// Create a card with a word and a type
 				Card cardToAdd = new Card(keycardWords[keyCardArrayCounter], keycardTypes[keyCardArrayCounter]);
@@ -163,7 +160,6 @@ public class BoardController implements Initializable {
 		} else {
 			// so not doing play turn but print a string on button
 			String side = (game.isRedWinner()) ? "Red" : "Blue";
-			//System.out.println("\nEnd of the game, " + side + " team won!");
 			Logger.getLogger("LOGGER").setLevel(Level.INFO);
 			Logger.getLogger("LOGGER").info("\nEnd of the game, " + side + " team won!");
 

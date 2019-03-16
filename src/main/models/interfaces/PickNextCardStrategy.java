@@ -1,6 +1,8 @@
 package main.models.interfaces;
 import main.models.business.*;
 
+import java.util.HashMap;
+
 /**
  * This strategy simply picks each card one by one
  * 
@@ -50,7 +52,9 @@ public class PickNextCardStrategy implements PickCardStrategy{
 	}
 
 	@Override
-	public void execute(String word, int num){
+	public void execute(HashMap<Integer, String> hint) {
 		execute();
 	}
+
+
 }

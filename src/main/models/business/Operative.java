@@ -1,5 +1,6 @@
 package main.models.business;
 
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import main.models.interfaces.*;
@@ -31,14 +32,13 @@ public class Operative extends Player{
 	 * in order to pick a card.
 	 *
 	 */
-	public void pickCard() {
+	public void pickCard(HashMap<Integer, String> hint) {
 		//Testing log
 		String side = (team == 1) ? "Red" : "Blue";
-		//System.out.println(side + " operative picks a card!");
 		Logger.getLogger("LOGGER").setLevel(Level.INFO);
 		Logger.getLogger("LOGGER").info(side + " operative picks a card!");
 		
-		strategy.execute();
+		strategy.execute(hint);
 	}
 	
 	/**
