@@ -31,14 +31,20 @@ public class Jparser {
 	private  List<String> listofkeycards;
 	
 	private  int keycards= 25;		//Number of words in play
-	
+
+    /**
+     * Default constructor
+     */
 	public Jparser() {
 		this.jsonfilestorage = new HashMap<String,ArrayList<String>>();
 		this.listofkeys =new ArrayList<String>();
 		this.listofkeycards =new ArrayList<String>();
 	}
 
-	//read file, creates JSON object
+    /**
+     * read file, creates JSON object
+     * @return
+     */
 	public JsonObject readfile() {
 		try {
 			JsonParser jsonParser = new JsonParser();
@@ -55,7 +61,14 @@ public class Jparser {
 		return this.jsonObject;
 	}
 
-	//converts json object into hashmap
+
+    /**
+     * converts json object into hashmap
+     *
+     * @param jsonObject
+     * @return jsdonFileStorage HashMap<String,ArrayList<String>>
+     * @throws ParseException
+     */
 	public HashMap<String,ArrayList<String>> parseJson(JsonObject jsonObject) throws ParseException{
 		Map<String, Object> attributes = new HashMap<String, Object>();
 		Set<Entry<String, JsonElement>> entrySet=jsonObject.entrySet();
@@ -69,7 +82,11 @@ public class Jparser {
 		return this.jsonfilestorage;
 	}
 
-	//gets 25 random words from the hashmap
+    /**
+     * gets 25 random words from the hashmap
+     * @param jsonfilestorage
+     * @return
+     */
 	public List<String> generaterandomkeycards(HashMap<String,ArrayList<String>> jsonfilestorage){
 		this.listofkeys.addAll(jsonfilestorage.keySet());
 		Collections.shuffle(this.listofkeys);

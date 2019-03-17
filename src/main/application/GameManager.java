@@ -43,12 +43,11 @@ public class GameManager {
 		this.board = board;
 
 		// Setting strategies for operatives.
-		setOperativeStrategy(redOperative, new PickNextCardStrategy(board));
-		setOperativeStrategy(blueOperative, new PickRandomCardStrategy(board));
-
+		setOperativeStrategy(redOperative, new SmartPickCardStrategy(board, redOperative));
+		setOperativeStrategy(blueOperative, new SmartPickCardStrategy(board, blueOperative));
 		// Setting strategies for Spymaster
-		setPlayerStrategy(redSpymaster, new SmartHintStrategy(board, redOperative,2));
-		setPlayerStrategy(blueSpymaster, new SmartHintStrategy(board, blueOperative,3));
+		setPlayerStrategy(redSpymaster, new SmartHintStrategy(board, redOperative));
+		setPlayerStrategy(blueSpymaster, new SmartHintStrategy(board, blueOperative));
 
 	}
 
@@ -90,29 +89,22 @@ public class GameManager {
 			isStarting = false;
 		}
 
-		// For iteration 1, there is minimal logic behind
-		// AI's decision to pick cards.
-
 		if (redTurn) {
 			System.out.println("RED SPY - HINT");
 			hint = redSpymaster.GiveHint();
 			for (Map.Entry<Integer, String> foo :
 					hint.entrySet()) {
-				redOperative.setTries(foo.getKey());
+				redOperative.setTries(foo.getKey()+1);
 			}
-			//todo: send hint to ops
 
 			do{
 				System.out.println("\tRED PICK");
-				redOperative.pickCard();
+				redOperative.pickCard(hint);
 				if (board.getTypeFliped() == 2) {
 					redCardsLeft--;
-					System.out.println("\tRED GO AGAIN");
 				} else if (board.getTypeFliped() == 3) {
-					System.out.println("\tWRONG TEAM - CHANGE");
 					blueCardsLeft--;
 				} else if (board.getTypeFliped() == 0) {
-					System.out.println("\tBYSTANDER - CHANGE");
 					// byStander, do nothing
 				} else if (board.getTypeFliped() == 1) {
 					// assassin, ends game
@@ -121,28 +113,25 @@ public class GameManager {
 				}
 				redOperative.decTries();
 				if (redOperative.getTries() == 0){
-					System.out.println("\tOUT OF TRIES");
+//					System.out.println("\tOUT OF TRIES");
 				}
-			}while (board.getTypeFliped() == 2 && redOperative.getTries() > 0);
+			}while (board.getTypeFliped() == 2 && redOperative.getTries() > 0 && !isGameOver);
 
 		} else {
 			System.out.println("BLUE SPY - HINT");
 			hint = blueSpymaster.GiveHint();
 			for (Map.Entry<Integer, String> foo :
 					hint.entrySet()) {
-				blueOperative.setTries(foo.getKey());
+				blueOperative.setTries(foo.getKey()+1);
 			}
 			do{
 				System.out.println("\tBLUE PICK");
-				getBlueOperative().pickCard();
+				getBlueOperative().pickCard(hint);
 				if (board.getTypeFliped() == 2) {
 					redCardsLeft--;
-					System.out.println("\tWRONG TEAM - change");
 				} else if (board.getTypeFliped() == 3) {
 					blueCardsLeft--;
-					System.out.println("\tBLUE GO AGAIN");
 				} else if (board.getTypeFliped() == 0) {
-					System.out.println("\tBYSTANDER - CHANGE");
 					// byStander
 				} else if (board.getTypeFliped() == 1) {
 					// assassin
@@ -151,9 +140,9 @@ public class GameManager {
 				}
 				blueOperative.decTries();
 				if (blueOperative.getTries() == 0){
-					System.out.println("\tOUT OF TRIES");
+//					System.out.println("\tOUT OF TRIES");
 				}
-			}while (board.getTypeFliped() == 3 && blueOperative.getTries() >0);
+			}while (board.getTypeFliped() == 3 && blueOperative.getTries() >0 && !isGameOver);
 		}
 
 
@@ -174,7 +163,6 @@ public class GameManager {
 		// enter button
 		checkNumberOfCardsLeft();
 		if (!isGameOver) {
-			//System.out.println("********************END OF TURN!\n");
 			Logger.getLogger("LOGGER").setLevel(Level.INFO);
 			Logger.getLogger("LOGGER").info("END OF TURN!\n");
 		} else {
@@ -182,7 +170,6 @@ public class GameManager {
 			if (board.getTypeFliped() == 1) {
 				side = "The assassin was picked, " + side;
 			}
-			//System.out.println("End of the game, " + side + " team won!");
 			Logger.getLogger("LOGGER").setLevel(Level.INFO);
 			Logger.getLogger("LOGGER").info("End of the game. " + side + " team won!");
 		}

@@ -1,5 +1,6 @@
 package main.models.interfaces;
 
+import java.util.HashMap;
 import java.util.Random;
 import main.models.business.*;
 
@@ -11,8 +12,8 @@ import main.models.business.*;
  *
  */
 public class PickRandomCardStrategy implements PickCardStrategy {
+
 	public Board board;
-	
 	private Random r = new Random();
 
 	public PickRandomCardStrategy(Board board) {
@@ -38,8 +39,9 @@ public class PickRandomCardStrategy implements PickCardStrategy {
 	}
 
 	@Override
-	public void execute(String word, int num){
+	public void execute(HashMap<Integer, String> hint) {
 		execute();
 	}
+
 
 }

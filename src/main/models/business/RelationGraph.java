@@ -11,12 +11,18 @@ import java.util.List;
 public class RelationGraph {
     public Graph<String, DefaultWeightedEdge> graph;
 
+    /**
+     * Default constructor
+     */
     public RelationGraph() {
         this.graph = new DirectedWeightedMultigraph<String, DefaultWeightedEdge>(DefaultWeightedEdge.class);
     }
 
-    //This function takes the List of Codenames that are of the spymaster's team and the parsed dictionary from the Json file
-    //It will create a graph of the relevant codenames and  their relation/clue words
+    /**
+     * Creates graph of Codenames related to each other
+     * @param teamcards
+     * @param jsonfilestorage
+     */
     public void generategraph(List<String> teamcards, HashMap<String, ArrayList<String>> jsonfilestorage) {
         for(String temp : teamcards) {
             if(this.graph.containsVertex(temp) ==false) {
@@ -24,6 +30,7 @@ public class RelationGraph {
             }
 
             ArrayList<String> values =jsonfilestorage.get(temp);
+
             for(int i=0; i<values.size();i++) {
                 if(this.graph.containsVertex(values.get(i)) ==false) {
                     this.graph.addVertex(values.get(i));
@@ -32,14 +39,21 @@ public class RelationGraph {
                     this.graph.addEdge(values.get(i),temp);
                 }
             }
-
         }
     }
-    //This function is necessary, when a word is guessed and removed from the operative options to find a clueword if a word has been selected
+
+    /**
+     * Deletes Codename from graph
+     * @param wordselected
+     */
     public void deletevertex(String wordselected) {
         this.graph.removeVertex(wordselected);
     }
 
+    /**
+     * graph getter
+     * @return
+     */
     public Graph<String, DefaultWeightedEdge> getGraphObj() {
         return graph;
     }

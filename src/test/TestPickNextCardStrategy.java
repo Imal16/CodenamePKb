@@ -2,6 +2,7 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import it.unimi.dsi.fastutil.Hash;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -14,6 +15,8 @@ import main.models.business.Card;
 import main.models.business.Operative;
 import main.models.business.Spymaster;
 import main.models.interfaces.PickNextCardStrategy;
+
+import java.util.HashMap;
 
 /**
  *Unit testing for picking next card strategy
@@ -61,7 +64,9 @@ class TestPickNextCardStrategy {
 		// The pick next strategy picks each card individually starting from the first
 		// card at (0,0)
 		redOp.setStrategy(new PickNextCardStrategy(testBoard));
-		redOp.pickCard();
+        HashMap<Integer, String> testHint = new HashMap<>();
+        testHint.put(0,"A");
+		redOp.pickCard(testHint);
 
 		//Fisrt card at [0][0] should be flipped
 		boolean hasCardBeenPicked = testBoard.board[0][0].isFlipped;
@@ -72,8 +77,10 @@ class TestPickNextCardStrategy {
 	void PickNextCardTest() {
 		//Operator will pick the first card then it will pick the next card
 		redOp.setStrategy(new PickNextCardStrategy(testBoard));
-		redOp.pickCard();
-		redOp.pickCard();
+        HashMap<Integer, String> testHint = new HashMap<>();
+        testHint.put(0,"A");
+		redOp.pickCard(testHint);
+		redOp.pickCard(testHint);
 
 		//Since it already picked card at [0][0], the next card is [1][0]
 		boolean hasCardBeenPicked = testBoard.board[1][0].isFlipped;
@@ -88,7 +95,9 @@ class TestPickNextCardStrategy {
 		// When operator picks the first card, it should see that it's already
 		// been picked
 		redOp.setStrategy(new PickNextCardStrategy(testBoard));
-		redOp.pickCard();
+        HashMap<Integer, String> testHint = new HashMap<>();
+        testHint.put(0,"A");
+		redOp.pickCard(testHint);
 
 		// So it will pick the following card instead
 		boolean isSecondCardPicked = testBoard.board[1][0].isFlipped;

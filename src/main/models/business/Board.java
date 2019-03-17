@@ -18,11 +18,11 @@ public class Board {
 	public Card[][] board;
 	private int typeFliped;// to passing the card type value to GameManager
 
-	RelationGraph redGraph;		//Red team's graph
-	RelationGraph blueGraph;	//Blue team's graph
+	private RelationGraph redGraph;		//Red team's graph
+	private RelationGraph blueGraph;	//Blue team's graph
 
-	List<String> redCards;		//Red team's word list
-	List<String> blueCards;		//Blue team's word list
+	private List<String> redCards;		//Red team's word list
+	private List<String> blueCards;		//Blue team's word list
 
 	public Board() {
 		board = new Card[5][5];
@@ -34,9 +34,9 @@ public class Board {
 	 * This method inserts a card object in the board (Card 2D Array) at the
 	 * specified row and column
 	 * 
-	 * @param card
-	 * @param row
-	 * @param col
+	 * @param card Card contained in the board
+	 * @param row Int board row
+	 * @param col Int board column
 	 */
 	public void setUpCardAt(Card card, int row, int col) {
 		this.board[row][col] = card;
@@ -47,8 +47,8 @@ public class Board {
 	 * computer will simply pick a card at random/or next and there is no comparing
 	 * of the colors or the word relation.
 	 * 
-	 * @param row
-	 * @param col
+	 * @param row Int board row
+	 * @param col Int board column
 	 */
 	public void pickCardAt(int row, int col) {
 		board[row][col].flip();
@@ -122,4 +122,6 @@ public class Board {
 	public void setBlueCards(List<String> blueCards) {
 		this.blueCards = blueCards;
 	}
+
+
 }
