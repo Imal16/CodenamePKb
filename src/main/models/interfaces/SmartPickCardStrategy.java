@@ -101,8 +101,22 @@ public class SmartPickCardStrategy implements PickCardStrategy {
             } catch (IllegalArgumentException e) {
                 System.out.println("Clue not in database");
                 this.randStrat.execute();
+                String word = this.randStrat.pick;
+                this.teamGraph.deletevertex(word);
+                if (op.getTeam() == 1) {
+                    this.board.getRedCards().remove(word);
+                } else {
+                    this.board.getBlueCards().remove(word);
+                }
             } catch (Exception e) {
                 this.randStrat.execute();
+                String word = this.randStrat.pick;
+                this.teamGraph.deletevertex(word);
+                if (op.getTeam() == 1) {
+                    this.board.getRedCards().remove(word);
+                } else {
+                    this.board.getBlueCards().remove(word);
+                }
             }
 
         }
