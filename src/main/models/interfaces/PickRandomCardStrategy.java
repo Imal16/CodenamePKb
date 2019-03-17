@@ -12,8 +12,8 @@ import main.models.business.*;
  *
  */
 public class PickRandomCardStrategy implements PickCardStrategy {
+
 	public Board board;
-	
 	private Random r = new Random();
 
 	public PickRandomCardStrategy(Board board) {

@@ -19,14 +19,14 @@ import java.util.logging.Logger;
  *
  */
 public class Spymaster extends Player {
-	private int team;// 1 for red, 0 for blue.
+	private int team;				// 1 for red, 0 for blue.
 	private static String clueWord;
 	private int clueNumber;
 	
 	private Random rand = new Random();
 	private String[] hints;
 
-	HintStrategy strategy;
+	private HintStrategy strategy;
 
 	public Spymaster(int team) {
 		this.team = team;

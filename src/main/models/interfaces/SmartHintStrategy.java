@@ -15,33 +15,45 @@ import java.util.*;
  */
 public class SmartHintStrategy implements HintStrategy {
 
-    Board board;
-    Operative operative;
+    private Board board;
+    private Operative operative;
+    private RelationGraph teamGraph;
 
-
-    RelationGraph graph;
-
+    /**
+     * Normal constructor
+     * @param board Board
+     * @param operative Operative
+     */
     public SmartHintStrategy(Board board, Operative operative) {
         this.board = board;
         this.operative = operative;
         if (this.operative.getTeam() == 1) {
-            this.graph = this.board.getRedGraph();
+            this.teamGraph = this.board.getRedGraph();
         } else {
-            this.graph = this.board.getBlueGraph();
+            this.teamGraph = this.board.getBlueGraph();
         }
     }
 
+    /**
+     * teamGraph getter
+     * @return teamGraph RelationGraph
+     */
     public RelationGraph getGraph() {
-        return graph;
+        return teamGraph;
     }
 
+    /**
+     * performs the strategy
+     * calls checkForHints with team's card list
+     * @return hint HashMap<Integer frequency, String word>
+     */
     @Override
     public HashMap<Integer, String> execute() {
         HashMap<Integer, String> hint;
         if (this.operative.getTeam() == 1) {
-            hint = checkforhints(this.board.getRedCards());
+            hint = checkForHints(this.board.getRedCards());
         } else {
-            hint = checkforhints(this.board.getBlueCards());
+            hint = checkForHints(this.board.getBlueCards());
         }
 
         return hint;
@@ -50,19 +62,19 @@ public class SmartHintStrategy implements HintStrategy {
     /**
      * Spymaster's method to choose a hint using the team's graph
      *
-     * @param teamcards
+     * @param teamCards List<String> team's Codenames
      * @return hint HashMap<Integer frequency, String word>
      */
-    public HashMap<Integer, String> checkforhints(List<String> teamcards) {
+    public HashMap<Integer, String> checkForHints(List<String> teamCards) {
         HashMap<Integer, String> hint = new HashMap<Integer, String>();            //hint consisting of an integer=Number of words available for the specific clue provided
         List<List<String>> PowerSet = new ArrayList<List<String>>();
 
-        PowerSet = powerSet(teamcards);                                //Calls a function that generates a powerset of all the Code names
+        PowerSet = powerSet(teamCards);                                //Calls a function that generates a powerset of all the Code names
         Collections.sort(PowerSet, new ListComparator<>());        //Sorts the Powerset in terms of Largest to Smallest
 
         for (List<String> set : PowerSet) {                            //Iterate throught the powerset
             if (set.size() > 2) {
-                hint = LCAmultiple(set);                                //IF the length of the subset if Larger than two, we Call LCAMultiple
+                hint = LCAMultiple(set);                                //IF the length of the subset if Larger than two, we Call LCAMultiple
                 if (!hint.isEmpty()) {                                //If An ancestor is found of that subset return the hint
 
                     return hint;
@@ -104,18 +116,18 @@ public class SmartHintStrategy implements HintStrategy {
     /**
      * power of the list of all available Codenames
      *
-     * @param teamcards
+     * @param teamCards
      * @return combinations
      */
-    public static List<List<String>> powerSet(List<String> teamcards) {
+    private static List<List<String>> powerSet(List<String> teamCards) {
         List<List<String>> combinations = new ArrayList<List<String>>();
 
-        if (teamcards.isEmpty()) {
+        if (teamCards.isEmpty()) {
             combinations.add(new ArrayList<String>());
             return combinations;
         }
 
-        List<String> subset = new ArrayList<String>(teamcards);
+        List<String> subset = new ArrayList<String>(teamCards);
         String head = subset.get(0);
 
         List<String> restoflist = new ArrayList<String>(subset.subList(1, subset.size()));
@@ -135,28 +147,28 @@ public class SmartHintStrategy implements HintStrategy {
      * Finds the Lowest Common Ancestor of multiple nodes/vertices in a graph
      * Takes in the list of nodes or in this case the list of available  team cards.
      *
-     * @param teamcards
+     * @param teamCards List<String> team's Codenames
      * @return hint
      */
-    public HashMap<Integer, String> LCAmultiple(List<String> teamcards) {
+    private HashMap<Integer, String> LCAMultiple(List<String> teamCards) {
         HashMap<Integer, String> hint = new HashMap<Integer, String>();
-        HashMap<Integer, ArrayList<String>> hashlistofhints = new HashMap<Integer, ArrayList<String>>();
-        ArrayList<String> Listofhints = new ArrayList<String>();
-        if (teamcards.size() > 0) {
-            String first = teamcards.get(0);
-            ArrayList<String> firstA = getallancestors(first);            //Takes the first element of the list and gets a list of the ancestors of that word/node
+        HashMap<Integer, ArrayList<String>> hashListHints = new HashMap<Integer, ArrayList<String>>();
+        ArrayList<String> listHints = new ArrayList<String>();
+        if (teamCards.size() > 0) {
+            String first = teamCards.get(0);
+            ArrayList<String> firstA = getAllAncestors(first);            //Takes the first element of the list and gets a list of the ancestors of that word/node
 
 
-            for (int k = 1; k < teamcards.size() && !firstA.isEmpty(); k++) {
-                String currentvert = teamcards.get(k);                                    //Iterates through the rest of the  list of Codenames
-                hashlistofhints = lookForCommonAncestors(teamcards, firstA, currentvert);    //And check if there are common ancestors between the Codenames
+            for (int k = 1; k < teamCards.size() && !firstA.isEmpty(); k++) {
+                String currentVertex = teamCards.get(k);                                    //Iterates through the rest of the  list of Codenames
+                hashListHints = lookForCommonAncestors(teamCards, firstA, currentVertex);    //And check if there are common ancestors between the Codenames
             }
             if (!firstA.isEmpty()) {                                    //If the list is not empty then common word(s) have been found
-                for (int key : hashlistofhints.keySet()) {            //The  key will be the number of guesses for the hint
-                    Listofhints = hashlistofhints.get(key);
-                    if (!Listofhints.isEmpty()) {
-                        Collections.shuffle(Listofhints);            //Because a hint can only be one word, generate a random element of the list
-                        hint.put(key, Listofhints.get(0));
+                for (int key : hashListHints.keySet()) {            //The  key will be the number of guesses for the hint
+                    listHints = hashListHints.get(key);
+                    if (!listHints.isEmpty()) {
+                        Collections.shuffle(listHints);            //Because a hint can only be one word, generate a random element of the list
+                        hint.put(key, listHints.get(0));
 
                     }
                 }
@@ -172,10 +184,10 @@ public class SmartHintStrategy implements HintStrategy {
     /**
      * finds all ancestors/clue words for a given Codename
      *
-     * @param word
+     * @param word String word to be processed
      * @return ancestors
      */
-    public ArrayList<String> getallancestors(String word) {
+    private ArrayList<String> getAllAncestors(String word) {
 
         ArrayList<String> ancestors = new ArrayList<String>();
 
@@ -193,24 +205,25 @@ public class SmartHintStrategy implements HintStrategy {
     }
 
     /**
-     * finds common ancestors between the list of Codenames provided and the List of Ancestors of a word/Codename
+     * finds common ancestors between the list of Codenames
+     * provided and the List of Ancestors of a word/Codename
      *
-     * @param teamcards
-     * @param commonAncestors
-     * @param CurrentVert
+     * @param teamCards List<String> team's Codenames
+     * @param commonAncestors ArrayList<String>
+     * @param currentVertex String
      * @return hintWords
      */
-    public HashMap<Integer, ArrayList<String>> lookForCommonAncestors(List<String> teamcards, ArrayList<String> commonAncestors, String CurrentVert) {
+    private HashMap<Integer, ArrayList<String>> lookForCommonAncestors(List<String> teamCards, ArrayList<String> commonAncestors, String currentVertex) {
         ArrayList<String> commonbetweenall = new ArrayList<String>(commonAncestors);
         ArrayList<String> commonbetweenallbackup = new ArrayList<String>(commonAncestors);
 
         HashMap<Integer, ArrayList<String>> Hintwords = new HashMap<Integer, ArrayList<String>>();        //clue in format integer(#guesses), string(word)
         int numberofguesses = 0;
-        for (int i = 1; i < teamcards.size(); i++) {        //Iterate from the second element  of the list of teamcards to the end
+        for (int i = 1; i < teamCards.size(); i++) {        //Iterate from the second element  of the list of teamcards to the end
 
-            String vert1 = teamcards.get(i);
+            String vert1 = teamCards.get(i);
             ArrayList<String> ancestors2 = new ArrayList<String>();
-            ancestors2 = getallancestors(vert1);                                            //find the ancestors/clue words for the ith element in the list
+            ancestors2 = getAllAncestors(vert1);                                            //find the ancestors/clue words for the ith element in the list
             commonbetweenall.retainAll(ancestors2);                            //keeps  the common elements between the two lists
 
             if (commonbetweenall.isEmpty() == false) {                        //if the common list is not empty-> common clues

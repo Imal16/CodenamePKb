@@ -18,15 +18,15 @@ import main.models.interfaces.*;
 public class Operative extends Player{
 	private int team; // 1 for red, 0 for blue.
 	private int tries; //Number of times an operative may choose a card
-	
-	
+	public PickCardStrategy strategy;	//strategy for operative
+
+
+
 	public Operative(int team, int tries) {
 		this.team = team;
 		this.tries = tries;
 	}
-	
-	public PickCardStrategy strategy;
-	
+
 	/**
 	 * This method will execute the strategy that is has been set with
 	 * in order to pick a card.

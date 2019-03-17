@@ -9,6 +9,8 @@ import java.util.*;
 
 /**
  * CodenamePKb
+ * Operative's pick card strategy using Codename word
+ * relations through graph operations
  *
  * @author John Paulo Valerio
  * @date 16-Mar 3-19
@@ -16,32 +18,32 @@ import java.util.*;
 public class SmartPickCardStrategy implements PickCardStrategy {
 
     public Board board;
-    RelationGraph graph;
-    Operative op;
-    PickRandomCardStrategy randStrat;
+    private RelationGraph teamGraph;
+    private Operative op;
+    private PickRandomCardStrategy randStrat;
 
     /**
      * Normal constructor
-     * @param board
-     * @param op
+     * @param board Board team's board
+     * @param op Operative
      */
     public SmartPickCardStrategy(Board board, Operative op) {
         this.board = board;
         this.op = op;
         this.randStrat = new PickRandomCardStrategy(this.board);
         if (op.getTeam() == 1) {
-            this.graph = board.getRedGraph();
+            this.teamGraph = board.getRedGraph();
         } else {
-            this.graph = board.getBlueGraph();
+            this.teamGraph = board.getBlueGraph();
         }
     }
 
     /**
-     * graph getter
-     * @return graph
+     * teamGraph getter
+     * @return teamGraph
      */
-    public RelationGraph getGraph() {
-        return graph;
+    public RelationGraph getTeamGraph() {
+        return teamGraph;
     }
 
     @Override
@@ -49,6 +51,10 @@ public class SmartPickCardStrategy implements PickCardStrategy {
 
     }
 
+    /**
+     * Performs pick strategy, calls OperativeChoices
+     * @param hint
+     */
     @Override
     public void execute(HashMap<Integer, String> hint) {
         OperativeChoices(hint);
@@ -61,35 +67,35 @@ public class SmartPickCardStrategy implements PickCardStrategy {
      * @param hint hashmap<Integer frequency, String word>
      */
     public void OperativeChoices(HashMap<Integer, String> hint) {
-        List<String> wordschosen = new ArrayList<String>();
-        Set<Integer> numberoguessesset = new HashSet<Integer>();
-        ArrayList<String> Decendents = new ArrayList<String>();
-        numberoguessesset = hint.keySet();                                //extract the #ofguesses
-        for (Integer key : numberoguessesset) {
-            Set<DefaultWeightedEdge> decendentedges = new HashSet<DefaultWeightedEdge>();
+        List<String> wordsChosen = new ArrayList<String>();
+        Set<Integer> numGuessSet = new HashSet<Integer>();
+        ArrayList<String> descendants = new ArrayList<String>();
+        numGuessSet = hint.keySet();                                //extract the #ofguesses
+        for (Integer key : numGuessSet) {
+            Set<DefaultWeightedEdge> descendantEdges = new HashSet<DefaultWeightedEdge>();
             String clue = hint.get(key);                                //Gets the clue  word
-            ///equvalent of getting parent/hypernym.
+            ///equivalent of getting parent/hypernym.
             try {
-                decendentedges = this.getGraph().getGraphObj().edgesOf(clue);                        //Gets the edges connecting to the clueword (set)
+                descendantEdges = this.getTeamGraph().getGraphObj().edgesOf(clue);                        //Gets the edges connecting to the clueword (set)
                 System.out.println("Clue word : " + clue);
-                //System.out.println("Set of decscendent edges: "+ this.OperativesGraph.edgesOf(clue).toString());
-                for (DefaultWeightedEdge edge1 : decendentedges) {                                //iterate throught the edges
-                    String Sourcevert = this.graph.getGraphObj().getEdgeTarget(edge1);
-                    if (Decendents.contains(Sourcevert) == false) {                        //Handling if there are duplicates
-                        Decendents.add(Sourcevert);
+                //System.out.println("Set of descendants edges: "+ this.OperativesGraph.edgesOf(clue).toString());
+                for (DefaultWeightedEdge edge1 : descendantEdges) {                                //iterate throught the edges
+                    String srcVertex = this.teamGraph.getGraphObj().getEdgeTarget(edge1);
+                    if (descendants.contains(srcVertex) == false) {                        //Handling if there are duplicates
+                        descendants.add(srcVertex);
                     }
                 }
 
-                Collections.shuffle(Decendents);                                    //Assuming there are more than one possible word to select, randomize
+                Collections.shuffle(descendants);                                    //Assuming there are more than one possible word to select, randomize
                 try {
-                    wordschosen = Decendents.subList(0, key);                                //Select # guesses elements
+                    wordsChosen = descendants.subList(0, key);                                //Select # guesses elements
                 } catch (Exception e) {
-                    if (wordschosen.isEmpty()) {                                                //if there is an error with the key/ #of guesses to choose
-                        wordschosen.add(Decendents.get(0));                                    //just  choose the first element of the list as a safe option
+                    if (wordsChosen.isEmpty()) {                                                //if there is an error with the key/ #of guesses to choose
+                        wordsChosen.add(descendants.get(0));                                    //just  choose the first element of the list as a safe option
                     }
                 }
 
-                SearchAndFlip(wordschosen.get(0));
+                searchAndFlip(wordsChosen.get(0));
 
                 //if none found, use default strategy: PickRandomCardStrategy
             } catch (IllegalArgumentException e) {
@@ -108,13 +114,13 @@ public class SmartPickCardStrategy implements PickCardStrategy {
      *
      * @param word
      */
-    private void SearchAndFlip(String word) {
+    private void searchAndFlip(String word) {
         System.out.println(word);
         for (int row = 0; row < 5; row++) {
             for (int col = 0; col < 5; col++) {
                 if (this.board.board[row][col].getWord() == word) {
                     this.board.pickCardAt(row, col);
-                    this.graph.deletevertex(word);
+                    this.teamGraph.deletevertex(word);
                     if (op.getTeam() == 1) {
                         this.board.getRedCards().remove(word);
                     } else {
