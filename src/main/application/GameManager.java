@@ -90,7 +90,7 @@ public class GameManager {
 		}
 
 		if (redTurn) {
-			System.out.println("RED SPY - HINT");
+//			System.out.println("RED SPY - HINT");
 			hint = redSpymaster.GiveHint();
 			for (Map.Entry<Integer, String> foo :
 					hint.entrySet()) {
@@ -98,7 +98,7 @@ public class GameManager {
 			}
 
 			do{
-				System.out.println("\tRED PICK");
+//				System.out.println("\tRED PICK");
 				redOperative.pickCard(hint);
 				if (board.getTypeFliped() == 2) {
 					redCardsLeft--;
@@ -118,14 +118,14 @@ public class GameManager {
 			}while (board.getTypeFliped() == 2 && redOperative.getTries() > 0 && !isGameOver);
 
 		} else {
-			System.out.println("BLUE SPY - HINT");
+//			System.out.println("BLUE SPY - HINT");
 			hint = blueSpymaster.GiveHint();
 			for (Map.Entry<Integer, String> foo :
 					hint.entrySet()) {
 				blueOperative.setTries(foo.getKey()+1);
 			}
 			do{
-				System.out.println("\tBLUE PICK");
+//				System.out.println("\tBLUE PICK");
 				getBlueOperative().pickCard(hint);
 				if (board.getTypeFliped() == 2) {
 					redCardsLeft--;
@@ -161,6 +161,7 @@ public class GameManager {
 
 		// Check how many cards left for each team and make a game over by disabling
 		// enter button
+		//todo: end case - all cards picked
 		checkNumberOfCardsLeft();
 		if (!isGameOver) {
 			Logger.getLogger("LOGGER").setLevel(Level.INFO);
