@@ -52,19 +52,38 @@ public class Board {
 	 */
 	public void pickCardAt(int row, int col) {
 		board[row][col].flip();
-		if (board[row][col].getType() == 2) {
+
+		if (board[row][col].getType() == 2) {           // red
+		    this.redGraph.deletevertex(this.board[row][col].getWord());
+		    this.redCards.remove(this.board[row][col].getWord());
 			typeFliped = 2;
-		} else if (board[row][col].getType() == 3) {
-			typeFliped = 3;
-		} else if (board[row][col].getType() == 0) {
+        } else if (board[row][col].getType() == 3) {    //blue
+            this.blueGraph.deletevertex(this.board[row][col].getWord());
+            this.blueCards.remove(this.board[row][col].getWord());
+            typeFliped = 3;
+		} else if (board[row][col].getType() == 0) {    //bystander
 			typeFliped = 0;
-		} else if (board[row][col].getType() == 1) {
+		} else if (board[row][col].getType() == 1) {    //assassin
 			typeFliped = 1;
 		} // checking the type, ready to pass to gameManager
-		//System.out.println("Card at row " + row + " and column " + col + ".");
+
 		Logger.getLogger("LOGGER").setLevel(Level.INFO);
 		Logger.getLogger("LOGGER").info("Card at row " + row + " and column " + col + ".");
 	}
+
+    /**
+     * Searches board for row & column position then calls pickCardAt() to flip
+     * @param word String Codename
+     */
+	public void pickCardAt(String word){
+        for (int row = 0; row < 5; row++) {
+            for (int col = 0; col < 5; col++) {
+                if (this.board[row][col].getWord() == word) {
+                    pickCardAt(row, col);
+                }
+            }
+        }
+    }
 
 	// getter
 	public int getTypeFliped() {

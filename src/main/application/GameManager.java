@@ -91,7 +91,7 @@ public class GameManager {
 			hint = redSpymaster.GiveHint();
 			for (Map.Entry<Integer, String> foo :
 					hint.entrySet()) {
-				redOperative.setTries(foo.getKey());
+				redOperative.setTries(foo.getKey()+1);
 			}
 
 			do{
@@ -118,7 +118,7 @@ public class GameManager {
 			hint = blueSpymaster.GiveHint();
 			for (Map.Entry<Integer, String> foo :
 					hint.entrySet()) {
-				blueOperative.setTries(foo.getKey());
+				blueOperative.setTries(foo.getKey()+1);
 			}
 			do{
 //				System.out.println("\tBLUE PICK");

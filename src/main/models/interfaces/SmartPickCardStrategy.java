@@ -95,7 +95,7 @@ public class SmartPickCardStrategy implements PickCardStrategy {
                     }
                 }
 
-                searchAndFlip(wordsChosen.get(0));
+                this.board.pickCardAt(wordsChosen.get(0));
 
                 //if none found, use default strategy: PickRandomCardStrategy
             } catch (IllegalArgumentException e) {
@@ -121,28 +121,6 @@ public class SmartPickCardStrategy implements PickCardStrategy {
 
         }
 
-    }
-
-    /**
-     * Iterates through board and reveal given Codename
-     *
-     * @param word
-     */
-    private void searchAndFlip(String word) {
-//        System.out.println(word);
-        for (int row = 0; row < 5; row++) {
-            for (int col = 0; col < 5; col++) {
-                if (this.board.board[row][col].getWord() == word) {
-                    this.board.pickCardAt(row, col);
-                    this.teamGraph.deletevertex(word);
-                    if (op.getTeam() == 1) {
-                        this.board.getRedCards().remove(word);
-                    } else {
-                        this.board.getBlueCards().remove(word);
-                    }
-                }
-            }
-        }
     }
 
 }
