@@ -31,3 +31,23 @@ When a card is picked, the game checks its type (red, blue, bystander or assassi
 decrease. If it's a bystander, nothing happens for now, the next player will play its turn. The game ends when one team's remaining amount of cards goes down to 0.
 Additionally, the game also ends when either team picks the assassin.
 
+### NOTE for missing .jar files on compile
+All needed .jar files are included with this project in "\resources\External Libraries\". In case of errors on compile time, please add the following files to the build path:
+```
+resources/External Libraries/gson-2.8.5.jar
+resources/External Libraries/jgrapht-1.3.0/lib/antlr4-runtime-4.7.1.jar
+resources/External Libraries/jgrapht-1.3.0/lib/commons-lang3-3.8.1.jar
+resources/External Libraries/jgrapht-1.3.0/lib/commons-text-1.5.jar
+resources/External Libraries/jgrapht-1.3.0/lib/fastutil-8.2.2.jar
+resources/External Libraries/jgrapht-1.3.0/lib/guava-26.0-jre.jar
+resources/External Libraries/jgrapht-1.3.0/lib/jgrapht-bundle-1.3.0.jar
+resources/External Libraries/jgrapht-1.3.0/lib/jgrapht-core-1.3.0.jar
+resources/External Libraries/jgrapht-1.3.0/lib/jgrapht-demo-1.3.0.jar
+resources/External Libraries/jgrapht-1.3.0/lib/jgrapht-ext-1.3.0.jar
+resources/External Libraries/jgrapht-1.3.0/lib/jgrapht-guava-1.3.0.jar
+resources/External Libraries/jgrapht-1.3.0/lib/jgrapht-io-1.3.0.jar
+resources/External Libraries/jgrapht-1.3.0/lib/jgrapht-opt-1.3.0.jar
+resources/External Libraries/jgrapht-1.3.0/lib/jgraphx-3.4.1.3.jar
+resources/External Libraries/jgrapht-1.3.0/lib/jheaps-0.9.jar
+```
+  

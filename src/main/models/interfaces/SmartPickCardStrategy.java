@@ -12,7 +12,7 @@ import java.util.*;
  * Operative's pick card strategy using Codename word
  * relations through graph operations
  *
- * @author John Paulo Valerio
+ * @author John Paulo, Ihsaan, Zijian
  * @date 16-Mar 3-19
  */
 public class SmartPickCardStrategy implements PickCardStrategy {
@@ -77,7 +77,7 @@ public class SmartPickCardStrategy implements PickCardStrategy {
             ///equivalent of getting parent/hypernym.
             try {
                 descendantEdges = this.getTeamGraph().getGraphObj().edgesOf(clue);                        //Gets the edges connecting to the clueword (set)
-                System.out.println("Clue word : " + clue);
+//                System.out.println("Clue word : " + clue);
                 //System.out.println("Set of descendants edges: "+ this.OperativesGraph.edgesOf(clue).toString());
                 for (DefaultWeightedEdge edge1 : descendantEdges) {                                //iterate throught the edges
                     String srcVertex = this.teamGraph.getGraphObj().getEdgeTarget(edge1);
@@ -95,40 +95,32 @@ public class SmartPickCardStrategy implements PickCardStrategy {
                     }
                 }
 
-                searchAndFlip(wordsChosen.get(0));
+                this.board.pickCardAt(wordsChosen.get(0));
 
                 //if none found, use default strategy: PickRandomCardStrategy
             } catch (IllegalArgumentException e) {
                 System.out.println("Clue not in database");
                 this.randStrat.execute();
+                String word = this.randStrat.pick;
+                this.teamGraph.deletevertex(word);
+                if (op.getTeam() == 1) {
+                    this.board.getRedCards().remove(word);
+                } else {
+                    this.board.getBlueCards().remove(word);
+                }
             } catch (Exception e) {
                 this.randStrat.execute();
-            }
-
-        }
-
-    }
-
-    /**
-     * Iterates through board and reveal given Codename
-     *
-     * @param word
-     */
-    private void searchAndFlip(String word) {
-        System.out.println(word);
-        for (int row = 0; row < 5; row++) {
-            for (int col = 0; col < 5; col++) {
-                if (this.board.board[row][col].getWord() == word) {
-                    this.board.pickCardAt(row, col);
-                    this.teamGraph.deletevertex(word);
-                    if (op.getTeam() == 1) {
-                        this.board.getRedCards().remove(word);
-                    } else {
-                        this.board.getBlueCards().remove(word);
-                    }
+                String word = this.randStrat.pick;
+                this.teamGraph.deletevertex(word);
+                if (op.getTeam() == 1) {
+                    this.board.getRedCards().remove(word);
+                } else {
+                    this.board.getBlueCards().remove(word);
                 }
             }
+
         }
+
     }
 
 }

@@ -44,7 +44,7 @@ public class Spymaster extends Player {
 		int clueNumber = 1 + rand.nextInt(3); // clue number between 1 and 3
 		String side = (team == 1) ? "Red" : "Blue";
 
-		System.out.println("\t\tGIVE HINT");
+//		System.out.println("\t\tGIVE HINT");
 		//System.out.println(side + " spymaster's hint is: " + hints[hintNo] + ", clue number " + clueNumber + ".");
 		Logger.getLogger("LOGGER").setLevel(Level.INFO);
 		Logger.getLogger("LOGGER").info(side + " spymaster's hint is: " + hints[hintNo] + ", clue number " + clueNumber + ".");

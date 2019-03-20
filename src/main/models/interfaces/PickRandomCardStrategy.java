@@ -15,6 +15,7 @@ public class PickRandomCardStrategy implements PickCardStrategy {
 
 	public Board board;
 	private Random r = new Random();
+	public String pick;
 
 	public PickRandomCardStrategy(Board board) {
 		this.board = board;
@@ -34,7 +35,8 @@ public class PickRandomCardStrategy implements PickCardStrategy {
 			row = r.nextInt(5);
 			col = r.nextInt(5);
 		}
-		
+
+		this.pick = board.getCardAt(row, col).getWord();
 		board.pickCardAt(row, col);
 	}
 

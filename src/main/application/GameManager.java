@@ -23,9 +23,6 @@ public class GameManager {
 
 	Board board;
 
-	//private int[] keycardTypes; // Array that holds information about the location of the types of card
-	//private String[] keycardWords; // array that holds information about the location of the words on the board
-
 	boolean isStarting = true;
 	boolean redTurn; // current turn for teams. true = red's, false = blue's
 	boolean redWinner;
@@ -83,14 +80,14 @@ public class GameManager {
 		if (isStarting) {
 			if (redCardsLeft >= blueCardsLeft) {
 				redTurn = true;
-			} else {
-				redTurn = false;
+            } else {
+                redTurn = false;
 			}
 			isStarting = false;
 		}
 
+
 		if (redTurn) {
-			System.out.println("RED SPY - HINT");
 			hint = redSpymaster.GiveHint();
 			for (Map.Entry<Integer, String> foo :
 					hint.entrySet()) {
@@ -98,16 +95,15 @@ public class GameManager {
 			}
 
 			do{
-				System.out.println("\tRED PICK");
 				redOperative.pickCard(hint);
 				if (board.getTypeFliped() == 2) {
 					redCardsLeft--;
-				} else if (board.getTypeFliped() == 3) {
-					blueCardsLeft--;
-				} else if (board.getTypeFliped() == 0) {
-					// byStander, do nothing
-				} else if (board.getTypeFliped() == 1) {
-					// assassin, ends game
+                } else if (board.getTypeFliped() == 3) {
+                    blueCardsLeft--;
+                } else if (board.getTypeFliped() == 0) {
+                    // byStander, do nothing
+                } else if (board.getTypeFliped() == 1) {
+                    // assassin, ends game
 					isGameOver = true;
 					redWinner = false;
 				}
@@ -115,33 +111,34 @@ public class GameManager {
 				if (redOperative.getTries() == 0){
 //					System.out.println("\tOUT OF TRIES");
 				}
+                checkNumberOfCardsLeft();
 			}while (board.getTypeFliped() == 2 && redOperative.getTries() > 0 && !isGameOver);
 
 		} else {
-			System.out.println("BLUE SPY - HINT");
 			hint = blueSpymaster.GiveHint();
 			for (Map.Entry<Integer, String> foo :
 					hint.entrySet()) {
 				blueOperative.setTries(foo.getKey()+1);
 			}
 			do{
-				System.out.println("\tBLUE PICK");
+//				System.out.println("\tBLUE PICK");
 				getBlueOperative().pickCard(hint);
 				if (board.getTypeFliped() == 2) {
 					redCardsLeft--;
-				} else if (board.getTypeFliped() == 3) {
-					blueCardsLeft--;
-				} else if (board.getTypeFliped() == 0) {
-					// byStander
-				} else if (board.getTypeFliped() == 1) {
-					// assassin
-					isGameOver = true;
+                } else if (board.getTypeFliped() == 3) {
+                    blueCardsLeft--;
+                } else if (board.getTypeFliped() == 0) {
+                    // byStander
+                } else if (board.getTypeFliped() == 1) {
+                    // assassin
+                    isGameOver = true;
 					redWinner = true;
 				}
 				blueOperative.decTries();
 				if (blueOperative.getTries() == 0){
 //					System.out.println("\tOUT OF TRIES");
 				}
+                checkNumberOfCardsLeft();
 			}while (board.getTypeFliped() == 3 && blueOperative.getTries() >0 && !isGameOver);
 		}
 
@@ -161,20 +158,28 @@ public class GameManager {
 
 		// Check how many cards left for each team and make a game over by disabling
 		// enter button
-		checkNumberOfCardsLeft();
 		if (!isGameOver) {
 			Logger.getLogger("LOGGER").setLevel(Level.INFO);
 			Logger.getLogger("LOGGER").info("END OF TURN!\n");
-		} else {
-			String side = (!redTurn) ? "Red" : "Blue";
-			if (board.getTypeFliped() == 1) {
-				side = "The assassin was picked, " + side;
-			}
-			Logger.getLogger("LOGGER").setLevel(Level.INFO);
-			Logger.getLogger("LOGGER").info("End of the game. " + side + " team won!");
-		}
-		// It's now the other team's turn
-		redTurn = !redTurn;
+
+			//switch turns
+			redTurn = !redTurn;
+
+			//end case
+        } else {
+            String side = (!redTurn) ? "Red" : "Blue";
+            //assassin end case
+            if (board.getTypeFliped() == 1) {
+                side = "The assassin was picked, " + side;
+            }
+            //all cards used end case
+            else{
+                side = (redTurn) ? "Red" : "Blue";
+            }
+            Logger.getLogger("LOGGER").setLevel(Level.INFO);
+            Logger.getLogger("LOGGER").info("End of the game. " + side + " team won!");
+        }
+
 
 	}
 
@@ -213,8 +218,8 @@ public class GameManager {
 			isGameOver = true;
 			redWinner = true;
 		}
-		if (blueCardsLeft == 0) {
-			isGameOver = true;
+        if (blueCardsLeft == 0) {
+            isGameOver = true;
 			redWinner = false;
 		}
 	}
