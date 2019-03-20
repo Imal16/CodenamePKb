@@ -1,0 +1,602 @@
+{
+  "brawny": [
+    "powerful",
+    "strong",
+    "robust",
+    "muscular"
+  ],
+  "whip": [
+    "beat",
+    "attack",
+    "lash",
+    "torture"
+  ],
+  "rabid": [
+    "mad",
+    "fanatical",
+    "frenzied",
+    "wild"
+  ],
+  "office": [
+    "business",
+    "company",
+    "job",
+    "agency"
+  ],
+  "note": [
+    "comment",
+    "tone",
+    "music",
+    "mark"
+  ],
+  "plough": [
+    "smash",
+    "tool",
+    "move",
+    "push"
+  ],
+  "ear": [
+    "anatomy",
+    "audition",
+    "body",
+    "senses"
+  ],
+  "living": [
+    "being",
+    "existence",
+    "state",
+    "organic"
+  ],
+  "class": [
+    "education",
+    "instruction",
+    "teaching",
+    "categorize"
+  ],
+  "surprise": [
+    "amazement",
+    "feeling",
+    "astonishment",
+    "startle"
+  ],
+  "deer": [
+    "animal",
+    "fauna",
+    "mammal",
+    "creature"
+  ],
+  "interest": [
+    "curiosity",
+    "concern",
+    "elicit",
+    "refer"
+  ],
+  "coordinated": [
+    "match",
+    "unified",
+    "arranged",
+    "synergetic"
+  ],
+  "lamentable": [
+    "deplorable",
+    "unfortunate",
+    "pathetic",
+    "woeful"
+  ],
+  "expansion": [
+    "increase",
+    "amplitude",
+    "growth",
+    "size"
+  ],
+  "curved": [
+    "bent",
+    "crooked",
+    "twisted",
+    "winding"
+  ],
+  "cycle": [
+    "series",
+    "repeat",
+    "time",
+    "recur"
+  ],
+  "plastic": [
+    "artificial",
+    "synthetic",
+    "polymer",
+    "limber"
+  ],
+  "enormous": [
+    "huge",
+    "great",
+    "size",
+    "titanic"
+  ],
+  "telling": [
+    "narration",
+    "recital",
+    "informing",
+    "disclosure"
+  ],
+  "periodic": [
+    "repeat",
+    "time",
+    "recur",
+    "intermittent"
+  ],
+  "overt": [
+    "apparent",
+    "flagrant",
+    "frank",
+    "open"
+  ],
+  "direful": [
+    "scary",
+    "fearful",
+    "dreadful",
+    "terrible"
+  ],
+  "parcel": [
+    "package",
+    "allotment",
+    "allocation",
+    "collection"
+  ],
+  "far": [
+    "distance",
+    "position",
+    "place",
+    "away"
+  ],
+  "craven": [
+    "cowardly",
+    "person",
+    "weakling",
+    "chicken"
+  ],
+  "abounding": [
+    "abundant",
+    "ample",
+    "rich",
+    "quantity"
+  ],
+  "mundane": [
+    "normal",
+    "insignificant",
+    "ordinary",
+    "secular"
+  ],
+  "press": [
+    "push",
+    "machine",
+    "flatten",
+    "print"
+  ],
+  "realise": [
+    "know",
+    "get",
+    "achieve",
+    "accomplish"
+  ],
+  "hate": [
+    "dislike",
+    "disfavor",
+    "emotion",
+    "disdain"
+  ],
+  "unwieldy": [
+    "awkward",
+    "cumbersome",
+    "clumsy",
+    "trait"
+  ],
+  "stamp": [
+    "imprint",
+    "squash",
+    "sort",
+    "mark"
+  ],
+  "refuse": [
+    "deny",
+    "react",
+    "respond",
+    "reject"
+  ],
+  "magenta": [
+    "color",
+    "red",
+    "purple",
+    "hue"
+  ],
+  "able": [
+    "ability",
+    "capable",
+    "qualified",
+    "skilled"
+  ],
+  "light": [
+    "ignite",
+    "quantity",
+    "eyes",
+    "senses"
+  ],
+  "superficial": [
+    "apparent",
+    "careless",
+    "empty",
+    "trait"
+  ],
+  "steer": [
+    "counsel",
+    "guidance",
+    "command",
+    "carry"
+  ],
+  "insurance": [
+    "security",
+    "protection",
+    "expenses",
+    "contract"
+  ],
+  "canvas": [
+    "art",
+    "painting",
+    "textile",
+    "fabric"
+  ],
+  "bear": [
+    "animal",
+    "predator",
+    "carnivor",
+    "ursidae"
+  ],
+  "vegetable": [
+    "food",
+    "produce",
+    "greens",
+    "plant"
+  ],
+  "chief": [
+    "leader",
+    "person",
+    "first",
+    "authority"
+  ],
+  "moldy": [
+    "mildew",
+    "rotten",
+    "rusty",
+    "old"
+  ],
+  "governor": [
+    "person",
+    "politics",
+    "control",
+    "authority"
+  ],
+  "shrill": [
+    "piercing",
+    "sharp",
+    "acute",
+    "senses"
+  ],
+  "furtive": [
+    "indirect",
+    "lurking",
+    "secret",
+    "sly"
+  ],
+  "film": [
+    "record",
+    "video",
+    "art",
+    "storytelling"
+  ],
+  "occur": [
+    "appear",
+    "happen",
+    "event",
+    "result"
+  ],
+  "pale": [
+    "discolor",
+    "color",
+    "achromatic",
+    "appearance"
+  ],
+  "skirt": [
+    "girl",
+    "miss",
+    "clothing",
+    "woman"
+  ],
+  "tiger": [
+    "animal",
+    "predator",
+    "carnivor",
+    "feline"
+  ],
+  "consist": [
+    "match",
+    "fit",
+    "correspond",
+    "check"
+  ],
+  "skip": [
+    "neglect",
+    "omit",
+    "jump",
+    "miss"
+  ],
+  "weigh": [
+    "count",
+    "measure",
+    "quantity",
+    "matter"
+  ],
+  "attract": [
+    "draw",
+    "pull",
+    "force",
+    "action"
+  ],
+  "claim": [
+    "need",
+    "request",
+    "ask",
+    "assertion"
+  ],
+  "heal": [
+    "medicine",
+    "health",
+    "medication",
+    "help"
+  ],
+  "tree": [
+    "nature",
+    "wood",
+    "plant",
+    "flora"
+  ],
+  "drop": [
+    "discontinue",
+    "decline",
+    "stop",
+    "descent"
+  ],
+  "scent": [
+    "smell",
+    "odor",
+    "fragrance",
+    "perfume"
+  ],
+  "dinosaur": [
+    "animal",
+    "predator",
+    "reptile",
+    "fauna"
+  ],
+  "hospitable": [
+    "behaviour",
+    "friendly",
+    "polite",
+    "sociable"
+  ],
+  "wrestle": [
+    "battle",
+    "debate",
+    "fight",
+    "struggle"
+  ],
+  "perfect": [
+    "improve",
+    "better",
+    "ammend",
+    "excellent"
+  ],
+  "ceaseless": [
+    "constant",
+    "continual",
+    "endless",
+    "everlasting"
+  ],
+  "expand": [
+    "increase",
+    "enlarge",
+    "growth",
+    "size"
+  ],
+  "cobweb": [
+    "fabric",
+    "spider",
+    "textile",
+    "material"
+  ],
+  "truck": [
+    "vehicle",
+    "carry",
+    "transport",
+    "motor"
+  ],
+  "woozy": [
+    "dizzy",
+    "faint",
+    "feeble",
+    "tipsy"
+  ],
+  "whisper": [
+    "speak",
+    "talk",
+    "utter",
+    "murmur"
+  ],
+  "arch": [
+    "structure",
+    "entrance",
+    "bent",
+    "construction"
+  ],
+  "tall": [
+    "size",
+    "growth",
+    "big",
+    "raised"
+  ],
+  "purring": [
+    "feline",
+    "cat",
+    "animal",
+    "pet"
+  ],
+  "debonair": [
+    "fashionable",
+    "jaunty",
+    "nonchalant",
+    "refined"
+  ],
+  "yummy": [
+    "delicious",
+    "food",
+    "appetizing",
+    "pleasing"
+  ],
+  "educated": [
+    "civilized",
+    "learned",
+    "literate",
+    "knowledge"
+  ],
+  "rose": [
+    "plant",
+    "flower",
+    "flora",
+    "color"
+  ],
+  "dry": [
+    "desolate",
+    "dull",
+    "old",
+    "state"
+  ],
+  "army": [
+    "agency",
+    "control",
+    "military",
+    "authority"
+  ],
+  "fowl": [
+    "animal",
+    "bird",
+    "hunt",
+    "fauna"
+  ],
+  "balance": [
+    "equilibrium",
+    "structure",
+    "match",
+    "peace"
+  ],
+  "plate": [
+    "structure",
+    "sheet",
+    "flat",
+    "base"
+  ],
+  "wrathful": [
+    "frenzied",
+    "wild",
+    "mad",
+    "furious"
+  ],
+  "fresh": [
+    "creative",
+    "new",
+    "vigor",
+    "clean"
+  ],
+  "blind": [
+    "conceal",
+    "cover",
+    "eyes",
+    "senses"
+  ],
+  "mine": [
+    "excavation",
+    "prossession",
+    "exploit",
+    "tap"
+  ],
+  "cherry": [
+    "fruit",
+    "food",
+    "plant",
+    "flora"
+  ],
+  "care": [
+    "fix",
+    "mending",
+    "help",
+    "health"
+  ],
+  "general": [
+    "imprecise",
+    "leader",
+    "head",
+    "person"
+  ],
+  "bike": [
+    "vehicle",
+    "transport",
+    "ride",
+    "sport"
+  ],
+  "trouble": [
+    "difficulty",
+    "disturb",
+    "perturbation",
+    "upset"
+  ],
+  "cold": [
+    "temperature",
+    "disease",
+    "chill",
+    "trait"
+  ],
+  "bounce": [
+    "eject",
+    "expel",
+    "rebound",
+    "jump"
+  ],
+  "disagree": [
+    "complain",
+    "challenge",
+    "conflict",
+    "protest"
+  ],
+  "acceptable": [
+    "adequate",
+    "agreeable",
+    "average",
+    "tolerable"
+  ],
+  "exultant": [
+    "rejoicing",
+    "triumphant",
+    "happy",
+    "emotion"
+  ],
+  "tightfisted": [
+    "stingy",
+    "greedy",
+    "behaviour",
+    "trait"
+  ],
+  "relax": [
+    "loosen",
+    "calm",
+    "behaviour",
+    "act"
+  ]
+}

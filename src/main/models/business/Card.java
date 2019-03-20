@@ -10,7 +10,7 @@ import javafx.scene.text.Text;
 
 /**
  * This class defines a Card. The Card has a word and a type.
- * 
+ *
  * @author Rosy
  * @version 01/02/2019
  */
@@ -71,18 +71,18 @@ public class Card extends StackPane {
 
 	private void revealCardColor() {
 		switch (this.type) {
-		case 0:
-			this.rec.setFill(BYSTANDER_COLOR);
-			break;
-		case 1:
-			this.rec.setFill(ASSASSIN_COLOR);
-			break;
-		case 2:
-			this.rec.setFill(RED_COLOR);
-			break;
-		case 3:
-			this.rec.setFill(BLUE_COLOR);
-			break;
+			case 0:
+				this.rec.setFill(BYSTANDER_COLOR);
+				break;
+			case 1:
+				this.rec.setFill(ASSASSIN_COLOR);
+				break;
+			case 2:
+				this.rec.setFill(RED_COLOR);
+				break;
+			case 3:
+				this.rec.setFill(BLUE_COLOR);
+				break;
 		}
 	}
 

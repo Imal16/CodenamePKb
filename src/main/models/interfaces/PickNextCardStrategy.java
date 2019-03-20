@@ -1,6 +1,8 @@
 package main.models.interfaces;
 import main.models.business.*;
 
+import java.util.HashMap;
+
 /**
  * This strategy simply picks each card one by one
  * 
@@ -48,4 +50,11 @@ public class PickNextCardStrategy implements PickCardStrategy{
 		
 		board.pickCardAt(row, col);
 	}
+
+	@Override
+	public void execute(HashMap<Integer, String> hint) {
+		execute();
+	}
+
+
 }

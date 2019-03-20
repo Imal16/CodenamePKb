@@ -4,7 +4,6 @@
 	-fx-font-size: 50px;
 }
 
-#playerTurn {
-	-fx-font-size: 50px;
-	
+#spyHint {
+	-fx-font-size: 25px;
 }

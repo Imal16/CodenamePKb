@@ -1,5 +1,7 @@
 package main.models.interfaces;
 
+import java.util.HashMap;
+
 /**
  * Strategy interface
  * @author Zijian Wang
@@ -7,4 +9,5 @@ package main.models.interfaces;
  */
 public interface PickCardStrategy {
 		void execute();
+		void execute(HashMap<Integer, String> hint);
 }

@@ -15,6 +15,8 @@ import main.models.business.Operative;
 import main.models.business.Spymaster;
 import main.models.interfaces.PickRandomCardStrategy;
 
+import java.util.HashMap;
+
 /**
  *Unit testing for picking random card strategy
  *
@@ -52,7 +54,7 @@ class TestPickRandomCardStrategy {
 	@AfterEach
 	void tearDown() throws Exception {
 	}
-	
+
 
 	public TestPickRandomCardStrategy() {
 		testBoard = new Board();
@@ -61,13 +63,15 @@ class TestPickRandomCardStrategy {
 		redSpy = new Spymaster(1);
 		blueSpy = new Spymaster(0);
 	}
-	
+
 
 	@Test
 	void pickRandomTest() {
 		redOp.setStrategy(new PickRandomCardStrategy(testBoard));
-		redOp.pickCard();
-		
+        HashMap<Integer, String> testHint = new HashMap<>();
+        testHint.put(0,"A");
+		redOp.pickCard(testHint);
+
 		//Since a card has been pick at random, we cannot check for a specific card
 		//Instead, we will check all the cards in the board and see if any of them has been picked.
 		boolean cardHasBeenPicked = false;
@@ -78,17 +82,17 @@ class TestPickRandomCardStrategy {
 				}
 			}
 		}
-		
+
 		assertTrue(cardHasBeenPicked);
 	}
-	
+
 	/**
 	 * This test will see that if an operative picks a card at random but the
 	 * card has already been flipped, the operative will
 	 */
 	@Test
 	void pickRandomAlreadyFlippedTest() {
-		
+
 	}
 
 	/**

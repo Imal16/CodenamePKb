@@ -1,5 +1,6 @@
 package main.models.interfaces;
 
+import java.util.HashMap;
 import java.util.Random;
 import main.models.business.*;
 
@@ -11,9 +12,10 @@ import main.models.business.*;
  *
  */
 public class PickRandomCardStrategy implements PickCardStrategy {
+
 	public Board board;
-	
 	private Random r = new Random();
+	public String pick;
 
 	public PickRandomCardStrategy(Board board) {
 		this.board = board;
@@ -33,8 +35,15 @@ public class PickRandomCardStrategy implements PickCardStrategy {
 			row = r.nextInt(5);
 			col = r.nextInt(5);
 		}
-		
+
+		this.pick = board.getCardAt(row, col).getWord();
 		board.pickCardAt(row, col);
 	}
+
+	@Override
+	public void execute(HashMap<Integer, String> hint) {
+		execute();
+	}
+
 
 }

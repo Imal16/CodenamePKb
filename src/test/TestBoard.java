@@ -19,14 +19,14 @@ import main.models.business.Card;
  *
  */
 class TestBoard {
-	
+
 	Board testBoard;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		//This sets up internal graphic for jfx testing
 		//If this line is not here, unit testing doesn't work
-		JFXPanel jp = new JFXPanel(); 
+		JFXPanel jp = new JFXPanel();
 	}
 
 	@AfterAll
@@ -42,7 +42,7 @@ class TestBoard {
 	void tearDown() throws Exception {
 		//resetCards();
 	}
-	
+
 	public TestBoard() {
 		testBoard = new Board();
 	}
@@ -51,30 +51,30 @@ class TestBoard {
 	void setUpCardAtTest() {
 		Card cardToBeSet = new Card("newCard", 1);
 		testBoard.setUpCardAt(cardToBeSet, 0, 0);
-		
+
 		Card retrievedCard = testBoard.board[0][0];
-		
-		assertEquals(cardToBeSet, retrievedCard);		
+
+		assertEquals(cardToBeSet, retrievedCard);
 	}
-		
+
 	@Test
 	void isCardFlippedAtTest() {
 		testBoard.board[0][3].isFlipped = true;
-		
+
 		boolean hasCardBeenFlipped = testBoard.isCardFlippedAt(0, 3);
 		assertTrue(hasCardBeenFlipped);
 	}
-	
+
 	@Test
 	void pickCardAtTest(){
 		testBoard.pickCardAt(0, 1);
-		
+
 		boolean hasCardBeenPicked = testBoard.isCardFlippedAt(0, 1);
 		assertTrue(hasCardBeenPicked);
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Utility method that populates the board with cards
 	 */
@@ -86,7 +86,7 @@ class TestBoard {
 			}
 		}
 	}
-	
+
 	private void resetCards() {
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {

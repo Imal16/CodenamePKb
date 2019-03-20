@@ -1,5 +1,8 @@
 package main.models.business;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,20 +16,27 @@ import java.util.logging.Logger;
 public class Board {
 
 	public Card[][] board;
-
 	private int typeFliped;// to passing the card type value to GameManager
-	
+
+	private RelationGraph redGraph;		//Red team's graph
+	private RelationGraph blueGraph;	//Blue team's graph
+
+	private List<String> redCards;		//Red team's word list
+	private List<String> blueCards;		//Blue team's word list
+
 	public Board() {
 		board = new Card[5][5];
+		this.redGraph = new RelationGraph();
+		this.blueGraph = new RelationGraph();
 	}
 
 	/**
 	 * This method inserts a card object in the board (Card 2D Array) at the
 	 * specified row and column
 	 * 
-	 * @param card
-	 * @param row
-	 * @param col
+	 * @param card Card contained in the board
+	 * @param row Int board row
+	 * @param col Int board column
 	 */
 	public void setUpCardAt(Card card, int row, int col) {
 		this.board[row][col] = card;
@@ -37,24 +47,43 @@ public class Board {
 	 * computer will simply pick a card at random/or next and there is no comparing
 	 * of the colors or the word relation.
 	 * 
-	 * @param row
-	 * @param col
+	 * @param row Int board row
+	 * @param col Int board column
 	 */
 	public void pickCardAt(int row, int col) {
 		board[row][col].flip();
-		if (board[row][col].getType() == 2) {
+
+		if (board[row][col].getType() == 2) {           // red
+		    this.redGraph.deletevertex(this.board[row][col].getWord());
+		    this.redCards.remove(this.board[row][col].getWord());
 			typeFliped = 2;
-		} else if (board[row][col].getType() == 3) {
-			typeFliped = 3;
-		} else if (board[row][col].getType() == 0) {
+        } else if (board[row][col].getType() == 3) {    //blue
+            this.blueGraph.deletevertex(this.board[row][col].getWord());
+            this.blueCards.remove(this.board[row][col].getWord());
+            typeFliped = 3;
+		} else if (board[row][col].getType() == 0) {    //bystander
 			typeFliped = 0;
-		} else if (board[row][col].getType() == 1) {
+		} else if (board[row][col].getType() == 1) {    //assassin
 			typeFliped = 1;
 		} // checking the type, ready to pass to gameManager
-		//System.out.println("Card at row " + row + " and column " + col + ".");
+
 		Logger.getLogger("LOGGER").setLevel(Level.INFO);
 		Logger.getLogger("LOGGER").info("Card at row " + row + " and column " + col + ".");
 	}
+
+    /**
+     * Searches board for row & column position then calls pickCardAt() to flip
+     * @param word String Codename
+     */
+	public void pickCardAt(String word){
+        for (int row = 0; row < 5; row++) {
+            for (int col = 0; col < 5; col++) {
+                if (this.board[row][col].getWord() == word) {
+                    pickCardAt(row, col);
+                }
+            }
+        }
+    }
 
 	// getter
 	public int getTypeFliped() {
@@ -77,5 +106,41 @@ public class Board {
 	}
 
 	// getters & setters
+	public Card getCardAt(int row, int col){
+		return board[row][col];
+	}
+
+	public RelationGraph getRedGraph() {
+		return redGraph;
+	}
+
+	public void setRedGraph(List<String> teamcards, HashMap<String, ArrayList<String>> jsonfilestorage) {
+		this.redGraph.generategraph(teamcards, jsonfilestorage);
+	}
+
+	public RelationGraph getBlueGraph() {
+		return blueGraph;
+	}
+
+	public void setBlueGraph(List<String> teamcards, HashMap<String, ArrayList<String>> jsonfilestorage) {
+		this.blueGraph.generategraph(teamcards, jsonfilestorage);
+	}
+
+	public List<String> getRedCards() {
+		return redCards;
+	}
+
+	public void setRedCards(List<String> redCards) {
+		this.redCards = redCards;
+	}
+
+	public List<String> getBlueCards() {
+		return blueCards;
+	}
+
+	public void setBlueCards(List<String> blueCards) {
+		this.blueCards = blueCards;
+	}
+
 
 }

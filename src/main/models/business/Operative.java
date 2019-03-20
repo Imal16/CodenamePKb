@@ -1,5 +1,6 @@
 package main.models.business;
 
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import main.models.interfaces.*;
@@ -17,29 +18,27 @@ import main.models.interfaces.*;
 public class Operative extends Player{
 	private int team; // 1 for red, 0 for blue.
 	private int tries; //Number of times an operative may choose a card
-	
-	
+	public PickCardStrategy strategy;	//strategy for operative
+
+
+
 	public Operative(int team, int tries) {
 		this.team = team;
 		this.tries = tries;
 	}
-	
-	public PickCardStrategy strategy;
-	
+
 	/**
 	 * This method will execute the strategy that is has been set with
 	 * in order to pick a card.
-	 * 
-	 * @param keyword
+	 *
 	 */
-	public void pickCard() {
+	public void pickCard(HashMap<Integer, String> hint) {
 		//Testing log
 		String side = (team == 1) ? "Red" : "Blue";
-		//System.out.println(side + " operative picks a card!");
 		Logger.getLogger("LOGGER").setLevel(Level.INFO);
 		Logger.getLogger("LOGGER").info(side + " operative picks a card!");
 		
-		strategy.execute();
+		strategy.execute(hint);
 	}
 	
 	/**
@@ -48,6 +47,10 @@ public class Operative extends Player{
 	 */
 	public void setStrategy(PickCardStrategy strategy) {
 		this.strategy = strategy;
+	}
+
+	public void decTries(){
+		--this.tries;
 	}
 	
 	//Getters and setters
