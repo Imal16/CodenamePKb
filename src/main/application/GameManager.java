@@ -32,8 +32,9 @@ public class GameManager {
 	boolean redTurn; // current turn for teams. true = red's, false = blue's
 	boolean redWinner;
 	boolean isGameOver = false;
-	boolean isPlayerPlaying = false;
-	boolean isPlayerRed = false; //player is blue if false
+	
+	private boolean isPlayerPlaying = false;
+	private boolean isPlayerRed = false; //player is blue if false
 
 	private int redCardsLeft;
 	private int blueCardsLeft;
@@ -240,6 +241,14 @@ public class GameManager {
 	
 	public Operative getRedOperative() {
 		return this.redOperative;
+	}
+	
+	public boolean isPlayerPlaying() {
+		return isPlayerPlaying;
+	}
+	
+	public boolean isPlayerRed() {
+		return isPlayerRed;
 	}
 
 	// check if game end

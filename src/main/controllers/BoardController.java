@@ -14,6 +14,8 @@ import com.google.gson.JsonObject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
@@ -162,6 +164,11 @@ public class BoardController implements Initializable {
 			String side = (game.isRedWinner()) ? "Red" : "Blue";
 			Logger.getLogger("LOGGER").setLevel(Level.INFO);
 			Logger.getLogger("LOGGER").info("\nEnd of the game, " + side + " team won!");
+			
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Game Over");
+			alert.setHeaderText("End of the game, " + side + " team won!");
+			alert.showAndWait();
 
 			enterBtn.setDisable(true);
 		}
