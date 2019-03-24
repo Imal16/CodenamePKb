@@ -12,11 +12,14 @@ import java.util.logging.Logger;
 
 import com.google.gson.JsonObject;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import main.application.GameManager;
@@ -141,6 +144,21 @@ public class BoardController implements Initializable {
 				// using the card.getType, and local int red and blue
 				// we record the number of each team's cards.
 				keyCardArrayCounter++;
+				
+
+				cardToAdd.setOnMouseClicked(new EventHandler<MouseEvent>()
+			    {
+
+					@Override
+			        public void handle(MouseEvent t) {
+						//System.out.println("Card clicked");
+						
+			        	if(!cardToAdd.isFlipped && game.isPlayerPlaying() && !game.isEnd()) {
+			        		cardToAdd.flip();
+			        		//System.out.println("Card flipped");
+			        	}  
+			        }
+			    });
 			}
 		}
 
