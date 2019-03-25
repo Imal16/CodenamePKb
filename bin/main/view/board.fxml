@@ -50,6 +50,10 @@ http://tutorials.jenkov.com/javafx/fxml.html
 			<Text id="spyHint" fx:id="spyHint" text="Given Hint:"/>
 		</VBox>
 	</right>
-
+	
+	<!-- BOTTOM -->
+	<bottom>
+		<Text BorderPane.alignment="CENTER" id="turnIndicator" fx:id="turnIndicator" text="Current turn: "/>
+	</bottom>
 </BorderPane>
 

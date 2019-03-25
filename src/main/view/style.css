@@ -4,6 +4,6 @@
 	-fx-font-size: 50px;
 }
 
-#spyHint {
+#spyHint, #turnIndicator {
 	-fx-font-size: 25px;
 }

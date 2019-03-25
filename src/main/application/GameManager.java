@@ -262,4 +262,12 @@ public class GameManager {
 			redWinner = false;
 		}
 	}
+	
+	public String WhosTurnIsIt() {
+		if(redTurn) {
+			return "red";
+		} else {
+			return "blue";
+		}
+	}
 }

@@ -39,7 +39,9 @@ public class BoardController implements Initializable {
 	private Button enterBtn;
 	@FXML
 	private Text spyHint;
-
+	@FXML
+	private Text turnIndicator;
+	
 	private int[] keycardTypes; // Array that holds information about the location of the types of card
 	// (bystander, assassin, ops)
 	private String[] keycardWords; // array that holds information about the location of the words on the board
@@ -66,7 +68,7 @@ public class BoardController implements Initializable {
 		game = new GameManager(board_model);
 		game.setAmountOfBlueCards(numOfBlueCards);
 		game.setAmountOfRedCards(numOfRedCards);// passing number of cards to gameManager
-
+		turnIndicator.setText("Current turn: " + game.WhosTurnIsIt());
 	}
 
 	/**
@@ -163,7 +165,6 @@ public class BoardController implements Initializable {
 		}
 
 		keyCardArrayCounter = 0;
-
 	}
 
 	@FXML
@@ -177,6 +178,7 @@ public class BoardController implements Initializable {
 		if (!game.isEnd()) {
 			game.playTurn();
 			spyHint.setText("Given Hint:\n" + Spymaster.getClueWord());
+			turnIndicator.setText("Current turn: " + game.WhosTurnIsIt());
 		} else {
 			// so not doing play turn but print a string on button
 			String side = (game.isRedWinner()) ? "Red" : "Blue";
