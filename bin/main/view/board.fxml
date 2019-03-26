@@ -48,7 +48,8 @@ http://tutorials.jenkov.com/javafx/fxml.html
 		<VBox alignment="TOP_LEFT" spacing="50">
 		<padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
 			<Button fx:id="enterBtn" text="Enter" onAction="#handleEnterButtonAction"/>
-			<Text id="spyHint" fx:id="spyHint" text="Given Hint:"/>
+			<Button fx:id="skipBtn" text="Skip" onAction="#handleSkipButtonAction"/>
+			<Text styleClass="label" id="spyHint" fx:id="spyHint" text="Given Hint:"/>
 		</VBox>
 	</right>
 	
@@ -61,9 +62,9 @@ http://tutorials.jenkov.com/javafx/fxml.html
 			        </ColumnConstraints>
 			</columnConstraints>
 			<padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
-			<Text GridPane.columnIndex="0" id="turnIndicator" fx:id="turnIndicator" text="Current turn: "/>
-			<Text GridPane.columnIndex="1" id="labelNumRedCards" fx:id="labelNumRedCards"/>
-			<Text GridPane.columnIndex="2" id="labelNumBlueCards" fx:id="labelNumBlueCards"/>
+			<Text styleClass="label" GridPane.columnIndex="0" id="turnIndicator" fx:id="turnIndicator" text="Current turn: "/>
+			<Text styleClass="label" GridPane.columnIndex="1" id="labelNumRedCards" fx:id="labelNumRedCards"/>
+			<Text styleClass="label" GridPane.columnIndex="2" id="labelNumBlueCards" fx:id="labelNumBlueCards"/>
 		</GridPane>
 	</bottom>
 </BorderPane>

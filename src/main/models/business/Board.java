@@ -104,7 +104,7 @@ public class Board {
 	public boolean isCardFlippedAt(int row, int col) {
 		return board[row][col].isFlipped;
 	}
-
+	
 	// getters & setters
 	public Card getCardAt(int row, int col){
 		return board[row][col];

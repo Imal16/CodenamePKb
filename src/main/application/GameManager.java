@@ -265,9 +265,9 @@ public class GameManager {
 	
 	public String WhosTurnIsIt() {
 		if(redTurn) {
-			return "red";
+			return "Red";
 		} else {
-			return "blue";
+			return "Blue";
 		}
 	}
 
