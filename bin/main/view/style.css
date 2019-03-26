@@ -4,6 +4,6 @@
 	-fx-font-size: 50px;
 }
 
-#spyHint, #turnIndicator {
+#spyHint, #turnIndicator, #labelNumRedCards, #labelNumBlueCards {
 	-fx-font-size: 25px;
 }

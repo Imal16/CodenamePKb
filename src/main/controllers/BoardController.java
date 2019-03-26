@@ -41,6 +41,10 @@ public class BoardController implements Initializable {
 	private Text spyHint;
 	@FXML
 	private Text turnIndicator;
+	@FXML
+	private Text labelNumRedCards;
+	@FXML
+	private Text labelNumBlueCards;
 	
 	private int[] keycardTypes; // Array that holds information about the location of the types of card
 	// (bystander, assassin, ops)
@@ -69,6 +73,8 @@ public class BoardController implements Initializable {
 		game.setAmountOfBlueCards(numOfBlueCards);
 		game.setAmountOfRedCards(numOfRedCards);// passing number of cards to gameManager
 		turnIndicator.setText("Current turn: " + game.WhosTurnIsIt());
+		labelNumRedCards.setText("Red cards: 0 / " + numOfRedCards);
+		labelNumBlueCards.setText("Blue cards: 0 / " + numOfBlueCards);
 	}
 
 	/**
@@ -179,6 +185,9 @@ public class BoardController implements Initializable {
 			game.playTurn();
 			spyHint.setText("Given Hint:\n" + Spymaster.getClueWord());
 			turnIndicator.setText("Current turn: " + game.WhosTurnIsIt());
+			labelNumRedCards.setText("Red cards: " + (numOfRedCards - game.getRedCardsLeft()) + " / " + numOfRedCards);
+			labelNumBlueCards.setText("Blue cards: " + (numOfBlueCards - game.getBlueCardsLeft()) + " / " + numOfBlueCards);
+			
 		} else {
 			// so not doing play turn but print a string on button
 			String side = (game.isRedWinner()) ? "Red" : "Blue";

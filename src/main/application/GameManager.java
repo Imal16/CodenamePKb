@@ -270,4 +270,12 @@ public class GameManager {
 			return "blue";
 		}
 	}
+
+	public int getRedCardsLeft() {
+		return redCardsLeft;
+	}
+
+	public int getBlueCardsLeft() {
+		return blueCardsLeft;
+	}
 }
