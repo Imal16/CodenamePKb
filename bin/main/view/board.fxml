@@ -45,8 +45,8 @@ http://tutorials.jenkov.com/javafx/fxml.html
 	
 	<!-- RIGHT -->
 	<right>	
-		<VBox alignment="TOP_LEFT" spacing="50">
-		<padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
+		<VBox alignment="TOP_LEFT" spacing="50" minWidth="220">
+		<padding><Insets top="75" right="25" bottom="10" left="0"/></padding>
 			<Button fx:id="enterBtn" text="Enter" onAction="#handleEnterButtonAction"/>
 			<Button fx:id="skipBtn" text="Skip" onAction="#handleSkipButtonAction"/>
 			<Text styleClass="label" id="spyHint" fx:id="spyHint" text="Given Hint:"/>
