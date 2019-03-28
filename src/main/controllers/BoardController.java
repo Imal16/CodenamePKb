@@ -12,9 +12,14 @@ import java.util.logging.Logger;
 
 import com.google.gson.JsonObject;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import main.application.GameManager;
@@ -34,7 +39,15 @@ public class BoardController implements Initializable {
 	private Button enterBtn;
 	@FXML
 	private Text spyHint;
-
+	@FXML
+	private Text turnIndicator;
+	@FXML
+	private Text labelNumRedCards;
+	@FXML
+	private Text labelNumBlueCards;
+	@FXML
+	private Button skipBtn;
+	
 	private int[] keycardTypes; // Array that holds information about the location of the types of card
 	// (bystander, assassin, ops)
 	private String[] keycardWords; // array that holds information about the location of the words on the board
@@ -61,7 +74,16 @@ public class BoardController implements Initializable {
 		game = new GameManager(board_model);
 		game.setAmountOfBlueCards(numOfBlueCards);
 		game.setAmountOfRedCards(numOfRedCards);// passing number of cards to gameManager
-
+		
+		/*Additional UI elements*/
+		turnIndicator.setText("Current turn: " + game.WhosTurnIsIt());
+		labelNumRedCards.setText("Red cards: 0 / " + numOfRedCards);
+		labelNumBlueCards.setText("Blue cards: 0 / " + numOfBlueCards);
+		
+		/*Skip button is disabled if user is not playing*/
+		if(!game.isPlayerPlaying()) {
+			skipBtn.setDisable(true);
+		}
 	}
 
 	/**
@@ -139,32 +161,69 @@ public class BoardController implements Initializable {
 				// using the card.getType, and local int red and blue
 				// we record the number of each team's cards.
 				keyCardArrayCounter++;
+				
+
+				cardToAdd.setOnMouseClicked(new EventHandler<MouseEvent>()
+			    {
+
+					@Override
+			        public void handle(MouseEvent t) {
+						//System.out.println("Card clicked");
+						
+			        	if(!cardToAdd.isFlipped && game.isPlayerPlaying() && !game.isEnd()) {
+			        		cardToAdd.flip();
+			        		//System.out.println("Card flipped");
+			        	}  
+			        }
+			    });
 			}
 		}
 
 		keyCardArrayCounter = 0;
-
 	}
 
 	@FXML
 	protected void handleEnterButtonAction(ActionEvent event) {
-		// check if the game ends
-		// if so we are not going to play turn since the program could crash if it
-		// overfloats
-
+		/*Changed how this goes. Play the turn regularly, without an end game check. 
+		 * If the game ends after the turn is played, disable the button and show end game message.*/
+		
+		game.playTurn();
 		spyHint.setText("Given Hint:\n" + Spymaster.getClueWord());
-
-		if (!game.isEnd()) {
-			game.playTurn();
-			spyHint.setText("Given Hint:\n" + Spymaster.getClueWord());
-		} else {
-			// so not doing play turn but print a string on button
+		turnIndicator.setText("Current turn: " + game.WhosTurnIsIt());
+		labelNumRedCards.setText("Red cards: " + (numOfRedCards - game.getRedCardsLeft()) + " / " + numOfRedCards);
+		labelNumBlueCards.setText("Blue cards: " + (numOfBlueCards - game.getBlueCardsLeft()) + " / " + numOfBlueCards);
+		
+		if(game.isEnd()) {
+			/*This whole batch of code could be dumped into a handleEnd() method. We'll see when the time to make the user play comes.*/
+			enterBtn.setDisable(true);
+			
 			String side = (game.isRedWinner()) ? "Red" : "Blue";
 			Logger.getLogger("LOGGER").setLevel(Level.INFO);
 			Logger.getLogger("LOGGER").info("\nEnd of the game, " + side + " team won!");
-
-			enterBtn.setDisable(true);
+			
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Game Over");
+			alert.setHeaderText("End of the game, " + side + " team won!");
+			alert.showAndWait();
+			
+			flipAllCards();
+			turnIndicator.setText("Winner: " + side);
 		}
-
+	}
+	
+	@FXML
+	protected void handleSkipButtonAction(ActionEvent event) {
+		System.out.println("Nice.");
+	}
+	
+	/*Flip all the cards on the board that are not flipped.*/
+	public void flipAllCards() {
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 5; j++) {
+				if(!board_model.isCardFlippedAt(i,j)) {
+					board_model.getCardAt(i, j).flip();
+				}
+			}
+		}
 	}
 }

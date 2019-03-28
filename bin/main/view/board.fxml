@@ -16,6 +16,7 @@ http://tutorials.jenkov.com/javafx/fxml.html
 -->
 
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.control.*?>
@@ -44,12 +45,27 @@ http://tutorials.jenkov.com/javafx/fxml.html
 	
 	<!-- RIGHT -->
 	<right>	
-		<VBox alignment="TOP_LEFT" spacing="50">
-		<padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
+		<VBox alignment="TOP_LEFT" spacing="50" minWidth="220">
+		<padding><Insets top="75" right="25" bottom="10" left="0"/></padding>
 			<Button fx:id="enterBtn" text="Enter" onAction="#handleEnterButtonAction"/>
-			<Text id="spyHint" fx:id="spyHint" text="Given Hint:"/>
+			<Button fx:id="skipBtn" text="Skip" onAction="#handleSkipButtonAction"/>
+			<Text styleClass="label" id="spyHint" fx:id="spyHint" text="Given Hint:"/>
 		</VBox>
 	</right>
-
+	
+	<!-- BOTTOM -->
+	<bottom>
+			<GridPane gridLinesVisible="false" hgap="100" alignment="CENTER">
+			<columnConstraints>
+			        <ColumnConstraints minWidth="200" prefWidth="200"
+			                           maxWidth="250" halignment="LEFT">
+			        </ColumnConstraints>
+			</columnConstraints>
+			<padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+			<Text styleClass="label" GridPane.columnIndex="0" id="turnIndicator" fx:id="turnIndicator" text="Current turn: "/>
+			<Text styleClass="label" GridPane.columnIndex="1" id="labelNumRedCards" fx:id="labelNumRedCards"/>
+			<Text styleClass="label" GridPane.columnIndex="2" id="labelNumBlueCards" fx:id="labelNumBlueCards"/>
+		</GridPane>
+	</bottom>
 </BorderPane>
 

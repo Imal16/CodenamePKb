@@ -4,6 +4,10 @@
 	-fx-font-size: 50px;
 }
 
-#spyHint {
+.label {
 	-fx-font-size: 25px;
+}
+
+.button {
+    -fx-pref-width: 75px;
 }

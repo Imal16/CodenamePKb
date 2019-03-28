@@ -2,8 +2,13 @@ package main.application;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import main.models.business.*;
 import main.models.interfaces.*;
 
@@ -27,11 +32,18 @@ public class GameManager {
 	boolean redTurn; // current turn for teams. true = red's, false = blue's
 	boolean redWinner;
 	boolean isGameOver = false;
+	
+	private boolean isPlayerPlaying = false;
+	private boolean isPlayerRed = false; //player is blue if false
 
 	private int redCardsLeft;
 	private int blueCardsLeft;
+	
 
 	public GameManager(Board board) {
+		
+		splashScreen();
+		
 		this.redOperative = new Operative(1, 1);
 		this.blueOperative = new Operative(0, 1);
 		this.redSpymaster = new Spymaster(1);
@@ -67,6 +79,25 @@ public class GameManager {
 		op.setStrategy(strat);
 	}
 
+	public void splashScreen() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("CODENAMES");
+		alert.setHeaderText("Select the operative you would liket to play as, or let the AI play.");
+		
+		ButtonType blueOpButton = new ButtonType("Blue Operative");
+		ButtonType redOpButton = new ButtonType("Red Operative");
+		ButtonType aiButton = new ButtonType("AI");
+		
+		alert.getButtonTypes().setAll(blueOpButton, redOpButton, aiButton);
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if(result.get() != aiButton)
+		{
+			isPlayerPlaying = true;
+			if(result.get() == redOpButton)
+				isPlayerRed = true;
+		}
+	}
 
 
 	/**
@@ -211,6 +242,14 @@ public class GameManager {
 	public Operative getRedOperative() {
 		return this.redOperative;
 	}
+	
+	public boolean isPlayerPlaying() {
+		return isPlayerPlaying;
+	}
+	
+	public boolean isPlayerRed() {
+		return isPlayerRed;
+	}
 
 	// check if game end
 	private void checkNumberOfCardsLeft() {
@@ -222,5 +261,21 @@ public class GameManager {
             isGameOver = true;
 			redWinner = false;
 		}
+	}
+	
+	public String WhosTurnIsIt() {
+		if(redTurn) {
+			return "Red";
+		} else {
+			return "Blue";
+		}
+	}
+
+	public int getRedCardsLeft() {
+		return redCardsLeft;
+	}
+
+	public int getBlueCardsLeft() {
+		return blueCardsLeft;
 	}
 }
