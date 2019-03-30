@@ -39,7 +39,8 @@ public class GameManager {
 	private int redCardsLeft;
 	private int blueCardsLeft;
 	
-
+	private HashMap<Integer, String> hint;
+	
 	public GameManager(Board board) {
 		
 		splashScreen();
@@ -57,6 +58,13 @@ public class GameManager {
 		// Setting strategies for Spymaster
 		setPlayerStrategy(redSpymaster, new SmartHintStrategy(board, redOperative));
 		setPlayerStrategy(blueSpymaster, new SmartHintStrategy(board, blueOperative));
+		
+		if(isPlayerPlaying) {
+			if(isPlayerRed)
+				hint = redSpymaster.GiveHint();
+			else 
+				hint = blueSpymaster.GiveHint();
+		}
 
 	}
 
@@ -105,10 +113,9 @@ public class GameManager {
 	 * includes a spymaster giving a hint and the operative choosing a card.
 	 */
 	public void playTurn() {
-		HashMap<Integer, String> hint;
 		//Determine which team goes first based on the number of cards
 		//for each team that is predetermined in the keycard
-		if (isStarting) {
+		if (isStarting && !isPlayerPlaying) {
 			if (redCardsLeft >= blueCardsLeft) {
 				redTurn = true;
             } else {
@@ -116,7 +123,6 @@ public class GameManager {
 			}
 			isStarting = false;
 		}
-
 
 		if (redTurn) {
 			hint = redSpymaster.GiveHint();
@@ -172,7 +178,7 @@ public class GameManager {
                 checkNumberOfCardsLeft();
 			}while (board.getTypeFliped() == 3 && blueOperative.getTries() >0 && !isGameOver);
 		}
-
+		
 
 		/**
 		 * Above here, when either of the op choose a card,we will check what did
@@ -204,29 +210,43 @@ public class GameManager {
                 side = "The assassin was picked, " + side;
             }
             //all cards used end case
-            else{
+            else {
                 side = (redTurn) ? "Red" : "Blue";
             }
             Logger.getLogger("LOGGER").setLevel(Level.INFO);
             Logger.getLogger("LOGGER").info("End of the game. " + side + " team won!");
         }
-
-
 	}
 
 	// setters
 	public void setAmountOfRedCards(int num) {
 		this.redCardsLeft = num;
 	}
+	
+	public void removeRedCard() {
+		this.redCardsLeft -= 1;
+	}
 
 	public void setAmountOfBlueCards(int num) {
 		this.blueCardsLeft = num;
 	}
 
+	public void removeBlueCard() {
+		this.blueCardsLeft -= 1;
+	}
 
 	public void setBlueOperative(Operative blueOperative) {
 		this.blueOperative = blueOperative;
 	}
+	
+	public void setGameOver() {
+		isGameOver = true;
+	}
+	
+	public void changeTurn() {
+		redTurn = !redTurn;
+	}
+	
 	// getter
 	public Operative getBlueOperative() {
 		return blueOperative;
@@ -250,9 +270,15 @@ public class GameManager {
 	public boolean isPlayerRed() {
 		return isPlayerRed;
 	}
+	
+	public boolean isPlayerTurn() {
+		if(isPlayerRed == redTurn)
+			return true;
+		return false;
+	}
 
 	// check if game end
-	private void checkNumberOfCardsLeft() {
+	public void checkNumberOfCardsLeft() {
 		if (redCardsLeft == 0) {
 			isGameOver = true;
 			redWinner = true;
@@ -270,6 +296,16 @@ public class GameManager {
 			return "Blue";
 		}
 	}
+	
+	public void givePlayerHint() {
+		if(isPlayerPlaying && isPlayerTurn()) {
+			if(isPlayerRed) {
+				hint = redSpymaster.GiveHint();
+			} else {
+				hint = blueSpymaster.GiveHint();
+			}
+		}
+	}
 
 	public int getRedCardsLeft() {
 		return redCardsLeft;
@@ -278,4 +314,5 @@ public class GameManager {
 	public int getBlueCardsLeft() {
 		return blueCardsLeft;
 	}
+	
 }

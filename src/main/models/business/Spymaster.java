@@ -60,6 +60,7 @@ public class Spymaster extends Player {
 
 
 		clueWord = word + " " +num;
+		//setClueWord(clueWord);
 
 		return hint;
 	}

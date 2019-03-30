@@ -40,6 +40,8 @@ public class BoardController implements Initializable {
 	@FXML
 	private Text spyHint;
 	@FXML
+	private Text playerSpyHint;
+	@FXML
 	private Text turnIndicator;
 	@FXML
 	private Text labelNumRedCards;
@@ -80,9 +82,15 @@ public class BoardController implements Initializable {
 		labelNumRedCards.setText("Red cards: 0 / " + numOfRedCards);
 		labelNumBlueCards.setText("Blue cards: 0 / " + numOfBlueCards);
 		
+		
 		/*Skip button is disabled if user is not playing*/
 		if(!game.isPlayerPlaying()) {
 			skipBtn.setDisable(true);
+		}
+		
+		if(game.isPlayerPlaying() && game.isPlayerTurn()) {
+			playerSpyHint.setText("Given Player Hint:\n" + Spymaster.getClueWord());
+			updateUI();
 		}
 	}
 
@@ -123,7 +131,6 @@ public class BoardController implements Initializable {
 	 */
 	private void setupBoard(){
 		// Reading keycard text file
-
 		Jparser jparser = new Jparser();
 
 		try {
@@ -170,10 +177,42 @@ public class BoardController implements Initializable {
 			        public void handle(MouseEvent t) {
 						//System.out.println("Card clicked");
 						
-			        	if(!cardToAdd.isFlipped && game.isPlayerPlaying() && !game.isEnd()) {
-			        		cardToAdd.flip();
-			        		//System.out.println("Card flipped");
-			        	}  
+						//cards are only clickable on the player's turn
+						if(game.isPlayerTurn()) {
+							if(!cardToAdd.isFlipped && game.isPlayerPlaying() && !game.isEnd()) {
+								board_model.pickCardAt(cardToAdd.getWord());
+				        		//if assassin is picked, end the game
+				        		if(cardToAdd.getType() == 1) { //assassin flipped   
+				        			game.setGameOver();
+				        			String winner = (game.isPlayerRed()) ? "Blue" : "Red";
+				        			gameEnd(winner);
+				        			return;
+				        		} else if(cardToAdd.getType() == 2) { //red card flipped
+				        			game.removeRedCard();
+				        			//change the turn if the card flipped is not the player color
+				        			if(!game.isPlayerRed())
+				        				game.changeTurn();
+				        		} else if(cardToAdd.getType() == 3) { //blue card flipped
+				        			game.removeBlueCard();
+				        			//change the turn if the card flipped is not the player color
+				        			if(game.isPlayerRed())
+				        				game.changeTurn();
+				        		} else if(cardToAdd.getType() == 0) { //bystander flipped
+				        			game.changeTurn();
+				        		}
+				        		
+				        		//update the UI
+				        		updateUI();			     
+		
+				        		//check if there are no more cards left for a color
+				        		game.checkNumberOfCardsLeft();
+				        		
+				        		if(game.isEnd()) {
+				        			String side = (game.isRedWinner()) ? "Red" : "Blue";
+				        			gameEnd(side);
+				        		}
+							}
+			        	}
 			        }
 			    });
 			}
@@ -181,39 +220,43 @@ public class BoardController implements Initializable {
 
 		keyCardArrayCounter = 0;
 	}
-
+	
 	@FXML
 	protected void handleEnterButtonAction(ActionEvent event) {
-		/*Changed how this goes. Play the turn regularly, without an end game check. 
-		 * If the game ends after the turn is played, disable the button and show end game message.*/
-		
-		game.playTurn();
-		spyHint.setText("Given Hint:\n" + Spymaster.getClueWord());
-		turnIndicator.setText("Current turn: " + game.WhosTurnIsIt());
-		labelNumRedCards.setText("Red cards: " + (numOfRedCards - game.getRedCardsLeft()) + " / " + numOfRedCards);
-		labelNumBlueCards.setText("Blue cards: " + (numOfBlueCards - game.getBlueCardsLeft()) + " / " + numOfBlueCards);
-		
-		if(game.isEnd()) {
-			/*This whole batch of code could be dumped into a handleEnd() method. We'll see when the time to make the user play comes.*/
-			enterBtn.setDisable(true);
+		if(game.isPlayerPlaying()) {
+			if(!game.isPlayerTurn()) {				
+				game.playTurn();
+				spyHint.setText("Given Hint:\n" + Spymaster.getClueWord());
+				
+				//get the player's next hint after the AI's turn
+				game.givePlayerHint();
+				if(game.isPlayerPlaying() && game.isPlayerTurn()) {
+					playerSpyHint.setText("Given Player Hint:\n" + Spymaster.getClueWord());
+				}
+				updateUI();
+				
+				if(game.isEnd()) {
+					String winner = (game.isRedWinner()) ? "Red" : "Blue";
+					gameEnd(winner);
+				}
+			}
+		} else {
+			game.playTurn();
+			spyHint.setText("Given Hint:\n" + Spymaster.getClueWord());
 			
-			String side = (game.isRedWinner()) ? "Red" : "Blue";
-			Logger.getLogger("LOGGER").setLevel(Level.INFO);
-			Logger.getLogger("LOGGER").info("\nEnd of the game, " + side + " team won!");
+			updateUI();
 			
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Game Over");
-			alert.setHeaderText("End of the game, " + side + " team won!");
-			alert.showAndWait();
-			
-			flipAllCards();
-			turnIndicator.setText("Winner: " + side);
+			if(game.isEnd()) {
+				String winner = (game.isRedWinner()) ? "Red" : "Blue";
+				gameEnd(winner);
+			}
 		}
 	}
 	
 	@FXML
 	protected void handleSkipButtonAction(ActionEvent event) {
-		System.out.println("Nice.");
+		game.changeTurn();
+		updateUI();
 	}
 	
 	/*Flip all the cards on the board that are not flipped.*/
@@ -225,5 +268,28 @@ public class BoardController implements Initializable {
 				}
 			}
 		}
+	}
+	
+	private void gameEnd(String winner) {
+		enterBtn.setDisable(true);
+		
+		updateUI();
+		
+		Logger.getLogger("LOGGER").setLevel(Level.INFO);
+		Logger.getLogger("LOGGER").info("\nEnd of the game, " + winner + " team won!");
+		
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Game Over");
+		alert.setHeaderText("End of the game, " + winner + " team won!");
+		alert.showAndWait();
+		
+		flipAllCards();
+		turnIndicator.setText("Winner: " + winner);
+	}
+	
+	private void updateUI() {
+		turnIndicator.setText("Current turn: " + game.WhosTurnIsIt());
+		labelNumRedCards.setText("Red cards: " + (numOfRedCards - game.getRedCardsLeft()) + " / " + numOfRedCards);
+		labelNumBlueCards.setText("Blue cards: " + (numOfBlueCards - game.getBlueCardsLeft()) + " / " + numOfBlueCards);
 	}
 }
