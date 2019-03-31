@@ -25,6 +25,7 @@ public class GameManager {
 	Operative blueOperative;
 	Spymaster redSpymaster;
 	Spymaster blueSpymaster;
+	Spymaster playerSpymaster;
 
 	Board board;
 
@@ -49,6 +50,14 @@ public class GameManager {
 		this.blueOperative = new Operative(0, 1);
 		this.redSpymaster = new Spymaster(1);
 		this.blueSpymaster = new Spymaster(0);
+		
+		if(isPlayerPlaying)
+		{
+			if(isPlayerRed)
+				playerSpymaster = redSpymaster;
+			else
+				playerSpymaster = blueSpymaster;
+		}
 
 		this.board = board;
 
@@ -59,13 +68,10 @@ public class GameManager {
 		setPlayerStrategy(redSpymaster, new SmartHintStrategy(board, redOperative));
 		setPlayerStrategy(blueSpymaster, new SmartHintStrategy(board, blueOperative));
 		
+		//if the player's turn is first, get a hint
 		if(isPlayerPlaying) {
-			if(isPlayerRed)
-				hint = redSpymaster.GiveHint();
-			else 
-				hint = blueSpymaster.GiveHint();
+			hint = playerSpymaster.GiveHint();
 		}
-
 	}
 
 	/**
@@ -299,11 +305,7 @@ public class GameManager {
 	
 	public void givePlayerHint() {
 		if(isPlayerPlaying && isPlayerTurn()) {
-			if(isPlayerRed) {
-				hint = redSpymaster.GiveHint();
-			} else {
-				hint = blueSpymaster.GiveHint();
-			}
+			hint = playerSpymaster.GiveHint();
 		}
 	}
 

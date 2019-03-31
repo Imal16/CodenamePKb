@@ -86,8 +86,10 @@ public class BoardController implements Initializable {
 		/*Skip button is disabled if user is not playing*/
 		if(!game.isPlayerPlaying()) {
 			skipBtn.setDisable(true);
+			playerSpyHint.setVisible(false);
 		}
 		
+		//if the player starts first, get a hint
 		if(game.isPlayerPlaying() && game.isPlayerTurn()) {
 			playerSpyHint.setText("Given Player Hint:\n" + Spymaster.getClueWord());
 			updateUI();
@@ -175,8 +177,6 @@ public class BoardController implements Initializable {
 
 					@Override
 			        public void handle(MouseEvent t) {
-						//System.out.println("Card clicked");
-						
 						//cards are only clickable on the player's turn
 						if(game.isPlayerTurn()) {
 							if(!cardToAdd.isFlipped && game.isPlayerPlaying() && !game.isEnd()) {
@@ -223,27 +223,18 @@ public class BoardController implements Initializable {
 	
 	@FXML
 	protected void handleEnterButtonAction(ActionEvent event) {
-		if(game.isPlayerPlaying()) {
-			if(!game.isPlayerTurn()) {				
-				game.playTurn();
-				spyHint.setText("Given Hint:\n" + Spymaster.getClueWord());
-				
-				//get the player's next hint after the AI's turn
-				game.givePlayerHint();
-				if(game.isPlayerPlaying() && game.isPlayerTurn()) {
-					playerSpyHint.setText("Given Player Hint:\n" + Spymaster.getClueWord());
-				}
-				updateUI();
-				
-				if(game.isEnd()) {
-					String winner = (game.isRedWinner()) ? "Red" : "Blue";
-					gameEnd(winner);
-				}
-			}
-		} else {
+		//allow the enter button if its not the player's turn or if a player is not playing
+		if(!game.isPlayerTurn() || !game.isPlayerPlaying()) {	
+			//do AI turn
 			game.playTurn();
 			spyHint.setText("Given Hint:\n" + Spymaster.getClueWord());
 			
+			//get the player's next hint after the AI's turn
+			if(game.isPlayerTurn()) {
+				game.givePlayerHint();
+				playerSpyHint.setText("Given Player Hint:\n" + Spymaster.getClueWord());
+			}
+	
 			updateUI();
 			
 			if(game.isEnd()) {
@@ -255,8 +246,10 @@ public class BoardController implements Initializable {
 	
 	@FXML
 	protected void handleSkipButtonAction(ActionEvent event) {
-		game.changeTurn();
-		updateUI();
+		if(game.isPlayerTurn()) {
+			game.changeTurn();
+			updateUI();
+		}
 	}
 	
 	/*Flip all the cards on the board that are not flipped.*/
