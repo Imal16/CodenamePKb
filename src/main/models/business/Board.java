@@ -141,6 +141,4 @@ public class Board {
 	public void setBlueCards(List<String> blueCards) {
 		this.blueCards = blueCards;
 	}
-
-
 }

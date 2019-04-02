@@ -49,7 +49,8 @@ http://tutorials.jenkov.com/javafx/fxml.html
 		<padding><Insets top="75" right="25" bottom="10" left="0"/></padding>
 			<Button fx:id="enterBtn" text="Enter" onAction="#handleEnterButtonAction"/>
 			<Button fx:id="skipBtn" text="Skip" onAction="#handleSkipButtonAction"/>
-			<Text styleClass="label" id="spyHint" fx:id="spyHint" text="Given Hint:"/>
+			<Text styleClass="label" id="spyHint" fx:id="spyHint" text="Given AI Hint:"/>
+			<Text styleClass="label" id="playerSpyHint" fx:id="playerSpyHint" text="Given Player Hint:"/>
 		</VBox>
 	</right>
 	
