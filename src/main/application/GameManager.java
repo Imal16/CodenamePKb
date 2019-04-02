@@ -21,38 +21,43 @@ import main.models.interfaces.*;
  *
  */
 public class GameManager {
-	Operative redOperative;
-	Operative blueOperative;
-	Spymaster redSpymaster;
-	Spymaster blueSpymaster;
-	Spymaster playerSpymaster;
-
-	Board board;
-
-	boolean isStarting = true;
-	boolean redTurn; // current turn for teams. true = red's, false = blue's
-	boolean redWinner;
-	boolean isGameOver = false;
+	public final static int BYSTANDER = 0;
+	public final static int ASSASSIN = 1;
+	public final static int RED = 2;
+	public final static int BLUE = 3;
 	
+	private Operative redOperative;
+	private Operative blueOperative;
+	private Spymaster redSpymaster;
+	private Spymaster blueSpymaster;
+	private Spymaster playerSpymaster;
+
+	private Operative currentOperative;
+	private Spymaster currentSpymaster;
+	
+	private Board board;
+
+	private boolean redTurn = false; // current turn for teams. true = red's, false = blue's
+	private boolean redWinner = false;
+	private boolean isGameOver = false;
 	private boolean isPlayerPlaying = false;
 	private boolean isPlayerRed = false; //player is blue if false
 
 	private int redCardsLeft;
 	private int blueCardsLeft;
 	
-	private HashMap<Integer, String> hint;
+	private HashMap<Integer, String> hintSet;
 	
 	public GameManager(Board board) {
 		
 		splashScreen();
 		
-		this.redOperative = new Operative(1, 1);
-		this.blueOperative = new Operative(0, 1);
-		this.redSpymaster = new Spymaster(1);
-		this.blueSpymaster = new Spymaster(0);
+		this.redOperative = new Operative(RED, 1);
+		this.blueOperative = new Operative(BLUE, 1);
+		this.redSpymaster = new Spymaster(RED);
+		this.blueSpymaster = new Spymaster(BLUE);
 		
-		if(isPlayerPlaying)
-		{
+		if(isPlayerPlaying){
 			if(isPlayerRed)
 				playerSpymaster = redSpymaster;
 			else
@@ -64,13 +69,16 @@ public class GameManager {
 		// Setting strategies for operatives.
 		setOperativeStrategy(redOperative, new SmartPickCardStrategy(board, redOperative));
 		setOperativeStrategy(blueOperative, new SmartPickCardStrategy(board, blueOperative));
+		
 		// Setting strategies for Spymaster
 		setPlayerStrategy(redSpymaster, new SmartHintStrategy(board, redOperative));
 		setPlayerStrategy(blueSpymaster, new SmartHintStrategy(board, blueOperative));
 		
+		setupFirstTurn();
+		
 		//if the player's turn is first, get a hint
 		if(isPlayerPlaying) {
-			hint = playerSpymaster.GiveHint();
+			hintSet = playerSpymaster.GiveHint();
 		}
 	}
 
@@ -113,79 +121,49 @@ public class GameManager {
 		}
 	}
 
-
+	public void setupFirstTurn() {
+		if (redCardsLeft >= blueCardsLeft) {
+			setRedTurn();
+        } else {
+        	setBlueTurn();
+        }
+	}
+	
 	/**
 	 * This method simulates a turn in a game session with two AIs. One turn
 	 * includes a spymaster giving a hint and the operative choosing a card.
 	 */
 	public void playTurn() {
-		//Determine which team goes first based on the number of cards
-		//for each team that is predetermined in the keycard
-		if (isStarting && !isPlayerPlaying) {
-			if (redCardsLeft >= blueCardsLeft) {
-				redTurn = true;
-            } else {
-                redTurn = false;
-			}
-			isStarting = false;
-		}
-
-		if (redTurn) {
-			hint = redSpymaster.GiveHint();
-			for (Map.Entry<Integer, String> foo :
-					hint.entrySet()) {
-				redOperative.setTries(foo.getKey()+1);
-			}
-
-			do{
-				redOperative.pickCard(hint);
-				if (board.getTypeFliped() == 2) {
-					redCardsLeft--;
-                } else if (board.getTypeFliped() == 3) {
-                    blueCardsLeft--;
-                } else if (board.getTypeFliped() == 0) {
-                    // byStander, do nothing
-                } else if (board.getTypeFliped() == 1) {
-                    // assassin, ends game
-					isGameOver = true;
-					redWinner = false;
-				}
-				redOperative.decTries();
-				if (redOperative.getTries() == 0){
-//					System.out.println("\tOUT OF TRIES");
-				}
-                checkNumberOfCardsLeft();
-			}while (board.getTypeFliped() == 2 && redOperative.getTries() > 0 && !isGameOver);
-
-		} else {
-			hint = blueSpymaster.GiveHint();
-			for (Map.Entry<Integer, String> foo :
-					hint.entrySet()) {
-				blueOperative.setTries(foo.getKey()+1);
-			}
-			do{
-//				System.out.println("\tBLUE PICK");
-				getBlueOperative().pickCard(hint);
-				if (board.getTypeFliped() == 2) {
-					redCardsLeft--;
-                } else if (board.getTypeFliped() == 3) {
-                    blueCardsLeft--;
-                } else if (board.getTypeFliped() == 0) {
-                    // byStander
-                } else if (board.getTypeFliped() == 1) {
-                    // assassin
-                    isGameOver = true;
-					redWinner = true;
-				}
-				blueOperative.decTries();
-				if (blueOperative.getTries() == 0){
-//					System.out.println("\tOUT OF TRIES");
-				}
-                checkNumberOfCardsLeft();
-			}while (board.getTypeFliped() == 3 && blueOperative.getTries() >0 && !isGameOver);
+		hintSet = currentSpymaster.GiveHint();
+		
+		for (Map.Entry<Integer, String> hint : hintSet.entrySet()) {
+			currentOperative.setTries(hint.getKey()+1);
 		}
 		
-
+		//printTurnInfo();
+		
+		do{
+			currentOperative.pickCard(hintSet);
+			
+			switch(board.getTypeFliped()) {
+				case BYSTANDER: //:shrug
+					break;
+				case ASSASSIN:
+					endGame();
+					break;
+				case RED:
+					redCardsLeft--;
+					break;
+				case BLUE:
+					blueCardsLeft--;
+					break;
+			}
+			
+			currentOperative.decTries();
+            checkNumberOfCardsLeft();
+            
+		}while (board.getTypeFliped() == currentOperative.getTeam() && currentOperative.getTries() > 0 && !isGameOver);
+		
 		/**
 		 * Above here, when either of the op choose a card,we will check what did
 		 * him/her pick then we decrease the number of cards of this type. If it was
@@ -198,32 +176,62 @@ public class GameManager {
 		 * 
 		 * note from zijian
 		 */
-
+		
 		// Check how many cards left for each team and make a game over by disabling
 		// enter button
+		
 		if (!isGameOver) {
 			Logger.getLogger("LOGGER").setLevel(Level.INFO);
 			Logger.getLogger("LOGGER").info("END OF TURN!\n");
 
-			//switch turns
-			redTurn = !redTurn;
-
-			//end case
         } else {
             String side = (!redTurn) ? "Red" : "Blue";
             //assassin end case
             if (board.getTypeFliped() == 1) {
                 side = "The assassin was picked, " + side;
             }
-            //all cards used end case
-            else {
-                side = (redTurn) ? "Red" : "Blue";
-            }
+            
             Logger.getLogger("LOGGER").setLevel(Level.INFO);
             Logger.getLogger("LOGGER").info("End of the game. " + side + " team won!");
         }
 	}
-
+	
+	public void printTurnInfo() {
+		System.out.println("Current operative: " + currentOperative.getTeam() + " --- Current Spymaster: " + currentSpymaster.getTeam());
+		System.out.println("Current hint: " + currentSpymaster.getClueWord() + " " + currentSpymaster.getClueNumber());
+		
+		System.out.println("Red hint: " + redSpymaster.getClueWord() + " " + redSpymaster.getClueNumber());
+		System.out.println("Blue hint: " + blueSpymaster.getClueWord() + " " + blueSpymaster.getClueNumber());
+	}
+	
+	public void endGame() {
+		isGameOver = true;
+		
+		if(redTurn) {
+			redWinner = true;
+		}
+	}
+	
+	public void switchSides() {
+		if(redTurn) {
+			setBlueTurn();
+		} else {
+			setRedTurn();
+		}
+	}
+	
+	public void setBlueTurn() {
+		redTurn = false;
+		currentSpymaster = blueSpymaster;
+		currentOperative = blueOperative;
+	}
+	
+	public void setRedTurn() {
+		redTurn = true;
+		currentSpymaster = redSpymaster;
+		currentOperative = redOperative;
+	}
+	
 	// setters
 	public void setAmountOfRedCards(int num) {
 		this.redCardsLeft = num;
@@ -305,7 +313,7 @@ public class GameManager {
 	
 	public void givePlayerHint() {
 		if(isPlayerPlaying && isPlayerTurn()) {
-			hint = playerSpymaster.GiveHint();
+			hintSet = playerSpymaster.GiveHint();
 		}
 	}
 
@@ -317,4 +325,43 @@ public class GameManager {
 		return blueCardsLeft;
 	}
 	
+	public Spymaster getPlayerSpymaster() {
+		return playerSpymaster;
+	}
+	
+	public boolean isRedTurn() {
+		return redTurn;
+	}
+
+	public Spymaster getRedSpymaster() {
+		return redSpymaster;
+	}
+
+	public void setRedSpymaster(Spymaster redSpymaster) {
+		this.redSpymaster = redSpymaster;
+	}
+
+	public Spymaster getBlueSpymaster() {
+		return blueSpymaster;
+	}
+
+	public void setBlueSpymaster(Spymaster blueSpymaster) {
+		this.blueSpymaster = blueSpymaster;
+	}
+
+	public Operative getCurrentOperative() {
+		return currentOperative;
+	}
+
+	public void setCurrentOperative(Operative currentOperative) {
+		this.currentOperative = currentOperative;
+	}
+
+	public Spymaster getCurrentSpymaster() {
+		return currentSpymaster;
+	}
+
+	public void setCurrentSpymaster(Spymaster currentSpymaster) {
+		this.currentSpymaster = currentSpymaster;
+	}
 }

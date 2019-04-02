@@ -34,7 +34,7 @@ public class Operative extends Player{
 	 */
 	public void pickCard(HashMap<Integer, String> hint) {
 		//Testing log
-		String side = (team == 1) ? "Red" : "Blue";
+		String side = (team == 2) ? "Red" : "Blue";
 		Logger.getLogger("LOGGER").setLevel(Level.INFO);
 		Logger.getLogger("LOGGER").info(side + " operative picks a card!");
 		
@@ -66,7 +66,8 @@ public class Operative extends Player{
 		this.tries = triesNumber;
 	}
 
-	public void getTries(int teamType) {
+	
+	public void setTeam(int teamType) {
 		this.team = teamType;
 	}
 }

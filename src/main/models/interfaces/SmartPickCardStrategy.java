@@ -1,5 +1,6 @@
 package main.models.interfaces;
 
+import main.application.GameManager;
 import main.models.business.Board;
 import main.models.business.Operative;
 import main.models.business.RelationGraph;
@@ -31,7 +32,7 @@ public class SmartPickCardStrategy implements PickCardStrategy {
         this.board = board;
         this.op = op;
         this.randStrat = new PickRandomCardStrategy(this.board);
-        if (op.getTeam() == 1) {
+        if (op.getTeam() == GameManager.RED) {
             this.teamGraph = board.getRedGraph();
         } else {
             this.teamGraph = board.getBlueGraph();
@@ -103,7 +104,7 @@ public class SmartPickCardStrategy implements PickCardStrategy {
                 this.randStrat.execute();
                 String word = this.randStrat.pick;
                 this.teamGraph.deletevertex(word);
-                if (op.getTeam() == 1) {
+                if (op.getTeam() == GameManager.RED) {
                     this.board.getRedCards().remove(word);
                 } else {
                     this.board.getBlueCards().remove(word);
@@ -112,7 +113,7 @@ public class SmartPickCardStrategy implements PickCardStrategy {
                 this.randStrat.execute();
                 String word = this.randStrat.pick;
                 this.teamGraph.deletevertex(word);
-                if (op.getTeam() == 1) {
+                if (op.getTeam() == GameManager.RED) {
                     this.board.getRedCards().remove(word);
                 } else {
                     this.board.getBlueCards().remove(word);

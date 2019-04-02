@@ -1,5 +1,6 @@
 package main.models.business;
 
+import main.application.GameManager;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,18 +54,18 @@ public class Board {
 	public void pickCardAt(int row, int col) {
 		board[row][col].flip();
 
-		if (board[row][col].getType() == 2) {           // red
+		if (board[row][col].getType() == GameManager.RED) {           // red
 		    this.redGraph.deletevertex(this.board[row][col].getWord());
 		    this.redCards.remove(this.board[row][col].getWord());
-			typeFliped = 2;
-        } else if (board[row][col].getType() == 3) {    //blue
+			typeFliped = GameManager.RED;
+        } else if (board[row][col].getType() == GameManager.BLUE) {    //blue
             this.blueGraph.deletevertex(this.board[row][col].getWord());
             this.blueCards.remove(this.board[row][col].getWord());
-            typeFliped = 3;
-		} else if (board[row][col].getType() == 0) {    //bystander
-			typeFliped = 0;
-		} else if (board[row][col].getType() == 1) {    //assassin
-			typeFliped = 1;
+            typeFliped = GameManager.BLUE;
+		} else if (board[row][col].getType() == GameManager.BYSTANDER) {    //bystander
+			typeFliped = GameManager.BYSTANDER;
+		} else if (board[row][col].getType() == GameManager.ASSASSIN) {    //assassin
+			typeFliped = GameManager.ASSASSIN;
 		} // checking the type, ready to pass to gameManager
 
 		Logger.getLogger("LOGGER").setLevel(Level.INFO);

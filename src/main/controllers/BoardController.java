@@ -48,6 +48,8 @@ public class BoardController implements Initializable {
 	@FXML
 	private Text labelNumBlueCards;
 	@FXML
+	private Text playerPicksLeft;
+	@FXML
 	private Button skipBtn;
 	
 	private int[] keycardTypes; // Array that holds information about the location of the types of card
@@ -87,11 +89,13 @@ public class BoardController implements Initializable {
 		if(!game.isPlayerPlaying()) {
 			skipBtn.setDisable(true);
 			playerSpyHint.setVisible(false);
+			playerPicksLeft.setVisible(false);
 		}
 		
 		//if the player starts first, get a hint
 		if(game.isPlayerPlaying() && game.isPlayerTurn()) {
-			playerSpyHint.setText("Given Player Hint:\n" + Spymaster.getClueWord());
+			playerSpyHint.setText("Given Player Hint:\n" + game.getPlayerSpymaster().getClueWord());
+			playerPicksLeft.setText("Picks left: " + game.getPlayerSpymaster().getClueNumber());
 			updateUI();
 		}
 	}
@@ -224,23 +228,29 @@ public class BoardController implements Initializable {
 	@FXML
 	protected void handleEnterButtonAction(ActionEvent event) {
 		//allow the enter button if its not the player's turn or if a player is not playing
-		if(!game.isPlayerTurn() || !game.isPlayerPlaying()) {	
+		//!game.isPlayerTurn() && 
+		if(!game.isPlayerPlaying()) {	
 			//do AI turn
 			game.playTurn();
-			spyHint.setText("Given Hint:\n" + Spymaster.getClueWord());
 			
-			//get the player's next hint after the AI's turn
-			if(game.isPlayerTurn()) {
-				game.givePlayerHint();
-				playerSpyHint.setText("Given Player Hint:\n" + Spymaster.getClueWord());
-			}
-	
-			updateUI();
-			
-			if(game.isEnd()) {
-				String winner = (game.isRedWinner()) ? "Red" : "Blue";
-				gameEnd(winner);
-			}
+			spyHint.setText("Given Hint:\n" + game.getCurrentSpymaster().getClueWord());	
+		}
+		
+		//System.out.println(game.isPlayerTurn());
+		
+		//get the player's next hint after the AI's turn
+		/*if(game.isPlayerTurn()) {
+			game.givePlayerHint();
+			playerSpyHint.setText("Given Player Hint:\n" + game.getPlayerSpymaster().getClueWord());
+		}*/
+
+		updateUI();
+		
+		game.switchSides();
+		
+		if(game.isEnd()) {
+			String winner = (game.isRedWinner()) ? "Red" : "Blue";
+			gameEnd(winner);
 		}
 	}
 	
@@ -265,6 +275,7 @@ public class BoardController implements Initializable {
 	
 	private void gameEnd(String winner) {
 		enterBtn.setDisable(true);
+		skipBtn.setDisable(true);
 		
 		updateUI();
 		
