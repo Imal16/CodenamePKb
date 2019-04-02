@@ -20,12 +20,7 @@ import main.models.interfaces.*;
  * @version 02/05/2019
  *
  */
-public class GameManager {
-	public final static int BYSTANDER = 0;
-	public final static int ASSASSIN = 1;
-	public final static int RED = 2;
-	public final static int BLUE = 3;
-	
+public class GameManager {	
 	private Operative redOperative;
 	private Operative blueOperative;
 	private Spymaster redSpymaster;
@@ -35,7 +30,7 @@ public class GameManager {
 	private Operative currentOperative;
 	private Spymaster currentSpymaster;
 	
-	private Board board;
+	private Board board; //change this to board controller
 
 	private boolean redTurn = false; // current turn for teams. true = red's, false = blue's
 	private boolean redWinner = false;
@@ -52,10 +47,10 @@ public class GameManager {
 		
 		splashScreen();
 		
-		this.redOperative = new Operative(RED, 1);
-		this.blueOperative = new Operative(BLUE, 1);
-		this.redSpymaster = new Spymaster(RED);
-		this.blueSpymaster = new Spymaster(BLUE);
+		this.redOperative = new Operative(CardTypes.RED, 1);
+		this.blueOperative = new Operative(CardTypes.BLUE, 1);
+		this.redSpymaster = new Spymaster(CardTypes.RED);
+		this.blueSpymaster = new Spymaster(CardTypes.BLUE);
 		
 		if(isPlayerPlaying){
 			if(isPlayerRed)
@@ -146,15 +141,15 @@ public class GameManager {
 			currentOperative.pickCard(hintSet);
 			
 			switch(board.getTypeFliped()) {
-				case BYSTANDER: //:shrug
+				case CardTypes.BYSTANDER: //:shrug
 					break;
-				case ASSASSIN:
+				case CardTypes.ASSASSIN:
 					endGame();
 					break;
-				case RED:
+				case CardTypes.RED:
 					redCardsLeft--;
 					break;
-				case BLUE:
+				case CardTypes.BLUE:
 					blueCardsLeft--;
 					break;
 			}

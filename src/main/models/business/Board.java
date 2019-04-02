@@ -54,18 +54,18 @@ public class Board {
 	public void pickCardAt(int row, int col) {
 		board[row][col].flip();
 
-		if (board[row][col].getType() == GameManager.RED) {           // red
+		if (board[row][col].getType() == CardTypes.RED) {           // red
 		    this.redGraph.deletevertex(this.board[row][col].getWord());
 		    this.redCards.remove(this.board[row][col].getWord());
-			typeFliped = GameManager.RED;
-        } else if (board[row][col].getType() == GameManager.BLUE) {    //blue
+			typeFliped = CardTypes.RED;
+        } else if (board[row][col].getType() == CardTypes.BLUE) {    //blue
             this.blueGraph.deletevertex(this.board[row][col].getWord());
             this.blueCards.remove(this.board[row][col].getWord());
-            typeFliped = GameManager.BLUE;
-		} else if (board[row][col].getType() == GameManager.BYSTANDER) {    //bystander
-			typeFliped = GameManager.BYSTANDER;
-		} else if (board[row][col].getType() == GameManager.ASSASSIN) {    //assassin
-			typeFliped = GameManager.ASSASSIN;
+            typeFliped = CardTypes.BLUE;
+		} else if (board[row][col].getType() == CardTypes.BYSTANDER) {    //bystander
+			typeFliped = CardTypes.BYSTANDER;
+		} else if (board[row][col].getType() == CardTypes.ASSASSIN) {    //assassin
+			typeFliped = CardTypes.ASSASSIN;
 		} // checking the type, ready to pass to gameManager
 
 		Logger.getLogger("LOGGER").setLevel(Level.INFO);
@@ -141,5 +141,21 @@ public class Board {
 
 	public void setBlueCards(List<String> blueCards) {
 		this.blueCards = blueCards;
+	}
+	
+	public RelationGraph getTeamGraph(int team) {
+		if(team == CardTypes.RED) {
+			return getRedGraph();
+		} else {
+			return getBlueGraph();
+		}
+	}
+	
+	public List<String> getTeamCards(int team){
+		if(team == CardTypes.RED) {
+			return getRedCards();
+		} else {
+			return getBlueCards();
+		}
 	}
 }

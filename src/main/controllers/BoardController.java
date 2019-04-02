@@ -31,7 +31,10 @@ import main.models.business.*;
  * @author Rosy Teasdale, William Ngo, Zijian Wang
  * @version 02/06/2019
  */
-public class BoardController implements Initializable {
+
+//implements Initializable
+
+public class BoardController implements Initializable{
 
 	@FXML
 	private GridPane board_view; // use fx:id
@@ -70,7 +73,6 @@ public class BoardController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
 		board_model = new Board();
 		setupBoard();
 		setupGraph();

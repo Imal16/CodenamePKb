@@ -1,6 +1,5 @@
 package main.models.interfaces;
 
-import main.application.GameManager;
 import main.models.business.Board;
 import main.models.business.Operative;
 import main.models.business.RelationGraph;
@@ -28,11 +27,14 @@ public class SmartHintStrategy implements HintStrategy {
     public SmartHintStrategy(Board board, Operative operative) {
         this.board = board;
         this.operative = operative;
-        if (this.operative.getTeam() == GameManager.RED) {
+        
+        this.teamGraph = this.board.getTeamGraph(operative.getTeam());
+        
+       /* if (this.operative.getTeam() == CardTypes.RED) {
             this.teamGraph = this.board.getRedGraph();
         } else {
             this.teamGraph = this.board.getBlueGraph();
-        }
+        }*/
     }
 
     /**
@@ -51,11 +53,14 @@ public class SmartHintStrategy implements HintStrategy {
     @Override
     public HashMap<Integer, String> execute() {
         HashMap<Integer, String> hint;
-        if (this.operative.getTeam() == GameManager.RED) {
+        
+        hint = checkForHints(this.board.getTeamCards(operative.getTeam()));
+        
+       /* if (this.operative.getTeam() == CardTypes.RED) {
             hint = checkForHints(this.board.getRedCards());
         } else {
             hint = checkForHints(this.board.getBlueCards());
-        }
+        }*/
 
         return hint;
     }
