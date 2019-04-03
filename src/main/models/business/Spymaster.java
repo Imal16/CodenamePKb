@@ -27,9 +27,7 @@ public class Spymaster extends Player {
 	private HintStrategy strategy;
 
 	public Spymaster(int team) {
-		this.team = team;
-		//hints = new String[10];
-		//giveDefaultHints();
+		super(team);
 	}
 	
 	/**
@@ -38,15 +36,6 @@ public class Spymaster extends Player {
 	 * to give a hint such as relating the hint to the words in the board
 	 */
 	public HashMap<Integer, String> GiveHint() {
-		//int hintNo = rand.nextInt(10);
-		//int clueNumber = 1 + rand.nextInt(3); // clue number between 1 and 3
-		//String side = (team == GameManager.RED) ? "Red" : "Blue";
-
-//		System.out.println("\t\tGIVE HINT");
-		//System.out.println(side + " spymaster's hint is: " + hints[hintNo] + ", clue number " + clueNumber + ".");
-		//Logger.getLogger("LOGGER").setLevel(Level.INFO);
-		//Logger.getLogger("LOGGER").info(side + " spymaster's hint is: " + hints[hintNo] + ", clue number " + clueNumber + ".");
-
 		String word = "";
 		int num = 0;
 		HashMap<Integer, String> hint = strategy.execute();

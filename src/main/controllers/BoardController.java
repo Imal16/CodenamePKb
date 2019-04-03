@@ -10,9 +10,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.google.gson.JsonObject;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,8 +26,8 @@ import main.models.business.*;
 /**
  * This is the Controller for generating the board cards.
  *
- * @author Rosy Teasdale, William Ngo, Zijian Wang
- * @version 02/06/2019
+ * @author Rosy Teasdale, William Ngo, Zijian Wang, Olivier, Daniel
+ * @version 03/04/2019
  */
 
 //implements Initializable
@@ -86,18 +84,23 @@ public class BoardController implements Initializable{
 		labelNumRedCards.setText("Red cards: 0 / " + numOfRedCards);
 		labelNumBlueCards.setText("Blue cards: 0 / " + numOfBlueCards);
 		
-		
-		/*Skip button is disabled if user is not playing*/
+		/*Don't show the skip button if ai vs ai*/
 		if(!game.isPlayerPlaying()) {
-			skipBtn.setDisable(true);
+			skipBtn.setVisible(false);
 			playerSpyHint.setVisible(false);
 			playerPicksLeft.setVisible(false);
 		}
 		
+		/*Skip button is disabled if user is not playing*/
+		if(!game.isPlayersTurn()) {
+			skipBtn.setDisable(true);
+		}
+		
 		//if the player starts first, get a hint
-		if(game.isPlayerPlaying() && game.isPlayerTurn()) {
-			playerSpyHint.setText("Given Player Hint:\n" + game.getPlayerSpymaster().getClueWord());
-			playerPicksLeft.setText("Picks left: " + game.getPlayerSpymaster().getClueNumber());
+		if(game.isPlayerPlaying() && game.isPlayersTurn()) {
+			enterBtn.setDisable(true);
+			playerSpyHint.setText("Your Hint:\n" + game.getPlayerSpymaster().getClueWord());
+			playerPicksLeft.setText("Picks left: " + game.getPlayer().getTries());
 			updateUI();
 		}
 	}
@@ -114,12 +117,14 @@ public class BoardController implements Initializable{
 		for(int row = 0; row < 5; row++){
 			for (int col = 0; col < 5; col++){
 				Card currentCard = board_model.getCardAt(row, col);
-				if(currentCard.getType() == 2){
+				
+				if(currentCard.getType() == CardTypes.RED){
 					redTeamCards.add(currentCard.getWord());
 				}
-				else if(currentCard.getType() == 3){
+				else if(currentCard.getType() == CardTypes.BLUE){
 					blueTeamCards.add(currentCard.getWord());
 				}
+				
 			}
 		}
 		// Set graph for respective team
@@ -144,6 +149,7 @@ public class BoardController implements Initializable{
 		try {
 			// Create a Keycard reader with the Keycard text file
 			KeyCardReader reader = new KeyCardReader("resources/keycards/keycard6.txt", "resources/keycards/words.txt");
+			//Get random keycards!!
 
 			wordRelation = jparser.parseJson(jparser.readfile());
 
@@ -168,56 +174,74 @@ public class BoardController implements Initializable{
 				// game.redCardsLeft++;
 				board_view.add(cardToAdd, i, j); // add card on the view
 				board_model.setUpCardAt(cardToAdd, i, j); // add card in the board class
-				if (cardToAdd.getType() == 2) {
+				if (cardToAdd.getType() == CardTypes.RED) {
 					numOfRedCards++;
-				} else if (cardToAdd.getType() == 3) {
+				} else if (cardToAdd.getType() == CardTypes.BLUE) {
 					numOfBlueCards++;
 				}
 				// using the card.getType, and local int red and blue
 				// we record the number of each team's cards.
 				keyCardArrayCounter++;
 				
-
+				/*Click listener added to cards*/
 				cardToAdd.setOnMouseClicked(new EventHandler<MouseEvent>()
 			    {
 
 					@Override
 			        public void handle(MouseEvent t) {
-						//cards are only clickable on the player's turn
-						if(game.isPlayerTurn()) {
-							if(!cardToAdd.isFlipped && game.isPlayerPlaying() && !game.isEnd()) {
-								board_model.pickCardAt(cardToAdd.getWord());
-				        		//if assassin is picked, end the game
-				        		if(cardToAdd.getType() == 1) { //assassin flipped   
-				        			game.setGameOver();
-				        			String winner = (game.isPlayerRed()) ? "Blue" : "Red";
-				        			gameEnd(winner);
-				        			return;
-				        		} else if(cardToAdd.getType() == 2) { //red card flipped
-				        			game.removeRedCard();
+						
+						/*cards are only clickable if:
+						 * 	its the players turn
+						 * 	the card is not flipped
+						 * 	the game is not over
+						 * 	the player still has more than 0 picks*/
+						
+						if(game.isPlayersTurn() && !cardToAdd.isFlipped && !game.isGameOver() && game.getPlayer().getTries() > 0) {
+							board_model.pickCardAt(cardToAdd.getWord());
+							game.getPlayer().decTries();
+							
+			        		switch(cardToAdd.getType()) {
+								case CardTypes.BYSTANDER:
+									game.getPlayer().setTries(0);
+									break;
+									
+								case CardTypes.ASSASSIN:
+									game.switchTeams();
+									game.endGame();
+									break;
+									
+								case CardTypes.RED:
+									game.removeRedCard();
 				        			//change the turn if the card flipped is not the player color
 				        			if(!game.isPlayerRed())
-				        				game.changeTurn();
-				        		} else if(cardToAdd.getType() == 3) { //blue card flipped
-				        			game.removeBlueCard();
+				        				game.getPlayer().setTries(0);
+									break;
+									
+								case CardTypes.BLUE:
+									game.removeBlueCard();
 				        			//change the turn if the card flipped is not the player color
 				        			if(game.isPlayerRed())
-				        				game.changeTurn();
-				        		} else if(cardToAdd.getType() == 0) { //bystander flipped
-				        			game.changeTurn();
-				        		}
-				        		
-				        		//update the UI
-				        		updateUI();			     
-		
-				        		//check if there are no more cards left for a color
-				        		game.checkNumberOfCardsLeft();
-				        		
-				        		if(game.isEnd()) {
-				        			String side = (game.isRedWinner()) ? "Red" : "Blue";
-				        			gameEnd(side);
-				        		}
-							}
+				        				game.getPlayer().setTries(0);
+									break;
+			        		}
+			        		
+			        					     
+	
+			        		//check if there are no more cards left for a color
+			        		game.checkNumberOfCardsLeft();
+			        		
+			        		if(game.getPlayer().getTries() == 0) {
+			        			enterBtn.setText("Play AI");
+			        			enterBtn.setDisable(false);
+			        			skipBtn.setDisable(true);
+			        			game.switchTeams();
+			        		}
+			        		
+			        		if(game.isGameOver()) {
+			        			handleGameEnd();
+			        		}
+			        		
+			        		updateUI();
 			        	}
 			        }
 			    });
@@ -229,39 +253,48 @@ public class BoardController implements Initializable{
 	
 	@FXML
 	protected void handleEnterButtonAction(ActionEvent event) {
-		//allow the enter button if its not the player's turn or if a player is not playing
-		//!game.isPlayerTurn() && 
-		if(!game.isPlayerPlaying()) {	
-			//do AI turn
-			game.playTurn();
-			
-			spyHint.setText("Given Hint:\n" + game.getCurrentSpymaster().getClueWord());	
-		}
+		/*No matter what state the game is in, the AI plays when the enter button is hit.*/
+		game.playTurn();		
+		spyHint.setText("AI Hint:\n" + game.getCurrentSpymaster().getClueWord());
 		
-		//System.out.println(game.isPlayerTurn());
-		
-		//get the player's next hint after the AI's turn
-		/*if(game.isPlayerTurn()) {
+		/*Things are different if the user is playing: need to disable the enter button for his next turn and re-enable the skip button.
+		 * Then, give the player a new hint.*/
+		if(game.isPlayerPlaying()) {
+			enterBtn.setDisable(true);
+			skipBtn.setDisable(false);
 			game.givePlayerHint();
-			playerSpyHint.setText("Given Player Hint:\n" + game.getPlayerSpymaster().getClueWord());
-		}*/
-
-		updateUI();
-		
-		game.switchSides();
-		
-		if(game.isEnd()) {
-			String winner = (game.isRedWinner()) ? "Red" : "Blue";
-			gameEnd(winner);
+			playerSpyHint.setText("Your Hint:\n" + game.getPlayerSpymaster().getClueWord());
 		}
+
+		if(game.isGameOver()) {
+			handleGameEnd();
+		} else {
+			game.switchTeams();
+		}
+		
+		updateUI();
 	}
 	
 	@FXML
 	protected void handleSkipButtonAction(ActionEvent event) {
-		if(game.isPlayerTurn()) {
-			game.changeTurn();
-			updateUI();
+		/*When you skip: 
+		 * End your turn
+		 * AI plays turn
+		 * Your turn starts again*/
+
+		game.switchTeams();
+		game.playTurn();
+		spyHint.setText("AI Hint:\n" + game.getCurrentSpymaster().getClueWord());
+		
+		game.switchTeams();
+		game.givePlayerHint();
+		playerSpyHint.setText("Your Hint:\n" + game.getPlayerSpymaster().getClueWord());
+		
+		if(game.isGameOver()) {
+			handleGameEnd();
 		}
+		
+		updateUI();
 	}
 	
 	/*Flip all the cards on the board that are not flipped.*/
@@ -275,11 +308,10 @@ public class BoardController implements Initializable{
 		}
 	}
 	
-	private void gameEnd(String winner) {
+	private void handleGameEnd() {
+		String winner = (game.isRedWinner()) ? "Red" : "Blue";
 		enterBtn.setDisable(true);
 		skipBtn.setDisable(true);
-		
-		updateUI();
 		
 		Logger.getLogger("LOGGER").setLevel(Level.INFO);
 		Logger.getLogger("LOGGER").info("\nEnd of the game, " + winner + " team won!");
@@ -293,9 +325,17 @@ public class BoardController implements Initializable{
 		turnIndicator.setText("Winner: " + winner);
 	}
 	
+	/*Some common UI elements that are updated at the end of a turn*/
 	private void updateUI() {
-		turnIndicator.setText("Current turn: " + game.WhosTurnIsIt());
 		labelNumRedCards.setText("Red cards: " + (numOfRedCards - game.getRedCardsLeft()) + " / " + numOfRedCards);
 		labelNumBlueCards.setText("Blue cards: " + (numOfBlueCards - game.getBlueCardsLeft()) + " / " + numOfBlueCards);
+		
+		if(!game.isGameOver()) {
+			turnIndicator.setText("Current turn: " + game.WhosTurnIsIt());
+		}
+		
+		if(game.isPlayerPlaying()) {
+			playerPicksLeft.setText("Picks left: " + (game.getPlayer().getTries()));
+		}
 	}
 }

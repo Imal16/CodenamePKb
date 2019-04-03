@@ -16,15 +16,11 @@ import main.models.interfaces.*;
  *
  */
 public class Operative extends Player{
-	private int team; // 1 for red, 0 for blue.
-	private int tries; //Number of times an operative may choose a card
 	public PickCardStrategy strategy;	//strategy for operative
 
-
-
 	public Operative(int team, int tries) {
-		this.team = team;
-		this.tries = tries;
+		super(team);
+		setTries(tries);
 	}
 
 	/**
@@ -34,7 +30,7 @@ public class Operative extends Player{
 	 */
 	public void pickCard(HashMap<Integer, String> hint) {
 		//Testing log
-		String side = (team == 2) ? "Red" : "Blue";
+		String side = (getTeam() == 2) ? "Red" : "Blue";
 		Logger.getLogger("LOGGER").setLevel(Level.INFO);
 		Logger.getLogger("LOGGER").info(side + " operative picks a card!");
 		
@@ -50,24 +46,6 @@ public class Operative extends Player{
 	}
 
 	public void decTries(){
-		--this.tries;
-	}
-	
-	//Getters and setters
-	public int getTeam() {
-		return team;
-	}
-
-	public int getTries() {
-		return tries;
-	}
-
-	public void setTries(int triesNumber) {
-		this.tries = triesNumber;
-	}
-
-	
-	public void setTeam(int teamType) {
-		this.team = teamType;
+		setTries(getTries() - 1);
 	}
 }

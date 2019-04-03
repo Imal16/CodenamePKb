@@ -7,7 +7,20 @@ package main.models.business;
  *
  */
 public class Player {
-	private int team;// 1 for red, 0 for blue.
+	private int team;
+	private int tries;
+	
+	public Player(int team){
+		this.team = team;
+	}
+	
+	public int getTries() {
+		return tries;
+	}
+
+	public void setTries(int tries) {
+		this.tries = tries;
+	}
 
 	public int getTeam() {
 		return team;

@@ -19,7 +19,7 @@ import javafx.stage.Stage;
  */
 public class MainApp extends Application{
 
-	private GameManager game;
+	//private GameManager game;
 	private final static Logger LOGGER = Logger.getLogger(MainApp.class.getName()); //Create a logger for all the app
 	
 	@Override

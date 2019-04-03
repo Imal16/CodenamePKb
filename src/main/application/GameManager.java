@@ -16,13 +16,15 @@ import main.models.interfaces.*;
  * The gameManager holds information about a game session such as whose turn is
  * it, the score for each team and when should a game finish.
  * 
- * @author William, Zijian
- * @version 02/05/2019
+ * @author William, Zijian, Olivier, Daniel
+ * @version 03/04/2019
  *
  */
 public class GameManager {	
 	private Operative redOperative;
 	private Operative blueOperative;
+	private Operative player;
+	
 	private Spymaster redSpymaster;
 	private Spymaster blueSpymaster;
 	private Spymaster playerSpymaster;
@@ -37,7 +39,9 @@ public class GameManager {
 	private boolean isGameOver = false;
 	private boolean isPlayerPlaying = false;
 	private boolean isPlayerRed = false; //player is blue if false
-
+	private boolean isPlayersTurn = false;
+	private boolean assassinPick = false;
+	
 	private int redCardsLeft;
 	private int blueCardsLeft;
 	
@@ -51,13 +55,6 @@ public class GameManager {
 		this.blueOperative = new Operative(CardTypes.BLUE, 1);
 		this.redSpymaster = new Spymaster(CardTypes.RED);
 		this.blueSpymaster = new Spymaster(CardTypes.BLUE);
-		
-		if(isPlayerPlaying){
-			if(isPlayerRed)
-				playerSpymaster = redSpymaster;
-			else
-				playerSpymaster = blueSpymaster;
-		}
 
 		this.board = board;
 
@@ -70,10 +67,15 @@ public class GameManager {
 		setPlayerStrategy(blueSpymaster, new SmartHintStrategy(board, blueOperative));
 		
 		setupFirstTurn();
-		
-		//if the player's turn is first, get a hint
+
 		if(isPlayerPlaying) {
-			hintSet = playerSpymaster.GiveHint();
+			setupPlayer();
+			
+			/*The player needs a clue if he's playing first!*/
+			if(redTurn == isPlayerRed) {
+				isPlayersTurn = true;
+				givePlayerHint();
+			} 
 		}
 	}
 
@@ -96,6 +98,7 @@ public class GameManager {
 		op.setStrategy(strat);
 	}
 
+	/*Show an alert that asks the player which type of game shall be played: play as Red, play as Blue or AI vs AI*/
 	public void splashScreen() {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("CODENAMES");
@@ -108,14 +111,29 @@ public class GameManager {
 		alert.getButtonTypes().setAll(blueOpButton, redOpButton, aiButton);
 
 		Optional<ButtonType> result = alert.showAndWait();
+		
 		if(result.get() != aiButton)
 		{
 			isPlayerPlaying = true;
-			if(result.get() == redOpButton)
-				isPlayerRed = true;
+
+			if(result.get() == redOpButton) {
+				isPlayerRed = true;	
+			}
 		}
 	}
 
+	/*Sets the player and his spymaster as either Red or Blue depending on his choice in the start alert.*/
+	public void setupPlayer() {
+		if(isPlayerRed) {
+			player = redOperative;
+			playerSpymaster = redSpymaster;
+		} else {
+			player = blueOperative;
+			playerSpymaster = blueSpymaster;
+		}
+	}
+	
+	/*Sets the first team to play. This depends on the number of cards per team in play. The team with the most cards starts first.*/
 	public void setupFirstTurn() {
 		if (redCardsLeft >= blueCardsLeft) {
 			setRedTurn();
@@ -135,29 +153,30 @@ public class GameManager {
 			currentOperative.setTries(hint.getKey()+1);
 		}
 		
-		//printTurnInfo();
-		
-		do{
-			currentOperative.pickCard(hintSet);
-			
-			switch(board.getTypeFliped()) {
-				case CardTypes.BYSTANDER: //:shrug
-					break;
-				case CardTypes.ASSASSIN:
-					endGame();
-					break;
-				case CardTypes.RED:
-					redCardsLeft--;
-					break;
-				case CardTypes.BLUE:
-					blueCardsLeft--;
-					break;
-			}
-			
-			currentOperative.decTries();
-            checkNumberOfCardsLeft();
-            
-		}while (board.getTypeFliped() == currentOperative.getTeam() && currentOperative.getTries() > 0 && !isGameOver);
+		/*Don't want AI to act if either the player isn't playing or it's not his turn*/
+		if(!isPlayerPlaying || !isPlayersTurn) {
+			do{
+				currentOperative.pickCard(hintSet);
+
+				switch(board.getTypeFliped()) {
+					case CardTypes.BYSTANDER: //:shrug
+						break;
+					case CardTypes.ASSASSIN:
+						switchTeams();
+						endGame();
+						break;
+					case CardTypes.RED:
+						redCardsLeft--;
+						break;
+					case CardTypes.BLUE:
+						blueCardsLeft--;
+						break;
+				}
+				
+				currentOperative.decTries();
+	            checkNumberOfCardsLeft();
+			}while (board.getTypeFliped() == currentOperative.getTeam() && currentOperative.getTries() > 0 && !isGameOver);
+		}
 		
 		/**
 		 * Above here, when either of the op choose a card,we will check what did
@@ -191,14 +210,7 @@ public class GameManager {
         }
 	}
 	
-	public void printTurnInfo() {
-		System.out.println("Current operative: " + currentOperative.getTeam() + " --- Current Spymaster: " + currentSpymaster.getTeam());
-		System.out.println("Current hint: " + currentSpymaster.getClueWord() + " " + currentSpymaster.getClueNumber());
-		
-		System.out.println("Red hint: " + redSpymaster.getClueWord() + " " + redSpymaster.getClueNumber());
-		System.out.println("Blue hint: " + blueSpymaster.getClueWord() + " " + blueSpymaster.getClueNumber());
-	}
-	
+	/*Set variables that indicate the end of the game*/
 	public void endGame() {
 		isGameOver = true;
 		
@@ -207,27 +219,73 @@ public class GameManager {
 		}
 	}
 	
-	public void switchSides() {
+	/*Change from red to blue, or blue to red, depending on who is already playing.*/
+	public void switchTeams() {	
 		if(redTurn) {
 			setBlueTurn();
 		} else {
 			setRedTurn();
 		}
+		
+		if(isPlayerPlaying) {
+			isPlayersTurn = ! isPlayersTurn;
+		}
 	}
 	
+	/*Sets the current turn to Blue team.*/
 	public void setBlueTurn() {
 		redTurn = false;
 		currentSpymaster = blueSpymaster;
 		currentOperative = blueOperative;
 	}
 	
+	/*Sets the current turn to Red team.*/
 	public void setRedTurn() {
 		redTurn = true;
 		currentSpymaster = redSpymaster;
 		currentOperative = redOperative;
 	}
 	
-	// setters
+	/*Check the number of cards left. End the game if blue or red reaches 0. Sets the winner.*/
+	public void checkNumberOfCardsLeft() {
+		if (redCardsLeft == 0) {
+			isGameOver = true;
+			redWinner = true;
+		}
+		
+        if (blueCardsLeft == 0) {
+            isGameOver = true;
+			redWinner = false;
+		}
+	}
+	
+	/*Returns a string denoting whos turn it currently is (Used for UI).*/
+	public String WhosTurnIsIt() {	
+		String output;
+		
+		if(redTurn) {
+			output = "Red";
+		} else {
+			output = "Blue";
+		}
+		
+		if(isPlayersTurn && isPlayerPlaying) {
+			output += " (You)";
+		}
+		
+		return output;
+	}
+	
+	/*Gives the player a usable hint, from his spymaster.*/
+	public void givePlayerHint() {
+		hintSet = playerSpymaster.GiveHint();
+		
+		for (Map.Entry<Integer, String> hint : hintSet.entrySet()) {
+			player.setTries(hint.getKey()+1);
+		}
+	}
+	
+	/*Getters and setters*/
 	public void setAmountOfRedCards(int num) {
 		this.redCardsLeft = num;
 	}
@@ -256,14 +314,10 @@ public class GameManager {
 		redTurn = !redTurn;
 	}
 	
-	// getter
 	public Operative getBlueOperative() {
 		return blueOperative;
 	}
-	public boolean isEnd() {
-		return isGameOver;
-	}
-
+	
 	public boolean isRedWinner() {
 		return redWinner;
 	}
@@ -279,37 +333,13 @@ public class GameManager {
 	public boolean isPlayerRed() {
 		return isPlayerRed;
 	}
-	
-	public boolean isPlayerTurn() {
-		if(isPlayerRed == redTurn)
-			return true;
-		return false;
+
+	public boolean isGameOver() {
+		return isGameOver;
 	}
 
-	// check if game end
-	public void checkNumberOfCardsLeft() {
-		if (redCardsLeft == 0) {
-			isGameOver = true;
-			redWinner = true;
-		}
-        if (blueCardsLeft == 0) {
-            isGameOver = true;
-			redWinner = false;
-		}
-	}
-	
-	public String WhosTurnIsIt() {
-		if(redTurn) {
-			return "Red";
-		} else {
-			return "Blue";
-		}
-	}
-	
-	public void givePlayerHint() {
-		if(isPlayerPlaying && isPlayerTurn()) {
-			hintSet = playerSpymaster.GiveHint();
-		}
+	public void setGameOver(boolean isGameOver) {
+		this.isGameOver = isGameOver;
 	}
 
 	public int getRedCardsLeft() {
@@ -358,5 +388,33 @@ public class GameManager {
 
 	public void setCurrentSpymaster(Spymaster currentSpymaster) {
 		this.currentSpymaster = currentSpymaster;
+	}
+
+	public Operative getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(Operative player) {
+		this.player = player;
+	}
+
+	public void setPlayerSpymaster(Spymaster playerSpymaster) {
+		this.playerSpymaster = playerSpymaster;
+	}
+
+	public boolean isPlayersTurn() {
+		return isPlayersTurn;
+	}
+
+	public void setPlayersTurn(boolean isPlayersTurn) {
+		this.isPlayersTurn = isPlayersTurn;
+	}
+
+	public boolean isAssassinPick() {
+		return assassinPick;
+	}
+
+	public void setAssassinPick(boolean assassinPick) {
+		this.assassinPick = assassinPick;
 	}
 }
