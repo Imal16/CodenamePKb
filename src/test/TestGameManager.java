@@ -68,7 +68,7 @@ class TestGameManager {
 		game.setAmountOfBlueCards(5);
 		game.playTurn();
 		game.playTurn();
-		assertTrue(!game.isEnd());
+		assertTrue(!game.isGameOver());
 	}
 
 	/**
@@ -81,7 +81,7 @@ class TestGameManager {
 		game.setAmountOfRedCards(9);
 		game.setAmountOfBlueCards(1);
 		game.playTurn();//red is picking first;
-		assertTrue(game.isEnd());
+		assertTrue(game.isGameOver());
 		assertTrue(!game.isRedWinner());
 	}
 
@@ -95,7 +95,7 @@ class TestGameManager {
 		game.setAmountOfRedCards(1);
 		game.setAmountOfBlueCards(9);
 		game.playTurn();//blue is picking first;
-		assertTrue(game.isEnd());
+		assertTrue(game.isGameOver());
 		assertTrue(game.isRedWinner());
 	}
 
@@ -110,7 +110,7 @@ class TestGameManager {
 		game.setAmountOfBlueCards(3);
 		game.setAmountOfRedCards(2);
 		game.playTurn();//Blue is picking first
-		assertTrue(game.isEnd());
+		assertTrue(game.isGameOver());
 		assertTrue(game.isRedWinner());
 	}
 
@@ -124,7 +124,7 @@ class TestGameManager {
 		game.setAmountOfBlueCards(3);
 		game.setAmountOfRedCards(4);
 		game.playTurn();//Red is picking first
-		assertTrue(game.isEnd());
+		assertTrue(game.isGameOver());
 		assertTrue(!game.isRedWinner());
 	}
 
