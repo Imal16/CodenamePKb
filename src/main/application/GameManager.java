@@ -47,6 +47,9 @@ public class GameManager {
 	
 	private HashMap<Integer, String> hintSet;
 	
+	public GameManager() {	
+	}
+	
 	public GameManager(Board board) {
 		
 		splashScreen();

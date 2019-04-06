@@ -18,6 +18,8 @@ import main.models.business.Operative;
 import main.models.business.Spymaster;
 import main.models.interfaces.PickNextCardStrategy;
 import main.models.interfaces.PickRandomCardStrategy;
+import main.models.interfaces.SmartHintStrategy;
+import main.models.interfaces.SmartPickCardStrategy;
 
 /**
  * Unit testing for Game Manager
@@ -59,7 +61,7 @@ class TestGameManager {
 		blueOp = new Operative(0, 1);
 		redSpy = new Spymaster(1);
 		blueSpy = new Spymaster(0);
-		game = new GameManager(testBoard);
+		game = new GameManager();
 	}
 
 	@Test
@@ -127,6 +129,17 @@ class TestGameManager {
 		game.playTurn();//Red is picking first
 		assertTrue(game.isGameOver());
 		assertTrue(!game.isRedWinner());
+	}
+	
+	@Test
+	void setOperativeStrategyTest() {	
+		SmartPickCardStrategy strategy = new SmartPickCardStrategy(testBoard, blueOp);
+		game.setOperativeStrategy(blueOp, strategy);
+		assertEquals(strategy, blueOp.strategy);
+		
+		SmartPickCardStrategy strategy2 = new SmartPickCardStrategy(testBoard, redOp);
+		game.setOperativeStrategy(redOp, strategy2);
+		assertNotEquals(strategy, redOp.strategy);
 	}
 	
 	@Test
