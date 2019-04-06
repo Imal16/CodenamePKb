@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -31,8 +33,7 @@ class TestGameManager {
 	Spymaster redSpy;
 	Spymaster blueSpy;
 	GameManager game;
-
-
+	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		JFXPanel jp = new JFXPanel();
@@ -127,9 +128,61 @@ class TestGameManager {
 		assertTrue(game.isGameOver());
 		assertTrue(!game.isRedWinner());
 	}
+	
+	@Test
+	void setAmountOfRedCardsTest() {
+		game.setAmountOfRedCards(9);
+		assertEquals(9, game.getRedCardsLeft());
+	}
+	
+	@Test 
+	void setAmountOfBlueCardsTest() {
+		game.setAmountOfBlueCards(9);
+		assertEquals(9, game.getBlueCardsLeft());
+	}
 
-
-
+	@Test
+	void getRedCardsLeftTest() {
+		game.setAmountOfRedCards(9);
+		assertEquals(9, game.getRedCardsLeft());
+		
+		game.setAmountOfRedCards(0);
+		assertEquals(0, game.getRedCardsLeft());
+		
+	}
+	
+	@Test 
+	void getBlueCardsLeftTest() {
+		game.setAmountOfBlueCards(1);
+		assertEquals(1, game.getBlueCardsLeft());
+		
+		game.setAmountOfBlueCards(8);
+		assertEquals(8, game.getBlueCardsLeft());
+	}
+	
+	@Test
+	void removeBlueCardTest() {
+		game.setAmountOfBlueCards(9);
+		game.removeBlueCard();
+		assertEquals(8, game.getBlueCardsLeft());
+	}
+	
+	@Test
+	void removeRedCardTest() {
+		game.setAmountOfRedCards(9);
+		game.removeRedCard();
+		assertEquals(8, game.getRedCardsLeft());
+	}
+	
+	@Test 
+	void TestCheckNumberOfCardsLeft() {
+		game.setAmountOfBlueCards(0);
+		assertEquals(0, game.getBlueCardsLeft());
+		
+		game.setAmountOfRedCards(5);
+		assertEquals(5, game.getRedCardsLeft());
+	}
+	
 	/**
 	 * Utility method that populates the board with cards
 	 */
