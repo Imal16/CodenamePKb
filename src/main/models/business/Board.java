@@ -1,6 +1,5 @@
 package main.models.business;
 
-import main.application.GameManager;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

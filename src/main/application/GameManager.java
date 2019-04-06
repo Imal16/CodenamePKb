@@ -47,7 +47,13 @@ public class GameManager {
 	
 	private HashMap<Integer, String> hintSet;
 	
-	public GameManager() {	
+	//default constructor to be used for unit tests
+	public GameManager() {		
+		this.redOperative = new Operative(CardTypes.RED, 1);
+		this.blueOperative = new Operative(CardTypes.BLUE, 1);
+		this.redSpymaster = new Spymaster(CardTypes.RED);
+		this.blueSpymaster = new Spymaster(CardTypes.BLUE);
+		isPlayerPlaying = true;
 	}
 	
 	public GameManager(Board board) {

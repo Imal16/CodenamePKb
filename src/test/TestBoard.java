@@ -16,6 +16,7 @@ import main.models.business.Card;
 import main.models.business.CardTypes;
 import main.models.business.RelationGraph;
 
+
 /**
  * Unit testing for board
  * @author William Ngo
@@ -55,28 +56,59 @@ class TestBoard {
 	void setUpCardAtTest() {
 		Card cardToBeSet = new Card("newCard", 1);
 		testBoard.setUpCardAt(cardToBeSet, 0, 0);
-
 		Card retrievedCard = testBoard.board[0][0];
-
+		
 		assertEquals(cardToBeSet, retrievedCard);
+		
+		Card cardToBeSet2 = new Card("newCard", 2);
+		testBoard.setUpCardAt(cardToBeSet2, 1, 2);
+		Card retrievedCard2 = testBoard.board[1][2];
+
+		assertEquals(cardToBeSet2, retrievedCard2);
 	}
 
 	@Test
 	void isCardFlippedAtTest() {
 		testBoard.board[0][3].isFlipped = true;
-
+		testBoard.board[4][4].isFlipped = true;
+		testBoard.board[1][2].isFlipped = true;
+		
 		boolean hasCardBeenFlipped = testBoard.isCardFlippedAt(0, 3);
+		boolean hasCardBeenFlipped2 = testBoard.isCardFlippedAt(4, 4);
+		boolean hasCardBeenFlipped3 = testBoard.isCardFlippedAt(1, 2);
+		boolean hasCardBeenFlipped4 = testBoard.isCardFlippedAt(1, 1);
+		
 		assertTrue(hasCardBeenFlipped);
+		assertTrue(hasCardBeenFlipped2);
+		assertTrue(hasCardBeenFlipped3);
+		assertFalse(hasCardBeenFlipped4);
 	}
 
+	//test for pickCardAt(int, int)
 	@Test
 	void pickCardAtTest(){
 		testBoard.pickCardAt(0, 1);
 
 		boolean hasCardBeenPicked = testBoard.isCardFlippedAt(0, 1);
+		boolean hasCardBeenPicked2 = testBoard.isCardFlippedAt(3, 3);
+		
 		assertTrue(hasCardBeenPicked);
+		assertFalse(hasCardBeenPicked2);
 	}
-
+	
+	//Test for pickCardAt(String word)
+	@Test
+	void pickCardAtTest2() {
+		Card card = testBoard.getCardAt(2, 2);
+		testBoard.pickCardAt(card.getWord());
+		boolean hasCardBeenPicked = testBoard.isCardFlippedAt(2, 2);
+		assertTrue(hasCardBeenPicked);
+		
+		Card card2 = testBoard.getCardAt(3, 4);
+		boolean hasCardBeenPicked2 = testBoard.isCardFlippedAt(3, 4);
+		assertFalse(hasCardBeenPicked2);
+	}
+	
 	@Test
 	void getCardAtTest() {
 		Card card1 = testBoard.getCardAt(0, 0);
