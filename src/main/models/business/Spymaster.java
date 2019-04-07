@@ -69,7 +69,6 @@ public class Spymaster extends Player {
 
 
 
-
 	public int getTeam() {
 		return team;
 	}

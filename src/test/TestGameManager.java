@@ -170,6 +170,7 @@ class TestGameManager {
 		game.setupFirstTurn();
 		assertTrue(game.isRedTurn());
 		
+		//blue goes first
 		game.setAmountOfBlueCards(9);
 		game.setAmountOfRedCards(8);
 		game.setupFirstTurn();
