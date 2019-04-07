@@ -37,6 +37,7 @@ public class TestBoardController {
 	@BeforeEach
 	void setUp() throws Exception {
 		populateBoard();
+		boardController.setBoard_model(testBoard);
 	}
 
 	@AfterEach

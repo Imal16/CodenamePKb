@@ -1,5 +1,6 @@
 package main.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
@@ -34,6 +35,8 @@ import main.models.business.*;
 
 public class BoardController implements Initializable{
 
+	public final static int NUM_OF_KEYCARDS = 10;
+	
 	@FXML
 	private GridPane board_view; // use fx:id
 	@FXML
@@ -76,9 +79,7 @@ public class BoardController implements Initializable{
 		setupGraph();
 
 		game = new GameManager(board_model, numOfRedCards, numOfBlueCards);
-		//game.setAmountOfBlueCards(numOfBlueCards);
-		//game.setAmountOfRedCards(numOfRedCards);// passing number of cards to gameManager
-		
+
 		/*Additional UI elements*/
 		turnIndicator.setText("Current turn: " + game.WhosTurnIsIt());
 		labelNumRedCards.setText("Red cards: 0 / " + numOfRedCards);
@@ -144,11 +145,10 @@ public class BoardController implements Initializable{
 	 */
 	private void setupBoard(){
 		// Reading keycard text file
-		Jparser jparser = new Jparser();
+		Jparser jparser = new Jparser();	
+		int keyCardNum = (int)(Math.random() * NUM_OF_KEYCARDS + 1);
 		
-		int keyCardNum = (int)(Math.random() * 10 + 1);
-		
-		try {
+		try {			
 			// Create a Keycard reader with the Keycard text file
 			KeyCardReader reader = new KeyCardReader("resources/keycards/keycard" + keyCardNum + ".txt", "resources/keycards/words.txt");
 			//Get random keycards!!
@@ -339,5 +339,9 @@ public class BoardController implements Initializable{
 		if(game.isPlayerPlaying()) {
 			playerPicksLeft.setText("Picks left: " + (game.getPlayer().getTries()));
 		}
+	}
+
+	public void setBoard_model(Board b) {
+		board_model = b;
 	}
 }
