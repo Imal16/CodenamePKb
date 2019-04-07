@@ -75,9 +75,9 @@ public class BoardController implements Initializable{
 		setupBoard();
 		setupGraph();
 
-		game = new GameManager(board_model);
-		game.setAmountOfBlueCards(numOfBlueCards);
-		game.setAmountOfRedCards(numOfRedCards);// passing number of cards to gameManager
+		game = new GameManager(board_model, numOfRedCards, numOfBlueCards);
+		//game.setAmountOfBlueCards(numOfBlueCards);
+		//game.setAmountOfRedCards(numOfRedCards);// passing number of cards to gameManager
 		
 		/*Additional UI elements*/
 		turnIndicator.setText("Current turn: " + game.WhosTurnIsIt());
@@ -145,10 +145,12 @@ public class BoardController implements Initializable{
 	private void setupBoard(){
 		// Reading keycard text file
 		Jparser jparser = new Jparser();
-
+		
+		int keyCardNum = (int)(Math.random() * 10 + 1);
+		
 		try {
 			// Create a Keycard reader with the Keycard text file
-			KeyCardReader reader = new KeyCardReader("resources/keycards/keycard6.txt", "resources/keycards/words.txt");
+			KeyCardReader reader = new KeyCardReader("resources/keycards/keycard" + keyCardNum + ".txt", "resources/keycards/words.txt");
 			//Get random keycards!!
 
 			wordRelation = jparser.parseJson(jparser.readfile());
@@ -247,7 +249,7 @@ public class BoardController implements Initializable{
 			    });
 			}
 		}
-
+		
 		keyCardArrayCounter = 0;
 	}
 	

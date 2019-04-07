@@ -47,7 +47,7 @@ public class GameManager {
 	
 	private HashMap<Integer, String> hintSet;
 	
-	public GameManager(Board board) {
+	public GameManager(Board board, int numRedCards, int numBlueCards) {
 		
 		splashScreen();
 		
@@ -58,6 +58,9 @@ public class GameManager {
 
 		this.board = board;
 
+		redCardsLeft = numRedCards;
+		blueCardsLeft = numBlueCards;
+		
 		// Setting strategies for operatives.
 		setOperativeStrategy(redOperative, new SmartPickCardStrategy(board, redOperative));
 		setOperativeStrategy(blueOperative, new SmartPickCardStrategy(board, blueOperative));
@@ -134,8 +137,8 @@ public class GameManager {
 	}
 	
 	/*Sets the first team to play. This depends on the number of cards per team in play. The team with the most cards starts first.*/
-	public void setupFirstTurn() {
-		if (redCardsLeft >= blueCardsLeft) {
+	public void setupFirstTurn() {		
+		if (redCardsLeft > blueCardsLeft) {
 			setRedTurn();
         } else {
         	setBlueTurn();
